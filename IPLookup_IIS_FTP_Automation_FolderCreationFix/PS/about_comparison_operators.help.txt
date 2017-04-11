@@ -1,0 +1,207 @@
+﻿TOPIC
+    Comparison operators
+
+SHORT DESCRIPTION
+    Operators that can be used in the Windows PowerShell to 
+    compare values
+
+LONG DESCRIPTION
+    Comparison operators allow you to compare values in parameters 
+    within a command. At their most fundamental level, each 
+    comparison creates a condition that evaluates to true or false. 
+    From that comparison, specific actions can be taken. For example, 
+    you can use comparison operators along with statement blocks to 
+    test for specific conditions. The result of that test determines 
+    which actions to take (in other words, which code blocks to run).
+
+    PowerShell supports the following comparison operators:
+
+    Operator     Description           Example                  t/f
+    ------------ --------------------- ------------------------ -----
+    -eq          equals                10 -eq 10                true
+    -ne          not equal             10 -ne 10                false
+    -gt          greater than          10 -gt 10                false
+    -ge          greater than          10 -ge 10                true
+                 or equal to
+    -lt          less than             10 -lt 10                false
+    -le          less than or equal to 10 -le 10                true
+    -like        wildcard comparison   "one" -like "o*"         true
+    -notlike     wildcard comparison   "one" -notlike "o*"      false
+    -match       regular expression    "book" -match "[iou]"    true
+                 comparison
+    -notmatch    regular expression    "book" -notmatch "[iou]" false
+                 comparison
+
+    The comparison operators listed above are case insensitive. In 
+    other words, "abc" is treated the same as "ABC." However, you can 
+    specify that a comparison be case-sensitive simply by preceding 
+    the operator name with the letter c, as in -ceq. When the c is 
+    used, comparisons take into account the case of the letters being 
+    compared. You can also specify that the operator be case-
+    insensitive by preceding the operator with the letter i, as in -
+    ieq. However, this has the same effect as not specifying either c 
+    or i. Still, you might want to use the i to delineate when you 
+    want a comparison to be case-insensitive.
+
+    To use a comparison operator, you must specify the values that 
+    are to be compared, along with an operator that separates these 
+    values. For example, the following command shows the -gt 
+    comparison operator used in an if statement:
+
+        if ($varA -gt $varB)
+        {
+            Write-Host "Condition evaluates to true."
+        }
+        else
+        {
+            Write-Host "Condition evaluates to false."
+        }
+
+    In the example, the -gt operator is used to determine whether the 
+    value in $varA is greater than the value in $varB. If this 
+    condition evaluates to true, the first code block runs. If the 
+    condition evaluates to false, the second code block runs.
+
+    You can also use one of the other comparison operators (instead 
+    of the -gt operator) in the statement shown in the previous 
+    example. For instance, you can test whether $varA is less than or 
+    equal $varB by using the -le operator. Again, if the condition 
+    evaluates to true, the first code block runs, otherwise the 
+    second code block runs.
+
+    In addition to the basic comparison operators, PowerShell supports 
+    several special comparison operators, including the range 
+    operator, replace operators, and bitwise operators.
+
+    RANGE OPERATOR
+    Another useful comparison operator is the range operator, which 
+    is represented by double periods (..). The range operator allows 
+    you to identify a range of values that you can use in your 
+    statement. To use the range operator, you must specify the 
+    beginning of the range, the operator, and then the last value in 
+    the range. For example, the following statement uses a range 
+    operator to define a range between 1 and the $varB variable:
+
+        foreach($varA in 1..$varB)
+        {
+            Write-Host $varA
+        }
+
+    If you assume that $varB is set to 10, your statement will 
+    include the range 1 through 10, inclusive. That means that each 
+    time the statement loops (as a result of the foreach loop), a 
+    value from the 1-through-10 range is assigned $varA. The value 
+    begins with 1 and is incremented by 1 for each loop. The range 
+    operator allows you to identify the range without having to type 
+    out each value individually.
+
+    REPLACE OPERATOR
+    The replace operator allows you to replace part or all of a 
+    value in the original value with a specified value. For example, 
+    if your value is "book," you can use a replace operator to 
+    substitute b with C. The replace operator compares b with the 
+    value (book) to determine whether the value contains b. If the 
+    comparison evaluates to true, then b is replaced with C, and the 
+    new value is returned. If the comparison evaluates to false, the 
+    original value is returned.
+
+    PowerShell supports three forms of the replace operator:
+
+    Operator   Case              Example                     Results
+    ---------- ----------------- --------------------------- -------
+    -replace   case insensitive  "book" -replace "B", "C"    Cook
+    -ireplace  case insensitive  "book" -ireplace "B", "C"   Cook
+    -creplace  case sensitive    "book" -creplace "B", "C"   book
+
+    As these examples show, you use the -replace operator just like 
+    you do any other comparison operator, except that you specify two 
+    values after the operator itself. The first value is the 
+    characters to be replaced, and the second value is the new 
+    characters to be inserted into the original value in place of the 
+    original characters.
+
+    BITWISE OPERATORS
+    Like the replace comparison operators, bitwise operators do not 
+    return a value of true or false, but instead return a value that 
+    results from the comparison. The comparisons themselves are based 
+    on the underlying bits that make up the compared value. Bits are 
+    compared on an individual basis and, depending on the bitwise 
+    operator used, the results of those comparisons are themselves in 
+    the form of bits, which are then converted to a numerical value 
+    when they are returned.
+
+    For example, the bit structure for the number 10 is 00001010 
+    (based on 1 byte), and the bit structure for the number 3 is 
+    00000011. If you use a bitwise operator to compare 10 to 3, the 
+    individual bits in each byte would be compared. In other words 
+    the first bit in the number 10 byte would be compared to the 
+    first bit in the number 3 byte, then the second bit in each byte 
+    would be compared, and so on. From the comparison of these two 
+    bytes a third byte is returned, which is then transposed into its 
+    numerical equivalent. It is this numerical value that is the 
+    value that is returned by the comparison.
+
+    PowerShell supports the following bit operators:
+
+    Operator     Description           Example                Results
+    ------------ --------------------- ---------------------- -------
+    -band        bitwise and           10 -band 3             2
+    -bor         bitwise or            10 -bor 3              11
+
+    When the -band is used to compare values, the compared bits must 
+    both be 1 for a bit to be returned. When the -bor operator is 
+    used, only one bit must be set to 1.
+
+
+    TYPE OPERATORS
+    Operators are available to aid in type determination.  These
+    operators will return true or false depending on whether the
+    The "-is" operator allows comparison between object types and 
+    returns a Boolean True if the types are equal and Boolean 
+    False if the types are not equal.  The "-isnot" operator allows 
+    comparison between object types and returns a Boolean False if 
+    the types are equal and Boolean True if the types are not equal.  
+    The right hand side of the operator must be represented as a 
+    type, or convertible to a Type.  The type of the left hand side 
+    of the operator is determined by invoking the objects GetType() 
+    method.  The smallest representation is used for any numeric 
+    literal without a decimal point in order to preserve precision.
+    
+
+    Operator     Description           Example                Results
+    ------------ --------------------- ---------------------- -------
+    -is          Is of a specified     $true -is [bool]         true
+                 type
+    -is          Is of a specified     32 -is [int]             true
+                 type
+    -is          Is of a specified     32 -is [double]          false
+                 type
+    -isnot       Is not of a           $true -isnot [bool]      false
+                 specified type
+
+SEE ALSO
+    For information about if statements, enter the following command 
+    at the PowerShell command prompt:
+
+        help about_if
+
+    For information about foreach statements, enter the following 
+    command at the PowerShell command prompt:
+
+        help about_foreach
+
+    For information about wildcards, enter the following command at 
+    the PowerShell command prompt:
+
+        help about_wildcard
+
+    For information about regular expressions, enter the following 
+    command at the PowerShell command prompt:
+
+        help about_regular_expression
+
+    For information about logical operators, enter the following 
+    command at the PowerShell command prompt:
+
+        help about_logical_operator
+

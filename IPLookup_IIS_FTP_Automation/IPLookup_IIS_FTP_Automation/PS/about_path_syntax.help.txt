@@ -1,0 +1,105 @@
+﻿TOPIC
+    Path syntax
+
+SHORT DESCRIPTION
+    Full and relative path name formats in the Windows PowerShell 
+
+LONG DESCRIPTION
+    All items in a data store accessible through a PowerShell Provider 
+    can be uniquely identified by their path names. A path name is a 
+    combination of the item name, the container and subcontainers in which 
+    the item is location, and the PowerShell drive through which the containers 
+    are accessed.
+
+    In PowerShell, path names are divided into one of two types: fully 
+    qualified and relative. A fully qualified path name consists of all 
+    elements that make up a path. The following syntax shows the elements in 
+    a fully qualified path name:
+
+        [<provider>::]<drive>:[\<container>[\<subcontainer>...]]\<item>
+
+    The <provider> placeholder refers to the PowerShell Provider through 
+    which you access the data store. For example, the FileSystem provider 
+    allows you to access the files and directories on your computer. This 
+    element of the syntax is optional and is never needed because the drive 
+    names are unique across all providers.
+
+    The <drive> placeholder refers to the PowerShell drive that is supported 
+    by a particular PowerShell Provider. In the case of the FileSystem 
+    PowerShell provider, the PowerShell drives map to the Windows drives 
+    that are configured on your system. For example, if your system includes 
+    an A drive and a C drive, the FileSystem provider creates the same drives 
+    in PowerShell.
+
+    After you've specified the drive, you must specify any containers and 
+    subcontainers that contain the item. The containers must be specified 
+    in the hierarchical order in which they exist in the data store. In 
+    other words, you must start with the parent container, then the child 
+    container in that parent container, and so on. In addition, each 
+    container must be preceded by a backslash. (Note that PowerShell allows 
+    you to use forward slashes for compatibility with other PowerShells.)
+
+    Once the container and subcontainers have been specified, you must 
+    provide the item name, preceded by a backslash. For example, the fully 
+    qualified path name for the shell.dll file in the c:\windows\system32 
+    directory is as follows:
+
+        c:\windows\system32\shell.dll
+
+    In this case, the drive through which the containers are accessed is C, 
+    the top-level container is Windows, the subcontainer is System32 
+    (located within the Windows container), and the item is shell.dll.
+
+    In some situations, you don't need to specify a fully qualified path 
+    name and can instead use a relative path name. A relative path name is 
+    based on the current working location. PowerShell allows you to identify 
+    an item based on its location relative to the current working location. 
+    You can specify relative path names by using special characters. The 
+    following table describes each of these characters and provides 
+    examples of relative path names and fully qualified path names. The 
+    examples in the table are based on the current working directory being 
+    set to c:\windows.
+
+    Symbol Description                Relative path    Fully qualified path
+    ------ -------------------------- ---------------- --------------------
+    .      Current working location   .\system         c:\windows\system
+    ..     Parent of current working  ..\program files c:\program files
+           location
+    \      Drive root of current      \program files   c:\program files
+           working location
+    [none] No special characters      system           c:\windows\system
+
+    When using a path name in a command, you enter that name in the same 
+    way whether you use a fully qualified path name or a relative one. For 
+    example, suppose that your current working directory is c:\windows. The 
+    following Get-ChildItem command retrieves all items in the c:\techdocs 
+    directory:
+
+        Get-ChildItem \techdocs
+
+    The backslash indicates that the drive root of the current working 
+    location should be used. Because the working directory is c:\windows, 
+    the drive root is C. Since the techdocs directory is located off the 
+    root, you need only to specify the backslash.
+
+    You can achieve the same results by using the following command:
+
+        Get-ChildItem c:\techdocs
+
+    Regardless of whether you use a fully qualified path name or a relative 
+    path name, a path name is important not only because it locates an item 
+    but also because it uniquely identifies the item even if that item 
+    shares the same name as another item in a different container. For 
+    instance, suppose that you have two files that are each named 
+    results.txt. The first file is in a directory named c:\techdocs\jan, 
+    and the second file is in a directory named c:\techdocs\feb. The path 
+    name for the first file (c:\techdocs\jan\results.txt) and the path name 
+    for the second file (c:\techdocs\feb\results.txt) allow you to clearly 
+    distinguish between the two files.
+
+SEE ALSO
+    For information about the current working location, enter the following 
+    command at the PowerShell command prompt:
+
+        help about_location
+

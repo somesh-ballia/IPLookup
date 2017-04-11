@@ -1,0 +1,92 @@
+﻿TOPIC
+    Properties
+
+SHORT DESCRIPTION
+    Using object properties in the Windows PowerShell 
+
+LONG DESCRIPTION
+    PowerShell uses structured collections of information, called objects, to 
+    represent items in data stores or the state of the computer. For 
+    example, when you access a file in PowerShell, you're not working with the 
+    actual file, but instead you're working with a FileInfo object, a type 
+    of object that acts as the file's proxy.
+
+    Most objects are associated with a set of properties. A property is 
+    data associated with an object that specifies a particular state of 
+    that object. In other words, each property describes a specific aspect 
+    of that object. For instance, the FileInfo object includes a property 
+    called Length, which describes the size of the file represented by the 
+    object.
+
+    To view a list of properties associated with a particular object, you 
+    can use the Get-Member Cmdlet. However, to use the Cmdlet, the object 
+    must already exist in some form, either as represented through a 
+    variable or as an object passed down a pipeline. For example, suppose 
+    that the $a variable has been assigned a string value, which means that 
+    the variable is associated with a string object. To view a list of the 
+    object's properties, enter the following command at the PowerShell 
+    command prompt:
+
+        Get-Member -inputobject $a -membertype property
+
+    If you want to see what properties are associated with an object that 
+    is passed down the pipeline, you would use a Get-Member command within 
+    the pipeline, as shown in the following example:
+
+        Get-ChildItem c:\final.txt | Get-Member -membertype property
+
+    Note that the final.txt file must exist on the root of the C: drive for 
+    this example to work.
+
+    PowerShell objects can also include special properties known as note 
+    properties, which are inherited from the PowerShell environment. Note 
+    properties provide additional information about an object that is not 
+    part of the regular properties. For example, the PsIsContainer note 
+    property tells you whether or not an item is a container.
+
+    To view a list of note properties for a particular object, specify the 
+    NoteProperty value as an argument to the -MemberType parameter, as 
+    shown in the following example:
+
+        Get-ChildItem c:\final.txt | Get-Member -membertype NoteProperty
+
+    The most common way to access an object's property is to specify the 
+    property name after an object reference (such as a variable or 
+    expression). You must separate the object reference and the property 
+    with a period.
+
+    For example, the following command displays the size (in bytes) of a 
+    file named final.txt:
+
+        (Get-ChildItem c:\techdocs\final.txt).length
+
+    The Get-ChildItem command returns a FileInfo object that is associated 
+    with the final.txt file. Because the object contains the length 
+    property, you can access the file's size through that property.
+
+    You can also access properties through objects associated with 
+    variables, as shown in the following example:
+
+        $a = (Get-ChildItem c:\techdocs\final.txt)
+        Write-Host $a.fullname $a.length $a.lastwritetime
+
+    The first line of code creates and declares the $a variable by setting 
+    the value of the variable to the results returned by the Get-ChildItem 
+    Cmdlet for the final.txt file in the c:\techdocs directory. The second 
+    line of code returns the values of three properties associated with the 
+    object. The FullName property returns the file's fully qualified path 
+    name. The Length property returns the size of the file in bytes. The 
+    LastWriteTime property returns the date and time that the file was last 
+    updated. As you can see, you can use the variable repeatedly to access 
+    different properties of the object.
+
+SEE ALSO
+    For information about objects, enter the following command:
+
+        help about_object
+
+    For information about the Get-Member Cmdlet, enter the following 
+    command:
+
+        help Get-Member
+

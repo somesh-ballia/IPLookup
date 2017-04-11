@@ -1,0 +1,143 @@
+﻿TOPIC
+    Associative arrays 
+
+SHORT DESCRIPTION
+    A compact data structure for storing a collection of keys and 
+    values where each key is paired with a value
+
+LONG DESCRIPTION
+    An associative array provides a data structure for storing 
+    multiple key and value pairs. For example, consider a person's 
+    name as a key and that person's birth date as a value. An 
+    associative array provides a structure for storing a collection 
+    of names and birthdates where each name is mapped to a birth 
+    date. Visualize an associative array as a two column table where 
+    the first column is a key and the second column is a value. 
+
+    Associative arrays are similar to a standard array in PowerShell, but 
+    rather than referencing the contents of an array by an index
+    number, you reference a data element in an associative array by a 
+    key. Using this key, PowerShell returns the mapped value from the 
+    associative array. 
+
+    PowerShell uses the hash table data type for storing the contents of an 
+    associative array because this data structure provides a fast 
+    lookup mechanism. This is critically important because the 
+    primary purpose of an associative array is to provide an 
+    efficient lookup mechanism. 
+
+    In an associative array, you can use heterogeneous data types. 
+    For example, you can build an associative array containing an 
+    integer, a call to a Cmdlet, and a string, each with a different 
+    key.
+
+    The following shows the associative array syntax:
+
+        $<array name> = @{<key1 = item1>; <key2 = item2>;...}
+
+    The way in which you create and initialize an associative array 
+    is similar to the way you create and initialize a standard array. 
+    However, for an associative array, you must also do the 
+    following:
+
+    * Assign a label to each value in the associative array.
+
+    * Append an @ sign to the outside of the array contents.
+
+    * Surround any keys or values that contain spaces with single or 
+    double quotes.
+
+    For example, to create an associative array named $phone 
+    containing phone numbers for Kim Akers, Ken Myers, and Greg 
+    Chapman, enter the following one-line command at the PowerShell command-
+    prompt:
+
+        $phone = @{'Kim Akers' = '(425) 555-0183'; 'Ken Myers' = 
+        '(425) 555-0184'; 'Greg Chapman' = '(425) 555-0185'}
+
+    To display the contents of the array, enter the following 
+    command:
+
+        $phone
+
+    The output from running this command is as follows:
+
+    Key                            Value
+    ------------------------------ --------------
+    Ken Myers                      (425) 555-0184
+    Greg Chapman                   (425) 555-0185
+    Kim Akers                      (425) 555-0183
+
+    There are several ways to selectively display elements. You can 
+    use dot notation or array notation. For example, both of the 
+    following commands display the telephone number for the Greg 
+    Chapman key:
+
+        $phone.'Greg Chapman'
+        $phone['Greg Chapman']
+
+    Keys and values require quotes (single or double) only if they 
+    contain spaces, otherwise, the quotes are unnecessary. For 
+    example, the following one-line command requires no quotes:
+
+        $phone = @{Kim_Akers = 4255550183; Ken_Myers = 4255550184;
+        Greg_Chapman = 4255550185}
+
+    However, if you intend on storing the value associated with the 
+    key as a string literal you should enclose the value in single or 
+    double quotes. For example, suppose that you use the following 
+    command to create the $phone associative array:
+
+        $phone = @{Kim_Akers = 425-555-0183; Ken_Myers = 
+        425-555-0184; Greg_Chapman = 425-555-0185}
+
+    The output as a result of entering $phone would be as follows:
+
+    Key                            Value
+    ------------------------------ -----
+    Kim_Akers                      -313
+    Greg_Chapman                   -315
+    Ken_Myers                      -314
+
+    Because single or double quotes are not used when specifying the 
+    values, PowerShell interprets the values as integers and the hyphens as 
+    subtraction operators (for example, 425-555-0183 = -313). To 
+    avoid this problem, you can use the following command:
+
+        $phone = @{Kim_Akers = '425-555-0183'; Ken_Myers = 
+        '425-555-0184'; Greg_Chapman = '425-555-0185'}
+
+    The prior examples demonstrate homogeneous data types contained 
+    in an associative array. To verify that the associative array is 
+    a hashtable data type, you can use the GetType method, as 
+    follows:
+
+        $phone.GetType()
+
+    To check the data type of an individual element in the 
+    associative array, specify the key when calling the $phone 
+    associative array, in either of the following ways:
+
+        $phone.Kim_Akers.GetType()
+        $phone['Kim_Akers'].GetType()
+
+    An associative array can contain a mix of data types as the 
+    following example demonstrates:
+
+        $hashMix = @{Key1 = 1; Key2 = Get-ChildItem ; Key3 = 
+        "testing"}
+
+    This example demonstrates that Key1 contains an integer, Key2 
+    contains the results of running a Cmdlet, and Key3 contains a 
+    string. 
+
+SEE ALSO
+    For information about arrays, enter the following command at the 
+    PowerShell command-prompt:
+
+        help about_array
+
+    For information about using single and double quotes in strings, 
+    enter the following command:
+
+        help about_quoting_rules

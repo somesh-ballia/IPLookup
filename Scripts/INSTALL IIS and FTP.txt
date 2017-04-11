@@ -1,0 +1,23 @@
+Steps
+
+1) write a installation configuration file and save it on disk (say c:/IIS_INSTALL.txt)
+
+[Components]
+iis_common = off
+iis_www = off
+iis_www_vdir_scripts = off
+iis_inetmgr = off
+fp_extensions = off
+iis_ftp = on
+
+2) Change the values for the 
+SourcePath subkey and ServicePackSourcePath subkey to the appropriate network shares. The path must contain the i386 folder. ( say \\ct-0026\Windows_Server_2003\ISO_Contents)
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Setup
+
+
+3) Execute the command and admin mode
+
+ sysocmgr /i:%windir%\inf\sysoc.inf /u:c:/IIS_INSTALL.txt
+
+

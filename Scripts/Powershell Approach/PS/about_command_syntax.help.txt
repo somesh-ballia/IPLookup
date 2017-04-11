@@ -1,0 +1,64 @@
+﻿TOPIC
+    Command syntax
+
+SHORT DESCRIPTION
+    Command format in the Windows PowerShell
+
+LONG DESCRIPTION
+    An PowerShell command is a set of one or more Cmdlets, functions, programs,
+    or script files (including any parameters) that are connected by pipe (|) 
+    symbols. Each command must conform to a specific format, which is shown 
+    in the following syntax:
+
+        <command_phrase> [ | <command_phrase> ]...
+
+    As the syntax indicates, a command can include multiple command 
+    phrases, which are separated by pipe symbols. The pipe symbol indicates 
+    that the output of the first command phrase should be passed on, or 
+    piped, to the next command phrase, rather than be displayed on the 
+    screen. A command phrase consists of the following elements:
+
+        <command_name> [ <parameter> ]...
+
+    A command name can be any built-in or external command supported by 
+    PowerShell, including Cmdlets (or their aliases), functions, programs, or 
+    script files. Each command name can be associated with one or more 
+    parameters.
+
+    A parameter is made up of one or two elements: the parameter name, 
+    which is preceded by a hyphen (-), and a value (argument) that must 
+    conform to the command specifications. If a parameter is configured as 
+    a positional parameter, the name and hyphen can be omitted if the 
+    argument is provided in the same position as it is defined in the 
+    command specifications. For example, to list all the items in drive C: 
+    you can use the following syntax:
+
+        Get-ChildItem -path c:\
+
+    However, because -path is a positional parameter in the Get-ChildItem 
+    Cmdlet, you do not have to provide the parameter name, as shown in the 
+    following statement:
+
+        Get-ChildItem c:\
+
+    As you can see, positional parameters allow you to specify the argument 
+    with or without the parameter name. However, if you do use parameter 
+    names, you can specify the parameters in any order. This is also true 
+    of named parameters (parameters that always require a parameter name). 
+    You simply precede each argument with the parameter name (and hyphen), 
+    without regard to the parameter's defined position.
+
+SEE ALSO
+    For information about parameters, enter the following command at the 
+    PowerShell command prompt:
+
+        help about_parameter
+
+    For information about pipelines, enter the following command:
+
+        help about_pipeline
+
+    For information about aliases, enter the following command:
+
+        help about_alias
+

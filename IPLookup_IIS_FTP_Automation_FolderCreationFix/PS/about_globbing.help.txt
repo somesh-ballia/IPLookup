@@ -1,0 +1,11 @@
+﻿
+about_Globbing
+
+SHORT DESCRIPTION
+    See Wildcard
+
+LONG DESCRIPTION
+
+    For information about globbing, type Get-Help 
+    about_Wildcard.
+    

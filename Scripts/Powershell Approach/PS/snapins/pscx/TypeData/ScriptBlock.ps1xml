@@ -1,0 +1,8 @@
+﻿<Types>
+  <Type>
+    <Name>System.Management.Automation.ScriptBlock</Name>
+    <TypeConverter>
+      <TypeName>Pscx.TypeConverters.ScriptBlockDelegateTypeConverter</TypeName>
+    </TypeConverter>
+  </Type>
+</Types>

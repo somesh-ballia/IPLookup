@@ -1,0 +1,1 @@
+#get-PSSnapin -registered | add-PSSnapin

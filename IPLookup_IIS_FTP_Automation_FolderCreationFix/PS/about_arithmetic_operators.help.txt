@@ -1,0 +1,76 @@
+﻿TOPIC
+    Arithmetic operators
+
+SHORT DESCRIPTION
+    Operators that can be used in the Windows PowerShell to perform 
+    mathematical operations
+
+LONG DESCRIPTION
+    Arithmetic operators allow you to calculate numerical values in 
+    parameters within a command. You can use one or more operators to add, 
+    subtract, multiply, and divide values, as well as determine the 
+    remainder (modulus) returned by dividing values. The results of these 
+    calculations are used as values in the parameters that contain them. 
+    The command then processes the parameters as it would any other type of 
+    parameter.
+
+    PowerShell supports the following arithmetic operators:
+
+    Operator Description                            Example Result
+    -------- -------------------------------------- ------- ------
+    +        Adds two values                        6+2      8
+    -        Subtracts one value from another value 6-2      4
+    -        Converts a value to a negative number  -2+6     4
+    *        Multiplies two values                  6*2     12
+    /        Divides two values                     6/2      3
+    %        Returns the remainder from a           6%4      2
+             division operation
+
+    OPERATOR PRECEDENCE
+    Several factors determine how an expression that contains arithmetic 
+    operators is processed. These factors include the type of operator, the 
+    order in which operators are used, and whether any expression elements 
+    are enclosed in parentheses. For example, 10+4/2 returns a value of 12, 
+    while (10+4)/2 returns a value of 7. In the first example, 4/2 is 
+    processed before the 10 is added to the value. In the second example, 
+    10+4 is processed before the value is divided by 2.
+
+    PowerShell evaluates arithmetic operators based on the following 
+    precedence:
+
+    1. - (for a negative number)
+    2. *, /, %
+    3. +, - (for subtraction)
+
+    PowerShell processes the expressions from left to right, within the context 
+    of this precedence. For example, 3+6/3*4 returns a value of 11. First 6 is 
+    divided by 3, which equals 2. The 2 is then multiplied by 4, which 
+    equals 8. This result is then added to 3, giving you a final value of 
+    11.
+
+    You can override the operator precedence by using parentheses to 
+    enclose specific parts of your expression. Elements enclosed in the 
+    parentheses are evaluated first, and then the rest of the expression is 
+    evaluated. For example, (3+3)/(1+1) returns a value of 3. First, 3+3 is 
+    evaluated, and then 1+1 is evaluated. The first result, 6, is then 
+    divided by the second result, 2, giving you a total of 3.
+
+    ARITHMETIC OPERATORS AND VARIABLES
+    Arithmetic operators are commonly used with variables. For example, 
+    suppose that the $intA variable has been assigned a value of 6 and the 
+    $intB variable has been assigned a value of 4. You can use the + 
+    operator to add the two variable values together, as shown in the 
+    following command:
+
+        $intTotal = $intA + $intB
+
+    In this example, 6 and 4 are added together. The sum, 10, is then 
+    assigned to the $intTotal variable. The equal sign (=) is used to 
+    assign a value to the $intTotal variable.
+
+SEE ALSO
+    For information about assigning values to variables, enter the 
+    following command at the PowerShell command prompt:
+
+        help about_assignment_operators
+

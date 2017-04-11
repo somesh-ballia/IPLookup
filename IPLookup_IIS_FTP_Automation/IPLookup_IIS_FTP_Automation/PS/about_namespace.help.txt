@@ -1,0 +1,61 @@
+﻿TOPIC
+    Namespaces
+
+SHORT DESCRIPTION
+    Namespaces maintained by the Windows PowerShell 
+
+LONG DESCRIPTION
+    Namespaces in PowerShell support a system for uniquely identifying items 
+    in the data stores accessed through the PowerShell Providers. 
+    Namespaces, which are maintained as part of the PowerShell system state, 
+    ensure that each entity is assigned an unambiguous label that 
+    identifies that entity and no other.
+
+    PowerShell supports a number of different namespaces that correspond to 
+    the PowerShell Providers. For example, PowerShell maintains a 
+    namespace for the FileSystem provider. The FileSystem namespace, like 
+    the FileSystem provider, is associated with multiple PowerShell drives 
+    that correspond to the drives on your system. All items available through 
+    the FileSystem provider (the files and directories on your computer) are 
+    accessible through that namespace. For instance, the shell.dll file in the 
+    c:\windows\system32 directory is part of the FileSystem namespace, as 
+    shown in the following fully qualified path name:
+
+        filesystem::c:\windows\system32\shell.dll
+
+    Note that this is an example of a fully qualified path name. It is not 
+    an actual command. In fact, if you were to enter only the PowerShell 
+    Provider name and the two colons (filesystem::), PowerShell would crash.
+
+    The pathname identifies the PowerShell Provider (filesystem::), the 
+    PowerShell drive (c:), the container and subcontainer (\windows\system32), 
+    and the item (\shell.dll), all of which are part of the FileSystem 
+    namespace.
+
+    Because all PowerShell Providers are associated with one or more 
+    PowerShell drives, all namespaces contain one or more drives. In 
+    addition, all drive names are unique across all PowerShell Providers, 
+    and each drive is associated with only one provider. As a result, when 
+    you set the current working location in PowerShell, you're also setting 
+    the current namespace.
+
+SEE ALSO
+    For information about path syntax, enter the following command at the 
+    PowerShell command prompt:
+
+        help about_path_syntax
+
+    For information about PowerShell Providers, enter the following 
+    command:
+
+        help about_provider
+
+    For information about the current working location, enter the following 
+    command:
+
+        help about_location
+
+    For information about system state, enter the following command:
+
+        help about_system_state
+

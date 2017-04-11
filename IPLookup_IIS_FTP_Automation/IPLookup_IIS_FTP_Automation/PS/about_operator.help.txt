@@ -1,0 +1,168 @@
+﻿TOPIC
+    Operators
+
+SHORT DESCRIPTION
+    Types of operators supported by the Windows PowerShell 
+
+LONG DESCRIPTION
+    An operator is a language element that you can use in a parameter 
+    within an PowerShell command to take some type of action on values in that 
+    parameter. For example, you can add two values together, or you can 
+    assign a value to a variable. PowerShell supports six types of operators: 
+    arithmetic, assignment, comparison, logical, unary, and special.
+
+    ARITHMETIC OPERATORS
+    Use arithmetic operators to calculate values in a command. With these 
+    operators, you can add, subtract, multiply, or divide values, as well 
+    as calculate the remainder returned by dividing values.
+
+    ASSIGNMENT OPERATORS
+    Use assignment operators to assign values to variables. You can assign 
+    a single value (scalar) to a variable, or you can assign multiple 
+    values (array) to the variable. You can also cast the variable as any 
+    .NET data type, such as string or decimal.
+
+    COMPARISON OPERATORS
+    Use comparison operators to compare values and perform conditional 
+    tests. For example, you can compare two string values to determine 
+    whether they are equal. If they are equal, PowerShell returns a condition 
+    of true, otherwise PowerShell returns a condition of false.
+
+    LOGICAL OPERATORS
+    Use logical operators when your statement includes more than one 
+    conditional test. The logical operators connect the conditions so that 
+    they can be evaluated as a whole after they are evaluated individually. 
+    For example, your statement might include two conditions, one that 
+    tests whether two variables are equal and one that tests whether one of 
+    those variables is greater than 10. You can then use a logical operator 
+    to connect these conditions and evaluate them as a whole.
+
+    UNARY OPERATAORS
+    Use unary operators to increment or decrement variables or object 
+    properties and to set integers to positive or negative numbers. For 
+    example, to increment the variable $a from 9 to 10, you type $a++.
+
+    SPECIAL OPERATORS
+    Use special operators to perform tasks that cannot be performed by the 
+    other types of operators. For example, special operators allow you to 
+    perform operations such as running commands and changing a value's data 
+    type.
+
+    OPERATOR PRECEDENCE
+    In addition to the types of operators that PowerShell supports, another 
+    consideration that should be taken into account when working with 
+    operators is operator precedence. Operator precedence refers to the 
+    fact that PowerShell processes operators in a very specific order. As a 
+    result, you should be aware of this order when you create expressions 
+    that include multiple operators.
+
+    OPERATORS
+    The comparison operators for the shell, by default, the comparison
+    operators are not case sensitive when comparing strings.  Case
+    sensitive variants exist for comparison operators as well as explicit
+    case insensitive operators.
+
+        -eq             Equal (case insensitive)
+        -ne             Not equal (case insensitive)
+        -ge             Greater than or equal (case insensitive)
+        -gt             Greater than (case insensitive)
+        -lt             Less than (case insensitive)
+        -le             Less than or equal (case insensitive)
+        -like           Wildcard comparison (case insensitive)
+        -notlike        Wildcard comparison (case insensitive)
+        -match          Regular expression comparison (case insensitive)
+        -notmatch       Regular expression comparison (case insensitive)
+        -replace        Replace operator (case insensitive)
+        -contains       Containment operator (case insensitive)
+        -notcontains    Containment operator (case insensitive)
+
+        -ieq            Case insensitive equal
+        -ine            Case insensitive not equal
+        -ige            Case insensitive greater than or equal
+        -igt            Case insensitive greater than
+        -ile            Case insensitive less than or equal
+        -ilt            Case insensitive less than
+        -ilike          Case insensitive equal
+        -inotlike       Case insensitive equal
+        -imatch         Case insensitive regular expression comparison
+        -inotmatch      Case insensitive regular expression comparison
+        -ireplace       Case insensitive replace operator
+        -icontains      Case insensitive containment operator
+        -inotcontains   Case insensitive containment operator
+
+        -ceq             Equal (case sensitive)
+        -cne             Not equal (case sensitive)
+        -cge             Greater than or equal (case sensitive)
+        -cgt             Greater than (case sensitive)
+        -clt             Less than (case sensitive)
+        -cle             Less than or equal (case sensitive)
+        -clike           Wildcard comparison (case sensitive)
+        -cnotlike        Wildcard comparison (case sensitive)
+        -cmatch          Regular expression comparison (case sensitive)
+        -cnotmatch       Regular expression comparison (case sensitive)
+        -creplace        Replace operator (case sensitive)
+        -ccontains       Containment operator (case sensitive)
+        -cnotcontains    Containment operator (case sensitive)
+
+        -is             Is of a type
+        -isnot          Is not of a type
+        -as             As a type, no error if conversion fails
+
+    The following assignment operators are avalable
+        =       Assignment
+        +=      Increment by value and Assignment
+        -=      Decrement by value and Assignment
+        *=      Multiply by value and Assignment
+        /=      Divide by value and Assignment
+        %=      Modulo by value and Assignment
+
+    Logical operators
+        -and    Logical And
+        -or     Logical Or
+
+    Bitwise operators 
+        -band   Bitwise and
+        -bor    Bitwise or
+
+    Redirection Operators
+        2>&1    Add errors to results
+        1>&2    Add results to errors
+        >>      Append results to a file
+        >       Create a file with results, previous file contents are
+                overwritten
+        <       Input from (not supported)
+        2>>     Append errors to a file
+        2>      Errors from operation are directed to named file, previous
+                file contents are overwritten
+
+    Format Operator
+        -f      The format operator provides support for formatting strings
+                via the .NET string object format method.  On the left hand
+                side of the operator is the format string and on the right
+                hand of the operator is the collection of objects to be
+                formatted.  
+                The following example shows some of the capabilities of the
+                format operator.
+                PS> "{0} {1,-10} {2:N}" -f 1,"hello",[math]::pi
+                1 hello      3.14
+
+SEE ALSO
+    For information about arithmetic operators, enter the following command 
+    at the PowerShell command prompt:
+
+        help about_arithmetic_operators
+
+    For information about assignment operators, enter the following 
+    command:
+
+        help about_assignment_operators
+
+    For information about comparison operators, enter the following 
+    command:
+
+        help about_comparison_operators
+
+    For information about logical operators, enter the following command:
+
+        help about_logical_operator
+

@@ -1,0 +1,48 @@
+﻿TOPIC
+    System state
+
+SHORT DESCRIPTION
+    Data maintained by the Windows PowerShell when the shell is running
+
+LONG DESCRIPTION
+    When PowerShell is running, it maintains an execution environment that is 
+    defined by the system state. The system state is a set of data that 
+    affects how PowerShell runs and how commands run in PowerShell and that 
+    provides information to those commands.
+
+    The system state maintains the following types of information:
+
+    Element         Description
+    --------------- -------------------------------------------------------
+    Namespaces      Systems that ensure that an entity can be assigned an
+                    unambiguous label
+    Current working The default location that commands point to if you do
+    location        not supply an explicit path
+    Shell functions Functions created by default when you run PowerShell
+    Error handling  A system for handling errors through the trap utility
+    Shell aliases   Aliases created by default when you run PowerShell
+    Shell variables Variables created by default when you run PowerShell
+
+SEE ALSO
+    For information about namespaces, enter the following command at the 
+    PowerShell command prompt:
+
+        help about_namespace
+
+    For information about the current working location, enter the following 
+    command:
+
+        help about_location
+
+    For information about shell functions, enter the following command:
+
+        help about_function
+
+    For information about shell aliases, enter the following command:
+
+        help about_alias
+
+    For information about shell variables, enter the following command:
+
+        help about_shell_variable
+

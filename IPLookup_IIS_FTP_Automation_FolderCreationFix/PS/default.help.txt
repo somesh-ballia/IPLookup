@@ -1,0 +1,51 @@
+﻿TOPIC
+    Get-Help
+
+SHORT DESCRIPTION
+    Displays help about PowerShell cmdlets and concepts. 
+
+LONG DESCRIPTION
+
+SYNTAX
+    get-help {<CmdletName> | <TopicName>}
+    help {<CmdletName> | <TopicName>}
+    <CmdletName> -?
+
+    "Get-help" and "-?" display help on one page. 
+    "Help" displays help on multiple pages.
+	
+    Examples:
+      get-help get-process   : Displays help about the get-process cmdlet.
+      get-help about-signing : Displays help about the signing concept.
+      help where-object      : Displays help about the where-object cmdlet.
+      help about_foreach     : Displays help about foreach loops in PowerShell.
+      match-string -?        : Displays help about the match-string cmdlet.
+
+    You can use wildcard characters in the help commands (not with -?). 
+    If multiple help topics match, PowerShell displays a list of matching 
+    topics. If only one help topic matches, PowerShell displays the topic. 
+
+    Examples:
+      get-help *      : Displays all help topics.
+      get-help get-*  : Displays topics that begin with get-.
+      help *object*   : Displays topics with "object" in the name.       
+      get-help about* : Displays all conceptual topics.
+
+
+    For information about wildcards, type:
+      get-help about_wildcard
+
+
+REMARKS
+    To learn about PowerShell, read the following help topics:
+      get-command  : Displays a list of cmdlets.
+      about_object : Explains the use of objects in PowerShell.
+      get-member   : Displays the properties of an object.
+
+    Conceptual help files are named "about_<topic>", such as: 
+      about_regular_expression.
+	
+    The help commands also display the aliases on the system. 
+    For information about aliases, type: 
+	
+      get-help about_alias

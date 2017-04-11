@@ -1,0 +1,102 @@
+﻿TOPIC
+    Pipelines
+
+SHORT DESCRIPTION
+    Combining commands into pipelines in the Windows PowerShell 
+
+LONG DESCRIPTION
+    PowerShell allows you to combine two or more commands into a single custom 
+    command that creates an operation known as a pipeline. When commands 
+    are chained together in a pipeline, they pass data to each other as 
+    objects. The first command returns one or more objects that it passes 
+    down the pipeline to the second command. The second command processes 
+    those objects and then passes on new or revised objects to the third 
+    command. This process continues until each command in the pipeline has 
+    run.
+
+    To chain commands together into a pipeline, you specify each command in 
+    the order that they should run. You must separate the commands with a 
+    pipe symbol (|), also known as a vertical bar. The commands will run 
+    from left to right, passing the necessary objects down the pipeline 
+    as part of a single operation.
+
+    The following example demonstrates how commands can be combined into a 
+    pipeline:
+
+        Get-ChildItem *.txt | where {$_.length -gt 100} | 
+        Format-Table name, length
+
+    The first command (Get-ChildItem *.txt) retrieves all text files from 
+    the current working location. The command passes data about each file 
+    as objects to the second command (where {$_.length -gt 100}). The 
+    second command receives these objects and filters them out based on the 
+    length property. The command then passes each object with a length 
+    value greater than 100 bytes down the pipeline to the third command 
+    (Format-Table name). The third command receives those objects and 
+    displays the name of the files in a table format.
+
+    Notice in the second command that the length property is preceded by 
+    the $_ variable. This is a variable created automatically by PowerShell to 
+    store the current pipeline object. As is done here, you can use the 
+    variable to call properties of the pipeline object. (You must separate 
+    the variable name and the property name with a period.)
+
+    In order to chain commands together in a pipeline, the applicable 
+    parameter of the receiving Cmdlet must be able to accept pipeline 
+    input. You can determine whether a parameter accepts pipeline input by 
+    using a Get-Help command to retrieve information about a specific 
+    Cmdlet. For example, the following command retrieves information about 
+    the Where-Object Cmdlet:
+
+        help Where-Object
+
+    From the information returned by this command, you can determine 
+    whether the applicable parameter accepts pipeline input. If the 
+    parameter accepts pipeline input, the "Accepts pipeline input?" setting 
+    of the parameter must show a value of True. In the case of the Where-
+    Object Cmdlet, the applicable parameter that accepts pipeline input is 
+    ScriptToApply.
+
+    If the applicable parameter does not accept pipeline input, you must 
+    use other strategies to achieve the results you're looking for. Often 
+    the best way to do this is to put your commands into a script and use 
+    variables to pass data from one command to the next. For example, you 
+    can re-write the earlier Get-ChildItem example as a foreach loop, as 
+    shown in the following script:
+
+        $a = Get-ChildItem *.txt
+        foreach ($file in $a)
+        {
+            if ($file.length -gt 100) 
+            {
+            Write-Host $file.name
+            }
+        }
+
+    In this example, the results from the Get-ChildItem command are put 
+    into the $a variable, which is then used by the foreach loop to iterate 
+    through the file information. As you can see, a flow control statement 
+    such as foreach can be a useful way to access information that cannot 
+    be passed easily through a pipeline. Fortunately, the Where-Object 
+    Cmdlet and the Format-Table Cmdlet both support parameters that accept 
+    pipeline input, which is the simplest way to pass data from one command 
+    to the next.
+
+SEE ALSO
+    For information about objects, enter the following command at the
+    PowerShell command prompt:
+
+        help about_object
+
+    For information about parameters, enter the following command:
+
+        help about_parameter
+
+    For information about command syntax, enter the following command:
+
+        help about_command_syntax
+
+    For information about foreach statements, enter the following command:
+
+        help about_foreach
+

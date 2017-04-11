@@ -1,0 +1,119 @@
+﻿
+about_Automatic_variables
+
+SHORT DESCRIPTION
+    Variables automatically set by the Windows PowerShell
+
+LONG DESCRIPTION
+
+    The following variables are defined and set automatically by the Windows PowerShell:
+    
+    $$
+       Contains the last token of the last line received by the shell.
+    
+    $?  
+       Contains True if last operation succeeded and False otherwise.
+    
+    $^
+       Contains the first token of the last line received by the shell.
+    
+    $_
+       Contains the current pipeline object, used in script blocks, 
+    filters, 
+       and the where statement.
+    
+    $Args
+       Contains an array of the parameters passed to a function.
+    
+    $DebugPreference
+       Specifies the action to take when data is written using Write-Debug
+       in a script or WriteDebug in a cmdlet or provider.
+    
+    $Error
+       Contains objects for which an error occurred while being processed 
+       in a cmdlet.
+    
+    $ErrorActionPreference
+       Specifies the action to take when data is written using Write-Error
+       in a script or WriteError in a cmdlet or provider.
+    
+    $foreach
+       Refers to the enumerator in a foreach loop.
+    
+    $Home
+       Specifies the user's home directory. Equivalent of
+       %homedrive%%homepath%.
+    
+    $Input
+       Use in script blocks that are in the middle of a pipeline.
+    
+    $LASTEXITCODE
+       Contains the exit code of the last Win32 executable execution.
+    
+    $MaximumAliasCount
+       Contains the maximum number of aliases available to the session.
+    
+    $MaximumDriveCount
+       Contains the maximum number of drives available, excluding those 
+    provided
+       by the underlying operating system.
+    
+    $MaximumFunctionCount
+       Contains the maximum number of functions available to the session.
+    
+    $MaximumHistoryCount
+       Specifies the maximum number of entries saved in the command
+       history.
+    
+    $MaximumVariableCount
+       Contains the maximum number of variables available to the session.
+    
+    $PsHome
+       The directory where the Windows PowerShell is installed.
+    
+    $Host
+       Contains information about the current host.
+    
+    $OFS
+       Output Field Separator, used when converting an array to a string. 
+       By default, this is set to the space character. The following example
+       illustrates the default setting and setting OFS to a different 
+       value:
+    
+          &amp;{ $a = 1,2,3; "$a"}
+          1 2 3
+          &amp;{ $OFS="-"; $a = 1,2,3; "$a"}
+          1-2-3
+    
+    $ReportErrorShowExceptionClass
+       When set to TRUE, shows the class names of displayed exceptions.
+    
+    $ReportErrorShowInnerException
+       When set to TRUE, shows the chain of inner exceptions. The display
+       Of each exception is governed by the same options as the root 
+       Exception, that is, the options dictated by $ReportErrorShow* will 
+       be used to display each exception.
+    
+    $ReportErrorShowSource
+       When set to TRUE, shows the assembly names of displayed exceptions.
+    
+    $ReportErrorShowStackTrace
+       When set to TRUE, emits the stack traces of exceptions.
+    
+    $ShouldProcessPreference
+       Specifies the action to take when ShouldProcess is used in a cmdlet.
+    
+    $ShouldProcessReturnPreference
+       Value returned by ShouldPolicy
+    
+    $StackTrace
+       Contains detailed stack trace information about the last error.
+    
+    $VerbosePreference
+       Specifies the action to take when data is written using 
+       Write-Verbose in a script or WriteVerbose in a cmdlet or provider.
+    
+    $WarningPreference
+       Specifies the action to take when data is written using 
+       Write-Warning in a script or WriteWarning in a cmdlet or provider.
+    

@@ -1,0 +1,90 @@
+﻿TOPIC
+    The if statement
+
+SHORT DESCRIPTION
+    A language command for running a command block or blocks based on the 
+    results of one or more conditional tests
+
+LONG DESCRIPTION
+    You can use the if statement to run a code blocks if a specified 
+    conditional test evaluates to true. You can also specify one or more 
+    additional conditional tests to run if all prior tests evaluate to 
+    false. Finally, you can specify an additional code block that is run if 
+    no other prior conditional test evaluates to true. 
+
+    The following shows the if statement syntax:
+
+        if (<test1>) 
+            {<code_block1>}
+        [elseif (<test2)
+            {<code_block2>}]
+        [else
+            <code_block3>}]
+
+    When you run an if statement, the Windows PowerShell evaluates the 
+    <test1> conditional expression true or false. If <test1> is true, 
+    then <code_block1> runs and PowerShell exits the if statement. 
+    If <test1> is false, PowerShell evaluates the condition specified by 
+    <test2>. If <test2> is true, then <code_block2> runs and PowerShell 
+    exits the if statement. If both <test1> and <test2> evaluate to false, 
+    then <code_block3> runs and PowerShell exits the if statement. 
+
+    You can use multiple elseif statements to chain a series of conditional 
+    tests, each of which is examined only if all the previous tests are 
+    false. Note, if you need to create an if statement containing many 
+    elseif statements within it, consider using a switch statement instead.
+
+    The simplest if statement contains a single command in the code block 
+    and does not contain any elseif statements or an else statement. The 
+    following shows the simplest form of the if statement:
+
+        if ($a -gt 2)
+        {
+            Write-Host "The value $a is greater than 2"
+        }
+
+    In this example, if $a is greater than 2, the condition evaluates to 
+    true and the code block runs. However, if $a is less than or equal to 2 
+    or is not an existing variable, the if statement does not display any 
+    message. By adding an else statement, you can be sure to display a 
+    message when $a is less than or equal to 2, as the next example shows:
+
+        if ($a -gt 2)
+        {
+            Write-Host "The value $a is greater than 2"
+        }
+        else
+        {
+            Write-Host "The value $a is less than or equal to 2, is not 
+        created or is not initialized."
+        }
+
+    To further improve on this example, you can use the elseif statement to 
+    display a message when the value of $a is equal to 2, as the next 
+    example shows:
+
+        if ($a -gt 2)
+        {
+            Write-Host "The value $a is greater than 2"
+        }
+        elseif ($a -eq 2)
+        {
+            Write-Host "The value $a is equal to 2"
+        }
+        else
+        {
+            Write-Host "The value $a is less than 2 or is not created 
+        or initialized."
+        }
+
+
+SEE ALSO
+    For information about using comparison operators, enter the following 
+    command at the PowerShell command prompt:
+     
+        help about_comparison_operators
+
+    For information about the switch statement, enter the following command 
+    at the PowerShell command prompt:
+
+        help about_switch

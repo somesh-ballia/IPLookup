@@ -1,0 +1,61 @@
+﻿TOPIC
+    Reserved words
+
+SHORT DESCRIPTION
+    Words in the Windows PowerShell that have special meaning and 
+    therefore cannot be used as identifiers
+
+LONG DESCRIPTION
+    There are certain words that have special meaning in PowerShell. When 
+    these terms appear outside quotation marks, PowerShell attempts to apply 
+    their special meaning rather than just treat them as character strings. If 
+    you want to use these terms as parameter arguments in a command or 
+    script, that is, not invoke their special meaning, enclose the reserved 
+    word in quotation marks.
+
+    The following are the reserved words in PowerShell:
+
+    LANGUAGE STATEMENTS
+    break       continue     do           for
+    foreach     while        if           switch
+    until       where        function     filter
+
+    STATEMENT SYNTAX
+    else     elseif     in     return
+
+SEE ALSO
+    For information about command syntax, enter the following command at 
+    the PowerShell command prompt:
+
+        help about_command_syntax
+
+    For information about scripts, enter the following command:
+
+        help about_script_block
+
+    For information about quotation rules, enter the following command:
+
+        help about_quoting_rules
+
+    For information about how PowerShell parses a command, enter the following 
+    command:
+
+        help about_parsing
+
+    For information about language statements, such as foreach, if, 
+        for, and while, follow the prefix, "about_" with the name of the 
+        statement. For example, to read about the foreach statement, enter 
+        the following command:
+
+        help about_foreach
+
+    For information about the filter statement or the return statement 
+    syntax, enter the following command:
+
+        help about_function
+
+    You can find information about statement syntax in the language 
+    statements that use them. For example, for information about else and 
+    elseif language syntax, enter the following command:
+
+        help about_if

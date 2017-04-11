@@ -1,0 +1,242 @@
+﻿TOPIC
+    Functions
+
+SHORT DESCRIPTION
+    Creating and using functions in the Windows PowerShell 
+
+LONG DESCRIPTION
+    A function is a named block of code that you can reference within your 
+    Windows PowerShell commands. When you call the function name, the code
+    within the function runs as if you had typed the function's code block. 
+    A function can accept imported values that you specify as arguments when
+    you call the function or accept values that are passed to the function
+    through the current pipeline. The function returns values that can then
+    be assigned to variables or passed to other functions or cmdlets.
+
+    Windows PowerShell supports two types of functions: regular functions and
+    filters. The primary difference between the two is how they are processed.
+    When you call a regular function, objects that are piped to the function
+    are bound to the $input automatic variable, and execution is blocked until
+    all input is received from the pipeline. This ensures that the function has
+    received all of the data that it needs before it begins processing the data.
+
+    However, a filter processes data while it is being received (this 
+    allows the filtering action to occur). Filters are called for each 
+    incoming object in the pipeline, without waiting for all input. A 
+    filter receives each object from the pipeline through the $_ automatic 
+    variable, and the script block is processed for each object.
+
+    To create a regular function or a filter, you must specify several 
+    required elements. You can also specify optional elements. The 
+    following syntax shows the various components that make up a function 
+    definition:
+
+        function | filter
+        [<scope_type>:]<name>
+        { param(<param_list>) <script_block> }
+
+    The following table describes each element in the function definition:
+
+    Element           Description                                 Required?
+    ----------------- ------------------------------------------- ---------
+    function | filter One of two keywords that must be specified  Yes
+    scope_type:       A scope specification that overrides the    No
+                      default scope
+    name              Name of the function or filter              Yes
+    { }               Braces that enclose the parameter           Yes
+                      definitions and script block
+    param(param_list) The param keyword followed by parentheses   No
+                      that enclose the list of parameters. The 
+                      list includes the name of the parameters
+                      separated by commas. Optionally, parameter
+                      names can be preceded by data type names
+                      (in brackets).
+    script_block
+    The logic that supports the function or     Yes
+                      filter
+
+    A basic function definition consists only of the initial keyword
+   (function or filter), the name of the function or filter, and the script
+    block (enclosed in braces. The following definition defines a regular
+    function that includes only the required elements:
+
+        function small_files 
+        {
+            Get-ChildItem c:\ | where { $_.length -lt 100 
+                -and !$_.PSIsContainer} 
+        }
+
+    The definition creates a function named small_files. The script block 
+    (enclosed in the outer braces) is a command that calls the Get-ChildItem
+    cmdlet. The output from this cmdlet is then piped to the Where-Object
+    cmdlet, which selects objects with a file size (the length property) 
+    of be less than 100 bytes and that are not containers.
+
+    After the function is created, you can run the function's script 
+    block by calling the function name in your Windows PowerShell commands, 
+    as shown in the following example:
+
+        small_files
+
+    When you run this command, it returns files with less than 100 bytes.
+
+    You can create filters in much the same way as you create regular 
+    functions. The following example defines a filter named process_c.
+
+        filter process_c
+        {
+            $_.processname -like "c*"
+        }
+
+    In this definition, the script block provides the code that can be used 
+    within a Where-Object command to filter data. For example, the 
+    following command runs the Get-Process cmdlet and then pipes the process
+    objects to the Where-Object cmdlet.
+
+        Get-Process | where { process_c }
+
+    The data that the command returns includes all processes with names that
+    begin with the letter c.
+
+    USING PARAMETERS
+    One of the most useful aspects of a function is the ability to pass 
+    data to and from the function when it is called. By default, all 
+    arguments passed to a function are bound to the $args automatic variable. 
+    You can reference the arguments within your function definition by
+    using the index keys that are associated with the $args values, starting
+    with 0.
+
+    For example, the following function adds two numbers. The $args variable
+    in the script block specifies how the $args values are added.
+
+        function add2
+        {
+            $args[0] + $args[1]
+        }
+
+    When you call this function, you specify the numbers to be added. For 
+    example, to add 126 and 27, enter the following command at the Windows
+    PowerShell command prompt:
+
+        add2 126 27
+
+    The command returns 153.
+
+    Windows PowerShell also allows you to define your own parameters in a
+    function definition. Add the parameter definitions within the braces and
+    just before the script block, as shown in the following example:
+
+        function global:name_age
+        {
+            param([string]$first, [string]$last, [int]$age)
+            Write-Output "$last, $first : $age" 
+        }
+
+    The function defines three parameters: $first, $last, and $age. The
+    parameter definitions follow the "param" keyword. They are enclosed in
+    parentheses and are separated by commas. In this example, a data type is
+    specified for each parameter. Although this is optional, it's 
+    generally recommended to prevent users from entering the wrong type of
+    data. You can also specify data types for the $args values.
+
+    The function definition in the previous example also specifies a scope for 
+    the function. In this case, the scope is global, but you can assign any 
+    applicable scope. When you assign a scope, be sure to use a colon 
+    (but no spaces) to separate the scope name from the function name.
+
+    When you call the name_age function, you should specify a first name, 
+    last name, and age, as shown in the following example:
+
+        name_age Brad Sutton 45
+
+    The command returns the following results:
+
+        Sutton, Brad : 45
+
+    You can also use the assignment operator (=) to specify default values
+    for the parameters. For example, the following function definition assigns
+    a default value of "unknown" to $first and $last and a value of 0 to $age.
+
+        function name_age
+        {
+            param([string]$first = "unknown",
+            [string]$last = "unknown",
+            [int]$age = 0)
+            Write-Output "$last, $first : $age"
+        }
+
+    If the function were called without all of the required data, three values
+    would still be returned. For example, the following command returns a 0
+    value for age:
+
+        name_age Brad Sutton
+
+        Sutton, Brad : 0
+
+    There are two types of parameters, positional and named. When a parameter
+    is positional and you specify arguments without parameter names, the
+    parameter values must appear in the command in the order in which they are
+    defined. If you specify the parameter names, you can list the values in any
+    order. For example, the following command specifies only the last name and
+    age:
+
+        name_age -age 45 -last Sutton
+
+    The command returns an "unknown" value for the first name, as shown in 
+    the following results:
+
+        Sutton, unknown : 45
+
+    You can also define parameters in filters. For example, to create a filter
+    that returns a list of processes with a certain initial letter, use
+    a format such as the following:
+
+        filter process_1
+        {
+            param([string]$first)
+            $_.processname -like "$first*"
+        }
+
+    When you call the filter, you must specify the first letter as an 
+    argument, as shown in the following example:
+
+        Get-Process | where { process_1 c }
+
+    This command returns all system processes that begin with the 
+    letter "c."
+
+    IMPLEMENTING FUNCTIONS AND FILTERS
+    You can define any function or filter at the Windows PowerShell command
+    prompt. However, that function or filter will not be available when you
+    restart Windows PowerShell. If you want your definition to be available
+    beyond the current session, you must add it to your a Windows Powershell
+    profile or create a script file.
+
+    If you create a script file, use the name of the function or filter as
+    the file name and append the .ps1 extension. If you save the .ps1 file 
+    to the location specified in the $pshome variable, you do not have to 
+    specify a path to the file when you run it.
+
+SEE ALSO    
+    For information about variables, type:
+
+        help about_automatic_variables 
+
+    and
+	help about_shell_variable
+
+    For information about parameters, enter the following command:
+
+        help about_parameter
+
+    For information about script blocks, enter the following command:
+
+        help about_script_block
+
+    For information about scope, enter the following command:
+
+        help about_scope
+
+    For information about filtering, enter the following command:
+
+        help about_filter

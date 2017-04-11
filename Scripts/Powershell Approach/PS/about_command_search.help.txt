@@ -1,0 +1,60 @@
+﻿TOPIC
+    Command search
+
+SHORT DESCRIPTION
+    How the Windows PowerShell locates commands
+
+LONG DESCRIPTION
+    When you enter a command at the command prompt, PowerShell searches for the 
+    command according to specific rules. However, the manner in which that 
+    search is conducted depends on whether or not you specify a fully 
+    qualified path name for the command. If you do supply the full path, 
+    PowerShell uses the version of the command at that location, whether or not
+    a command with the same name exists at another location.
+
+    For example, the following command runs the script in the finddocs.ps1
+    file, located in the c:\techdocs directory:
+
+        c:\techdocs\finddocs
+
+    If PowerShell cannot find the finddocs.ps1 file in the specified path, no 
+    scripts are run, and a message is returned indicating that the command 
+    cannot be found, even if the file exists in another location.
+
+    When you enter a command without specifying the fully qualified path 
+    name, PowerShell searches for the command in the following order, until it 
+    finds a match:
+
+    1. Currently defined aliases
+
+    2. Currently defined functions
+
+    3. Commands located in any directories specified in the path 
+    environment variable
+
+    In addition to referring to an alias or function, a command name can 
+    refer to a Cmdlet, an .ps1 script file, or an executable file with the 
+    extension .bat, .cmd, .com, or .exe. Windows Script Host (WSH) files 
+    with a .vbs, .js, .wsh, or .wsf extension rely on the WSH engine, 
+    either wscript.exe or cscript.exe, to run. Therefore, you can also run 
+    these script file types in the PowerShell environment.
+
+SEE ALSO
+    For information about fully qualified path names, enter the following 
+    command at the PowerShell command prompt:
+
+        help about_path_syntax
+
+    For information about aliases, enter the following command:
+
+        help about_alias
+
+    For information about functions, enter the following command:
+
+        help about_function
+
+    For information about environment variables, enter the following 
+    command:
+
+        help about_environment_variable
+

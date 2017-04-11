@@ -1,0 +1,425 @@
+﻿TOPIC
+    Assignment operators
+
+SHORT DESCRIPTION
+    Operators that can be used in the Windows PowerShell to assign 
+    values to variables
+
+LONG DESCRIPTION
+    Assignment operators allow you to assign a single value (scalar) 
+    or multiple values (array) to a variable. You can also cast a variable
+    as any .NET data type and you can assign values to multiple variables
+    in a single command.
+
+    Windows PowerShell supports the following assignment operators:
+
+    Operator Description
+    -------- --------------------------------------------------------
+    =        Sets the value of a variable to the specified value
+    +=       Increases the value of a variable by the specified value
+             or appends to the existing value
+    -=       Decreases the value of a variable by the specified value
+    *=       Multiplies the value of a variable by the 
+             specified value or appends to the existing value
+    /=       Divides the value of a variable by the specified value
+    %=       Divides the value of a variable by the specified value
+             and assigns the remainder (modulus) to the variable
+
+THE = ASSIGNMENT OPERATOR
+    To assign a single value, type the name of the variable (preceded by $),
+    the = assignment operator, and the value to be assigned to the variable.
+    For example, to assign a value of 6 to the $a variable, type:
+
+        $a = 6
+
+    To assign a string value to a variable, enclose the value in double
+    quotation marks. For example:
+
+        $a = "baseball"
+
+    You can also use the = operator to assign an array to a variable. 
+    To specify the elements of the array, separate the values with commas.
+    For example,
+
+        $a = "apple", "orange", "lemon", "grape"
+
+    After the array has been assigned, you can refer to the elements of
+    the array by using an index that begins at position 0. Enclose the 
+    index in square brackets. For example, to refer to the first element 
+    in the $a array, type:
+
+        $a[0]
+
+    To refer to the third element, type:
+
+	$a[2]
+
+
+    Windows PowerShell also allows you to assign an associative array to
+    a variable. In an associative array, the values are associated with 
+    "keys," which are labels that you define. You specify the keys when you
+    assign the array to the variable. For example, to assign as associative
+    array to the $a variable, type:
+
+        $a = @{one=1; two=2; three=3}
+
+    In this example, the values 1, 2, and 3 are assigned to the $a variable,
+    and each value has a key. The key for 1 is "one," the key for 2 is "two",
+    and the key for 3 is "three."
+
+    You can refer to a value in an associative array by using the following
+    format:
+
+	<array>.<key>
+
+    For example, to display the 2, type:
+
+        $a.two
+
+    You can also assign hexadecimal values to a variable. For example, to
+    assign the value 0x10 to the $a variable, type:
+
+        $a =  0x10
+
+    When you enter this command, Windows PowerShell converts the hexadecimal
+    value (0x10) to a decimal value (in this case, 16) and assigns that value
+    to the $a variable as an integer (Int32) data type. 
+
+    You can also exponential values to a variable. To do so, specify the root
+    number, the letter "e," and a number that represents a multiple of 10. For
+    example, to assign 3.2573 to the power of 1000, type:
+
+        $a = 3.2573e3
+
+    The "3" that follows the "e" tells Windows PowerShell to calculate the
+    root number to the power of 1000. A value of 3257.3 is then assigned to
+    the variable. To calculate the number to the power of 10, type "3.2573e1".
+    To calculate the number to the power of 100, type "3.2573e2".
+
+    Windows PowerShell can also convert kilobytes (KB), megabytes (MB), and
+    gigabytes (GB) into bytes when assigning a value to a variable. For
+    example, to assign 10 kilobytes to the $a variable, type:
+
+        $a = 10kb
+
+    When you run this command, Windows PowerShell assigns a value of 10,240 to
+    the variable. 
+
+THE += ASSIGNMENT OPERATOR
+    The += operator either increments (increases) the value of a 
+    variable or appends that value, depending on whether the variable 
+    is a numeric or string data type and whether the variable is set 
+    to a scalar value or to an array.
+
+    The += operator combines two operations; first it adds, then it assigns.
+    As such,
+
+	$a += 2
+
+    is equivalent to:
+
+	$a = ($a + 2)  
+
+    If the variable is a numerical scalar value, use the += operator to
+    increment the existing value by the amount specified on the right side 
+    of the operator. For example, if $a = 8, then to increase that amount
+    by 2, type:
+
+        $a += 2
+
+    When the value of the variable is a string, such as "happy," the 2
+    is appended to the string, resulting in the value "happy2."
+
+    If value is an array (numerical or string), the += operator appends an
+    element with a value of 2 to the array. 
+
+    For example, if $a = 1,2,3,4, then after "$a += 2", $a = 1,2,3,4,2.
+
+
+THE -= ASSIGNMENT OPERATOR
+    The -= operator decrements (decreases) the existing value of a 
+    numerical value by the value specified on right side of the 
+    operator. The operator cannot be used with string variables.
+
+    The -= operator combines two operations; first it subtrace, then it
+    assigns. As such,
+
+	$a -= 2
+
+    is equivalent to:
+
+	$a = ($a - 2)  
+
+
+    For example, to decrease the value of the $a variable by 2, type:
+
+        $a -= 2
+
+    If $a stored a value of 8, then after the operation, $a contains a value
+    of 6. If you run the command again, $a contains a value of 4.
+
+    You can also use the -= assignment operator with a numeric array. 
+    To do so, specify the index of the array element that you want to change. 
+    For example,
+
+	$a = 1,2,3 
+ 
+    You can change the third value (index position 2) by using the following
+    command:
+
+        $a[2] -= 1
+
+    The command decreases the third value by 1, so that your variable 
+    now equals 1, 2, 2.
+
+THE *= ASSIGNMENT OPERATOR
+    The *= operator multiplies the existing variable value by the 
+    value specified to the right of the operator. If the variable 
+    contains a numerical scalar value, that value is multiplied by 
+    the assignment value. For example, if $a is set to 3, the 
+    following command will set the value to 12:
+
+        $a *= 4
+
+    The *= operator combines two operations; first it multiplies, 
+    then it assigns. As such,
+
+	$a *= 2
+
+    is equivalent to:
+
+	$a = ($a * 2)  
+
+    However, if $a is a string value, Windows PowerShell append the specified
+    number of strings to the value. 
+
+    For example, if the $a variable is set to "Apple", then: 
+      
+        $a *= 4
+
+    results in a value for $a of "AppleAppleAppleApple".    
+
+    To multiply one element of an array, use an index to identify the element
+    that you want to change. For example, the following command multiplies the
+    first element in the array (index position 0) by 2.
+
+        $a[0] *= 2
+
+
+THE /= ASSIGNMENT OPERATOR
+    The /= operator divides a numeric value by the value specified on the 
+    right side of the operator. The operator cannot be used with string
+    variables.
+
+    The /= operator combines two operations; first it divides, then it
+    assigns. As such,
+
+	$a /= 2
+
+    is equivalent to:
+
+	$a = ($a / 2)  
+
+    For example, to divide the value of the $a by 2, type:
+
+        $a /= 2
+
+    If $a originally equaled 8, the variable will equal 4 after 
+    you run the command. If you run the command again, the variable will
+    be set to 2.
+
+    To divide an element of an array, use an index to identify the element
+    that you want to change. For example, the following command divides the
+    second element in the array (index position 1) by 2.
+
+        $a[1] /= 2
+
+
+THE %= ASSIGNMENT OPERATOR
+    The %= operator divides the existing variable value by the 
+    assignment value and then assigns the remainder (known as the "modulus")
+    to the variable. You can use this operator only for a numeric scalar 
+    variable, not a string variable or a variable that contains an array.
+
+    The %= operator combines two operations; first it divides and determines
+    the remainder, and then it assigns the remainder to the variable. As such,
+
+	$a %= 2
+
+    is equivalent to:
+
+	$a = ($a % 2)  
+
+    For example, if $a contains a value of 5, the following command changes its
+    value to 1.
+
+        $a %= 2
+
+.NET DATA TYPES
+    By default, the first element of the assignment value for a scalar variable
+    determines the data type of the variable. For example, the following
+    command casts the variable as an int (integer) type:
+
+        $a = 6
+
+    To verify a variable's data type, use the GetType() method. For example, to
+    view the type currently assigned to $a, type:
+
+        $a.gettype()
+
+    You can cast the variable as a string type by enclosing the 
+    assignment value in double quotation marks:
+
+        $a = "6"
+
+    If the first value assigned is a string, Windows PowerShell treats all 
+    operations as string operations, and casts new values to strings.
+
+    For example, 
+
+	$a = "6"
+        $a += 3
+    
+    As a result, the new value of the variable is a string value of "63".
+
+    If the first value is an integer, then Windows PowerShell treats all
+    operations as integer operations, and casts new values to integers.
+
+    For example, 
+
+	$a = 6
+        $a += "3"
+ 
+    As a result, the new value is an integer value of 9.
+
+    You can cast a new scalar variable as any .NET data type by 
+    placing the data type name within brackets that precede either 
+    the variable name or the first assignment value. 
+
+    Casting a variable allows you to determine what types of data can be 
+    stored in the variable and how the variable behaves when you manipulate
+    it. 
+
+    For example, the following command casts the variable as a string type:
+
+        [string]$a = 27.5
+
+    You can achieve the same results (when initializing a new 
+    variable) by preceding the assignment value with the type name:
+
+        $a = [string]27.5
+
+    When casting a variable to a specific type, the common convention 
+    is to cast the variable itself, not the value. However, the placement of
+    the data type name can make a difference when assigning a value to an
+    existing variable. 
+
+    For example, if $a contains a string value of "three" and you want to
+    assign a value of 3 as an integer, place the data type name before the
+    assignment value, not the variable name. If you place it before the
+    variable name, Windows PowerShell displays an error because it attempts
+    to convert the string value ("three") to an integer, which it cannot do.
+
+    In addition, preceding a variable name with a data type locks in 
+    the type of that variable, unless you explicitly override it by 
+    specifying another data type. If you try to assign a value that 
+    is not compatible with the existing type and you do not explicitly 
+    override the type, Windows PowerShell displays an error.
+
+    In Windows PowerShell, the data types of array variables are handled
+    differently the data types of scalar variables. Unless a data type is 
+    specifically assigned to an array variable, the data type is 
+    always object[], which is a type that is specific to arrays. In some 
+    cases, you can override the default type by specifying another 
+    type. For example, the following command casts the variable as a 
+    string[] array type:
+
+        [string[]]$a = "one", "two", "three"
+
+    Windows PowerShell variables can be any .NET data type. In addition, you
+    can assign any fully qualified .NET data type that is available in the
+    current process. For example, the following command specifies a 
+    System.Datetime type:
+
+        [system.datetime]$a = "5/31/2005"
+
+    The variable will be assigned a value that conforms to the datetime type.
+    The value of $a variable would be "Tuesday, May 31, 2005 12:00:00 AM."
+
+ASSIGNING MULTIPLE VARIABLES
+    In Windows PowerShell, you can assign values to multiple variables
+    in a single command. The first element of the assignment value is
+    assigned to the first variable, the second element is assigned to
+    the second variable, the third element to the third variable, and
+    so on. For example, the following command assigns 1 to $varA, 2 to
+    $varB, and 3 to $varC:
+
+        $varA, $varB, $varC = 1, 2, 3
+
+    If the assignment value contains more elements than there are 
+    variables, all remaining values are assigned to the last 
+    variable. For instance, the following command contains three 
+    variables, but five values:
+
+        $varA, $varB, $varC = 1, 2, 3, 4, 5
+
+    In this case, Windows PowerShell assigns 1 to $varA, 2 to $varB, and
+    3, 4, and 5 to $varC.
+
+    To assign the values in $varC to three other variables, use the 
+    following format:
+
+        $varD, $varE, $varF = $varC
+
+    $varD is assigned the value 3, $varE is assigned the value 4, and 
+    $varF is assigned the value 5.
+
+    You can also assign a single value to multiple variables by 
+    chaining the variables. For example, the following command 
+    assigns a value of "three" to all four variables:
+
+        $varA = $varB = $varC = $varD = "three"
+
+    All four variables are now assigned the same value.
+
+VARIABLE-RELATED CMDLETS
+    In addition to using an assignment operation to set a variable 
+    value, you can also use the Set-Variable cmdlet. For example, to 
+    assign an array of 1, 2, 3 to the $varA variable, use the 
+    following command:
+
+        Set-Variable -name varA -value 1, 2, 3
+
+    Windows PowerShell also includes other variable-related cmdlets, including
+    Clear-Variable and Remove-Variable. The Clear-Variable cmdlet clears the
+    existing value of a specified variable. For string variables, the
+    Clear-Variable cmdlet sets the variable to a null-valued expression. For
+    numeric variables, the cmdlet sets the variable to 0.
+
+    The Remove-Variable cmdlet deletes the specified variable. This
+    can be useful when you want to avoid complex retyping of a variable. In
+    this case, you can use the cmdlet to remove the variable and then
+    reinitialize that variable.
+
+SEE ALSO
+    For information about the Set-Variable cmdlet, type:
+
+        help Set-Variable
+
+    For information about the Clear-Variable cmdlet, type:
+
+        help Clear-Variable
+
+    For information about the Remove-Variable cmdlet, type:
+
+        help Remove-Variable
+
+    For information about arrays, type:
+
+        help about_array
+
+    For information about associative arrays, type:
+
+        help about_associative_array
+
+

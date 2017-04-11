@@ -1,0 +1,84 @@
+﻿TOPIC
+    Parsing
+
+SHORT DESCRIPTION
+    How the Windows PowerShell parses commands
+
+LONG DESCRIPTION
+    When you enter a command at the command prompt, PowerShell breaks the 
+    command text into a series of segments called tokens and then determines 
+    how to interpret each one. For example, PowerShell breaks the following 
+    command into two tokens:
+
+        Write-Host book
+
+    The first token is "Write-Host," and the second token is "book."
+    PowerShell interprets each token separately, within the context of the 
+    command as a whole.
+
+    When processing a command, the PowerShell parser operates in one of two 
+    modes:
+
+    * Expression mode - Character string values must be contained in 
+      quotation marks. Numbers not enclosed in quotation marks are treated 
+      as numerical values (rather than as a series of characters).
+
+    * Argument mode - Each value is treated as an expandable string unless 
+      it begins with one of the following special characters: dollar sign 
+      ($), at symbol (@), single quote (?), double quote ("), or an opening 
+      parenthesis ((). If preceded by one of these characters, the value is 
+      treated as a value expression.
+
+    The following table provides several examples of commands processed in 
+    expression mode and argument mode and the results produced by those 
+    commands:
+
+    Example            Mode       Result
+    ------------------ ---------- -------------------------
+    2+2                expression numerical value of "4"
+    Write-Output 2+2   argument   string value of "2+2"
+    Write-Output (2+2) expression numerical value of "4"
+    $a = 2+2           expression numerical value of "4"
+                                  (assigned to $a)
+    Write-Output $a    expression numerical value of "4"
+    Write-Output $a/H  argument   string value of "4/H"
+
+    Every token can be interpreted as some kind of object type, such as 
+    boolean or string. PowerShell attempts to determine the object type from 
+    the expression. The object type depends on the type of parameter a command 
+    expects and on whether PowerShell knows how to convert the argument to the 
+    correct type. The following table shows several examples of the types 
+    assigned to values returned by the expressions:
+
+    Example            Mode       Result
+    ------------------ ---------- -------------------------
+    Write-Output !1    argument   string value of "!1"
+    Write-Output (!1)  expression boolean value of "false"
+    Write-Output (2)   expression integer value of "2"
+
+    When processing cmdlet parameters, PowerShell recognizes strings contained
+    in quotation marks as being different from strings not enclosed in 
+    quotation marks. For example, in the following command, -type is 
+    treated as a parameter name:
+
+        Get-Command -type cmdlet
+
+    In this case, "cmdlet" is the argument passed to the -type parameter. 
+    However, in the next example, -type is treated as an argument:
+
+        Get-Command "-type" cmdlet
+
+    PowerShell will attempt to use the "-type" value as an argument to the 
+    first positional parameter, while the "cmdlet" argument will be treated 
+    as a parameter name, causing the command to fail.
+
+SEE ALSO
+    For information about command syntax, enter the following command at 
+    the PowerShell command prompt:
+
+        help about_command_syntax
+
+    For information about quotation rules, enter the following command:
+
+        help about_quoting_rules
+

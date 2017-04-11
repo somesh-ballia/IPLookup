@@ -1,0 +1,35 @@
+﻿
+about_continue
+
+SHORT DESCRIPTION
+    Immediately return to top of a program loop
+
+LONG DESCRIPTION
+
+    In a script, the continue statement causes program 
+    flow to move immediately to the top of the innermost loop controlled by 
+    any of these statements:
+    
+    *    for
+    *    foreach
+    *    while
+    
+    EXAMPLE
+    
+    In this example, program flow returns to the top of the while loop if 
+    $ctr is equal to 5. The result is that all numbers between 1 and 10 
+    except 5 are displayed.
+    
+    while ($ctr -lt 10)
+         {
+           $ctr +=1 
+           if ($ctr -eq 5) {continue}
+           Write-Host $ctr
+         }
+    
+    Note that in a for loop, execution continues at the first line in the 
+    loop. If the arguments of the for statement test a value that is 
+    modified by the for statement, an infinite loop can result.
+    
+    For information about performing Boolean tests, type Get-Help 
+    about_comparison_operators.

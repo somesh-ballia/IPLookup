@@ -1,0 +1,167 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033\deflangfe2052{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\froman\fprq2\fcharset0 Times New Roman;}{\f2\fmodern\fprq1\fcharset0 Courier New;}}
+{\colortbl ;\red0\green0\blue255;}
+{\stylesheet{ Normal;}{\s1 heading 1;}{\s2 heading 2;}{\s3 heading 3;}}
+{\*\generator Msftedit 5.41.21.2500;}\viewkind4\uc1\pard\keepn\nowidctlpar\s1\sb240\sa60\kerning32\b\f0\fs32 Windows PowerShell V1.0 (for .NET Framework 2.0 RTM) Release Notes \par
+\pard\nowidctlpar\kerning0\b0\f1\fs20\par
+\f2 Copyright (c)2006 Microsoft Corporation. All rights reserved.\par
+\par
+THIS INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.\par
+\par
+This document explains the most recent changes to the Windows PowerShell V1.0\cf1  \cf0 release. To learn more about Windows PowerShell, see the "Getting Started Guide," the "Windows PowerShell Primer," and the "Quick Reference." You can open them from the Windows PowerShell Start menu link. \par
+\par
+\pard\keepn\nowidctlpar\s2\sb240\sa60\b\i\f0\fs28 Changes from Windows PowerShell RC2\par
+\pard\nowidctlpar\b0\i0\f2\fs20\par
+There were no breaking changes between Windows PowerShell RC2 and the final V1.0 version of Windows PowerShell. The following list describes features that were not mentioned in the RC2 release notes, but are worth noting.\par
+\f1\fs24\par
+\b\f0\fs26 Support for ADSI:\par
+\b0\f2\fs20 We have added direct ADSI support to Windows PowerShell to allow users to more easily administer Active Directory. You can now create ADSI objects, get properties, and invoke methods on Active Directory objects.\par
+\f1\fs24\par
+\f2\fs20 Example: (Create an OU)\par
+\pard\nowidctlpar\li720 PS >$objDomain = [ADSI]"LDAP://localhost:389/dc=NA,dc=fabrikam,dc=com"\par
+PS >$objOU = $objDomain.Create("organizationalUnit", "ou=HR")\par
+PS >$objOU.SetInfo()\par
+\pard\nowidctlpar\f1\fs24\par
+\b\f0\fs26 New Product ID:\par
+\b0\f2\fs20 The RC2 version of Windows PowerShell has a product ID (PID) that is stored in the following registry key with the following value:\par
+HKLM\\Software\\Microsoft\\PowerShell\\1\tab PID=89393-100-0001260-00301\par
+\par
+In the final V1.0 version, the PID number is changed to:\par
+HKLM\\Software\\Microsoft\\PowerShell\\1\tab PID= 89383-100-0001260-04309\par
+\par
+\b\f0\fs26 New Location for Profiles:\par
+\b0\f2\fs20 Windows PowerShell profiles are now located in the WindowsPowerShell directory, not the PSConfiguration directory.\par
+\par
+The profiles for all users are located in: \par
+\pard\sb60\sa60\sl280\slmult0\tx720\~\~ %windir%\\system32\\WindowsPowerShell\\v1.0\\profile.ps1\b\line\~\~ \b0 %windir%\\system32\\WindowsPowerShell\\v1.0\\ Microsoft.PowerShell_profile.ps1\b\par
+\pard\nowidctlpar\b0\par
+\pard\sb60\sa60\sl280\slmult0\tx720 User-specific profiles are located in a WindowsPowerShell directory in the %UserProfile% directory.\par
+\pard\nowidctlpar\par
+On 64-bit versions of Windows, Windows PowerShell includes a second set of profiles for all users. These are located in:\par
+\pard\sb60\sa60\sl280\slmult0\tx720\~\~ %windir%\\syswow64\\WindowsPowerShell\\v1.0\\profile.ps1\b\line\~\~ \b0 %windir%\\syswow64\\WindowsPowerShell\\v1.0\\ Microsoft.PowerShell_profile.ps1\b\par
+\pard\nowidctlpar\b0\par
+As before, the Microsoft.PowerShell_profile.ps1 profiles are specific to the Microsoft.PowerShell shell, and the profile.ps1 profiles apply to all shells.\f0\par
+\b\i\f1\fs28\par
+\f0 Changes from Windows PowerShell RC1 \par
+\b0\i0\f1\fs20\par
+\pard\keepn\nowidctlpar\s3\sb240\sa60\b\f0\fs26 Improved error output readability:\f2\fs20\par
+\pard\nowidctlpar\b0 A new object is available by using $host.PrivateData\f1 .\f2  This object, the ConsoleColorProxy, lets you set the color of output in the shell\f1 .\par
+\par
+\f2 To see the current colors, type "$host.privatedata".\par
+\f1\par
+\f2     PS > $host.privatedata\par
+    ErrorForegroundColor : Red\par
+    ErrorBackgroundColor : Black\par
+    WarningForegroundColor : Yellow\par
+    WarningBackgroundColor : Black\par
+    DebugForegroundColor : Yellow\par
+    DebugBackgroundColor : Black\par
+    VerboseForegroundColor : Yellow\par
+    VerboseBackgroundColor : Black\par
+    ProgressForegroundColor : Yellow\par
+\pard\nowidctlpar\fi480 ProgressBackgroundColor : DarkCyan\f1\par
+\par
+\pard\nowidctlpar\f2 To see the properties and methods of the ConsoleColorProxy object, pipe it to Get-Member. For example:\par
+\par
+    PS > $host.privatedata | get-member\f1\par
+\par
+\f2 To change the colors, set the value of a property to the desired color. For example, to change the error background color to blue, type:\par
+\par
+    PS > $host.privatedata.ErrorBackgroundColor = "blue"\f1\par
+\b\fs26\par
+\pard\keepn\nowidctlpar\s3\sb240\sa60\f0 New byte quantifiers: KB, MB, GB\f1\par
+\pard\nowidctlpar\b0\f2\fs20 The byte quanitifier in Windows PowerShell have been changed from K, M, and G to KB, MB, and GB. For example:\f1\par
+\f2     PS> 54K\par
+    Bad numeric constant: 54K.\par
+    At line:1 char:3\par
+    + 54K <<<< \par
+\par
+    PS> 54KB\par
+    55296\par
+\f1\par
+\pard\keepn\nowidctlpar\s3\sb240\sa60\b\f0\fs26 Added -Xor and -Bxor operators to the PowerShell script language:\f1\par
+\pard\nowidctlpar\b0\f2\fs20 Windows PowerShell includestwo new operators: -Xor (exclusive OR) and -Bxor (bitwise exclusive OR). \par
+\par
+    PS> 1 -xor 0\par
+    True\f1\par
+\f2     PS> 1 -xor 1\par
+    \lang1030 False\par
+    PS> 1 -bxor 1\par
+    0\par
+    PS> 1 -bxor 0\par
+    \lang1033 1\par
+\f1\par
+\pard\keepn\nowidctlpar\s3\sb240\sa60\b\f0\fs26 Use of unsupported filter parameter causes error:\f1\par
+\pard\nowidctlpar\b0\f2\fs20 When a Windows PowerShell provider does not declare the Filter capability, it cannot support the Filter parameter of any cmdlet. Previously, when the Filter parameter was used with a provider that did not support it, the parameter was ignored without error. Now, if you use the Filter parameter with a provider that does not support it, Windows PowerShell generates a ProviderInvocationException and displays an error.\f1\par
+\par
+\pard\keepn\nowidctlpar\s3\sb240\sa60\b\f0\fs26 Windows PowerShell setup changes:\f2\fs20\par
+\pard\nowidctlpar\b0 Update.exe installation technology is now used for installing Windows PowerShell on Windows XP and Windows\f1\~\f2 2003. On Windows Vista, component-based setup technology (CBS) is used instead of the Update.exe-setup.\f1\par
+\par
+\f2 The location of the Windows PowerShell installation folder is no longer configurable. Setup installs Windows PowerShell under %systemroot%\\system32\\WindowsPowerShell\\V1.0 for x86 systems.\f1\par
+\par
+\f2 The ADM file that adds the "Turn On Script Execution" group policy for Windows PowerShell is no longer included in the Windows PowerShell. It will be made available separately.\f1\par
+\pard\keepn\nowidctlpar\s3\sb240\sa60\b\f0\fs26 x64 package setup changes:\f1\par
+\pard\nowidctlpar\b0\f2\fs20 By default, the x64 package installs both the 32-bit and 64-bit bit versions of Windows PowerShell.\par
+64-bit installation folder: %systemroot%\\system32\\WindowsPowerShell\\V1.0\par
+32-bit installation folder: %systemroot%\\Syswow64\\WindowsPowerShell\\V1.0\par
+\f1\par
+\par
+\pard\keepn\nowidctlpar\s3\sb240\sa60\b\f0\fs26 Access files and directories with special character names :\f1\par
+\pard\nowidctlpar\b0\f2\fs20 Two new features have been added to Windows PowerShell to make it easier to refer to directories and files with names that contain an escape character (`) or wildcard characters.\f1\par
+\par
+\f2  -- Windows PowerShell does not interpret a backtick (`) as an escape character when it appears within single quotation marks. This applies to all single-quoted strings, including strings in scripts.\par
+\f1\par
+\b\f2 Example: \b0\f1\par
+\f2 PS> dir oct`06\par
+Get-ChildItem : Illegal characters in path.\par
+At line:1 char:4\par
++ dir  <<<< oct`06\par
+Get-ChildItem : Cannot find path 'C:\f1\\\f2 PS\\oct 6' because it does not exist.\par
+At line:1 char:4\par
++ dir  <<<< oct`06\par
+PS> dir 'oct`06'\f1\par
+\par
+\f2  -- A "LiteralPath" parameter has been added to all core cmdlets that support wildcard expansion. LiteralPath prevents Windows PowerShell from resolving wildcard patterns in a path.\par
+\f1\par
+\f2 To access a path that includes both an escape character (`) and wildcard characters, use both the LiteralPath parameter and single quotation marks. \f1\par
+\f2 For example:\par
+\f1\par
+\f2 PS > get-content -LiteralPath 'te[s`t].txt'\f1\par
+\par
+\pard\keepn\nowidctlpar\s3\sb240\sa60\b\f0\fs26 Improved Cmdlet help presentation:\f1\par
+\pard\nowidctlpar\b0\f2\fs20 Three new views were added to Get-Help: \par
+    Default view:\f1\par
+\f2         Example: PS >get-help get-item\par
+    Detailed view: \f1\par
+\f2         Example: PS >get-help get-item -detailed\par
+    Full view: \f1\par
+\f2         Example: PS >get-help get-item -full\par
+\f1\par
+\pard\keepn\nowidctlpar\s3\sb240\sa60\b\f0\fs26 Several improvements to Get-WMIObject cmdlet:\f1\par
+\pard\nowidctlpar\b0\f2\fs20 - WMI methods are exposed as part of the WMI Windows PowerShell adapter.\f1\par
+\f2 - A new parameter set was added to Get-WmiObject that includes a Query parameter that takes WQL queries.\par
+- Added [WMI] as an intrinsic type that takes a string (such as a WMI PATH).\par
+\endash  You can now instantiate a WMI instance as follows:\par
+    PS >[WMI]'\\\\JPSLAP04\\root\\cimv2:Win32_Process.Handle="0"'\par
+This would be the same as:\par
+    PS >new-object system.management.managementobject '\\\\JPSLAP04\\root\\cimv2:Win32_Process.Handle="0"'\par
+- Designed a new way to deal with CIMDATETIMES that are STRINGS. This was implemented by having a SCRIPT method for System.Management.ManagementObject that does a ConvertToDateTime() and a ConvertFromDateTime().\f1\par
+\f2 Example:\par
+    PS >$wmiclass = [wmiclass]"win32_processstartup"\par
+    PS >$dmtfDate = "20020408141835.999999-420"\par
+    PS >$dateTime = $wmiclass.ConvertToDateTime($dmtfDate)\par
+    PS >$result = $wmiclass.ConvertFromDateTime($dateTime)\par
+\f1\par
+\b\fs26\par
+\f0 No security warnings when you first start the shell:\par
+\b0\f2\fs20 Users are no longer prompted to trust the Microsoft signing certificate the first time that they start Windows PowerShell. The PS1XML files that are included in Windows PowerShell are signed and trusted even when the Windows PowerShell execution policy is set to "Restricted."\f1\par
+\par
+\pard\keepn\nowidctlpar\s3\sb240\sa60\b\f0\fs26 Miscellaneous changes:\f2\fs20\par
+\pard\nowidctlpar\b0 - $host.version now reports the actual host version 1.0.0.0, not the assembly version.\f1\par
+\f2 - A Force parameter was added to the ConvertTo-SecureString cmdlet.\f1\par
+\f2 - Tab completion now works on property references:\f1\par
+\f2     PS >$a = get-process outlook\par
+    PS >$a.Mai<tab> => $a.MainModule then $a.MainModule.fi<tab> => $a.MainModule.FileName\f1\par
+\f2 - Default attributes can now be used to resolve ambiguous parameter sets. For example, if a cmdlet has two parameter sets, and the command that is entered could be resolved by using either of the parameter sets, the default parameter set is used. Before this change, the command would generate a "cannot resolve parameterset" error.\par
+\f1\par
+}
+ 

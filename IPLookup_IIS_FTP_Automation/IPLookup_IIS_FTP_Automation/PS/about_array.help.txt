@@ -1,0 +1,214 @@
+﻿TOPIC
+    Arrays
+
+SHORT DESCRIPTION
+    A compact data structure for storing data elements
+
+LONG DESCRIPTION
+    An array is a data structure for storing a collection of data elements
+    of the same type. Windows PowerShell supports data elements, such as
+    string, int (32-bit integer), long (64-bit integer), bool (boolean), byte,
+    and other .NET object types. 
+
+CREATING AND INITIALIZING AN ARRAY
+    To create and initialize an array, assign multiple values to a variable.
+    The values stored in the array are delimited with a comma and separated
+    from the variable name by the assignment operator (=). 
+
+    For example, to create an array named $A that contains the seven
+    numeric (int) values: 22, 5, 10, 8, 12, 9, 80, type:
+
+        $A = 22,5,10,8,12,9,80
+
+    You can also create and initialize an array by using the range 
+    operator (..). For example, to create and initialize an array named 
+    "$B" that contains the values 5 through 8, type:
+
+        $B = 5..8
+
+    As a result, $B contains four values: 5, 6, 7, and 8.
+
+    When no data type is Windows PowerShell creates each array as an object
+    array (type: object[]). To determine the data type of an array, use the
+    GetType() method. For example, to determine the data type of the $a array,
+    type:
+
+        $a.gettype()
+
+    To create a strongly typed array, that is, an array that can contain only
+    values of a particular type, cast the variable as an array type, such 
+    as string[], long[], or int32[]. To cast an array, precede the variable
+    name with an array type enclosed in bracket. For example, to create a
+    32-bit integer array named $ia containing four integers (1500, 2230, 3350,
+    and 4000), type:
+
+        [int32[]]$ia = 1500,2230,3350,4000
+
+    As a result, the $ia array can contain only integers.
+
+    You can creating arrays that are cast to any supported type in the
+    .NET Framework. For example, the objects that Get-Process retrieves
+    to represent processes are of type System.Diagnostics.Process. To create
+    a strongly typed array of process objects, enter the following command:
+
+        [Diagnostics.Process[]]$zz = Get-Process
+ 
+READING AN ARRAY
+    You can refer to an array by using its variable name, such as $A or $a. 
+    Windows PowerShell is not case-sensitive.
+
+    To display all elements in the array, type the array name. For example:
+
+	$a
+
+    You can refer to the elements in an array by using an index, beginning
+    at position 0. Enclose the index number in square brackets. For example,
+    to display the first element in the $a array, type:
+
+        $a[0]
+
+    To display the third element in the $a array, type:
+
+        $a[2]
+
+    Negative numbers count from the end of the array. For example, "-1" 
+    refers to the last element of the array. To display the last 3 elements
+    of the array, type:
+
+        $a[-3..-1]
+
+    However, be cautious when using this notation.
+
+        $a[0..-2]
+
+    does not refer to all the elements of the array, except for the last one.
+    It refers to the first, last, and second-to-last elements in the array.
+   
+    You can use the range operator to display a subset of all values in an 
+    array. For example, to display the data elements at index position 1 
+    through 3, type:
+
+        $a[1..3]
+
+    You can use the plus operator (+) to combine a range with a list of
+    elements in an array. For example, to display the elements at index
+    positions 0, 2, and 4 through 6, type:
+
+        $a[0,2+4..6]
+
+    To determine how many items are in an array, combine the range with the
+    length property of an array. For example, to display the elements from 
+    index position 2 to the end of the array, type:
+
+        $a[2..($a.length-1)]
+
+    The length is set to -1 because the index begins at position 0. Therefore,
+    in a three-element array (1,2,3), the index of the third element is 2, 
+    which is one less than the length of the array.
+
+
+    You can also use looping constructs, such as foreach, for, and while loops,
+    to refer to the elements in an array. For example, to use a foreach loop
+    to display the elements in the $a array, type: 
+
+        foreach ($element in $a) {$element}
+
+    The foreach loop iterates through the array and returns each value in
+    the array until reaching the end of the array.
+
+    The for loop is useful when you are incrementing counters while examining
+    the elements in an array. For example, to return every other value in an
+    array by using a for loop, type:
+
+        for ($i = 0; $i -le ($a.length - 1); $i += 2) {$a[$i]}
+
+    You can use a while loop to display the elements in an array until a 
+    defined condition is no longer true. For example, to display the elements
+    in the $a array while the array index is less than 4, type:
+
+        $i=0
+        while($i -lt 4) {$a[$i]; $i++}
+
+    To learn about the properties and methods of an array, such as the Length 
+    property and the SetValue method, use the InputObject parameter of the
+    Get-Member cmdlet. When you pipe an array to Get-Member, it displays
+    information about the objects in the array. When you use the InputObject
+    parameter, it displays information about the array. 
+
+    To find the properties and methods of the $a array, type:
+
+	get-member -inputobject $a
+
+
+MANIPULATING AN ARRAY
+    You can change the elements in an array, add an element to an array, and
+    combine the values from two arrays into a third array.
+
+    To change the value of a particular element in an array, specify the
+    array name and the index of the element that you want to change, and then
+    use the assignment operator (=) to specify a new value for the element. For
+    example, to change the value of the second item in the $a array (index
+    position 1) to 10, type:
+
+        $a[1] = 10
+
+    You can also use the SetValue method of an array to change a value. The
+    following example changes the second value (index position 1) of the $a
+    array to 500:
+
+        $a.SetValue(500,1)
+
+    You can append an element to an existing array by using the += operator.
+    This operator adds to an existing value. When the operator is used on an
+    element of an array, it increases the value of the element. When the
+    operator is used on the array itself, it appends the value. For example,
+    to append an element with a value of 200 to the $a array, type:
+
+        $a += 200
+
+    It is not easy to delete elements from an array, but you can create a new
+    array that contains only selected elements of an existing array. For
+    example, to create the $t array with all elements in the $a array, except
+    for the value at index position 2, type:
+
+        $t = $a[0,1 + 3..($a.length - 1)]
+
+    To combin two arrays into a single array, use the plus operator (+). The
+    following example creates two arrays, combines them, and then displays
+    the resulting combined array.
+
+        $x = 1,3
+        $y = 5,9
+        $z = $x + $y
+
+    As a result, the $z array contains 1, 3, 5, and 9.
+
+    To delete an array, use the Remove-Item cmdlet to delete the variable that
+    contains the array. The following command specifies the element "a" in the
+    Variable: drive. 
+
+        remove-item variable:a
+
+    (For information about the Variable: drive, type 
+    "get-help variable-psprovider".)
+
+
+SEE ALSO
+    For information about associative arrays, enter the following command:
+
+        help about_associative_array
+
+    For information on casting variables, enter the following command:
+
+        help about_assignment_operators
+
+    For information about range operators, enter the following command:
+
+        help about_operator
+
+    For information on various looping constructs, enter any of the 
+    following commands:
+
+        help about_for
+        help about_foreach
+        help about_while

@@ -1,0 +1,135 @@
+﻿TOPIC
+    The break statement
+
+SHORT DESCRIPTION
+    A statement for immediately exiting foreach, for, while, do, or switch 
+    statements
+
+LONG DESCRIPTION
+    A break statement appearing in a code block of a foreach, for, while, 
+    or do loop or in a switch statement, ends the code block. In the case 
+    of the looping statements, the break statement causes the loop to exit. 
+    In the case of the switch statement, the break statement causes a code 
+    block inside of a switch statement to exit and thus the entire switch 
+    statement exits.
+
+    The following example shows how to use a break statement to exit a for 
+    statement:
+
+        for($i=1; $i -le 10; $i++)
+        {
+            Write-Host $i
+            break
+        }
+
+    In this case, the break statement exits the for loop when $i equals 1. 
+    Even though the for statement evaluates to true until $i is greater 
+    than 10, the Windows PowerShell reaches the break statement 
+    the first time through the for loop. 
+
+    It's more common to see the break statement used inside of a loop where 
+    there is some inner condition to be met. Consider the following foreach 
+    statement example:
+
+        $i=0
+        $varB = 10,20,30,40
+        foreach ($val in $varB)
+        {    
+            $i++
+            if ($val -eq 30)
+            {
+                break
+            }    
+        }
+        Write-Host "30 was found in array position $i"
+
+    In this example, the foreach statement iterates the $varB array. Each 
+    time through the code block, the $i variable is incremented by 1. The 
+    if statement inside evaluates to false the first two times through the 
+    loop. The third time through the loop, $i equals 3 and the $val 
+    variable equals 30, at which point the break statement runs and the 
+    foreach loop exits.
+
+    Breaking out of the other looping statements is identical to how you 
+    break out of the foreach loop. In the following example, the break 
+    statement exits a while statement when a DivideByZeroException is 
+    trapped using the trap statement.
+
+        $i = 3
+        while ($true)
+        {
+            trap [DivideByZeroException] 
+            {
+                Write-Host "divide by zero trapped" 
+                break
+            }
+            1 / $i--
+        }
+
+    A switch statement is not a looping construct, but the break statement 
+    is useful for ending the program flow when a particular condition is 
+    met. For example, the following switch statement uses break statements 
+    to test for the most specific condition:
+
+        $var = "word2"
+        switch -regex ($var) 
+        {
+            "word2" 
+            {
+                Write-Host "Exact" $_ 
+                break
+            } 
+
+            "word.*" 
+            { 
+                Write-Host "Match on the prefix" $_ 
+                break
+            }
+
+            "w.*"
+            {
+                Write-Host "Match on at least the first letter" $_
+                break 
+            }
+            
+            default
+            {
+                Write-Host "No match" $_
+                break
+            }
+        }
+
+    In this example, $var is created and initialized to a string value of 
+    "word2". The switch statement uses regex (a regular expression .NET 
+    class) to match the variable value first with the term "word2". Because 
+    the variable value and the first test in the switch statement match, 
+    the first code block in the switch statement runs. When PowerShell reaches 
+    the first break statement, the switch statement exits. If the four break 
+    statements were removed from the example, then all four conditions 
+    would be met. Thus, this example uses the break statement to display 
+    results when the most specific condition is met. 
+
+
+SEE ALSO
+    For information about using comparison operators, enter the following 
+    command at the PowerShell command prompt:
+         
+        help about_comparison_operators
+
+    For information about the switch statement, enter the following 
+    command:
+
+        help about_switch
+
+    For information about the foreach statement, enter the following 
+        command:
+
+        help about_foreach
+
+    For information about the for statement, enter the following command:
+
+        help about_for
+
+    For information about the while statement, enter the following command:
+
+        help about_while

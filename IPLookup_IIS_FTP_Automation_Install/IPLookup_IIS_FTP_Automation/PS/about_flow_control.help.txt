@@ -1,0 +1,85 @@
+﻿TOPIC
+    Flow control
+
+SHORT DESCRIPTION
+    Using flow control statements in the Windows PowerShell to 
+    control how script blocks run
+
+LONG DESCRIPTION
+    PowerShell provides several flow control statements that allow you to 
+    control how script blocks run. With these statements, you can specify which 
+    commands run, when they run, and how many times they run.
+
+    Many flow control statements include a condition that is evaluated when 
+    the statement runs. In addition, the statement is associated with a 
+    script block that contains one or more commands. If the condition 
+    evaluates to True, the script block runs. Otherwise, the script block 
+    is ignored.
+
+    In some cases, the condition is evaluated multiple times, creating a 
+    loop that continues to run for as long as the condition evaluates to 
+    True. Each time the condition evaluates to True, the script block runs. 
+    When the condition evaluates to False, the loop is exited and the 
+    script block is ignored.
+
+    Not all loops are based on the evaluation of a condition. In a foreach 
+    statement, the loop runs for each value in a collection of values, such 
+    as an array. However, like other flow control statements, the loop 
+    contains a script block, and the script block runs each time the loop 
+    runs.
+
+    PowerShell supports the following statements to control the flow of how a 
+    script runs:
+
+    FOR STATEMENT
+    The for statement creates a loop that continues as long as the 
+    statement's condition evaluates to True. The loop contains a script 
+    block that runs each time the loop runs, and the loop runs each time 
+    the condition evaluates to True.
+
+    FOREACH STATEMENT
+    The foreach statement creates a loop that steps through a series of 
+    values until the end of the series is reached. The loop runs for each 
+    value in that series. The loop contains a script block that runs each 
+    time the loop runs.
+
+    IF STATEMENT
+    The if statement tests a condition and then runs a script block if the 
+    condition evaluates to True. If the condition evaluates to False, 
+    optional conditions can be evaluated and optional script blocks can be 
+    run.
+
+    WHILE STATEMENT
+    The while statement creates a loop that continues as long as the 
+    statement's condition evaluates to True. The loop contains a script 
+    block that runs each time the loop runs, and the loop runs each time 
+    the condition evaluates to True. The while statement is similar to the 
+    for statement except that the while statement is easier to construct 
+    because its syntax is less complicated. In addition, the while 
+    statement is more flexible than the foreach statement because you 
+    specify a conditional test in the while statement to control how many 
+    times the loop runs
+
+SEE ALSO
+    For information about the for statement, enter the following command at 
+    the PowerShell command prompt:
+
+        help about_for
+
+    For information about the foreach statement, enter the following 
+    command:
+
+        help about_foreach
+
+    For information about the if statement, enter the following command:
+
+        help about_if
+
+    For information about the while statement, enter the following command:
+
+        help about_while
+
+    For information about script blocks, enter the following command:
+
+        help about_script_block
+

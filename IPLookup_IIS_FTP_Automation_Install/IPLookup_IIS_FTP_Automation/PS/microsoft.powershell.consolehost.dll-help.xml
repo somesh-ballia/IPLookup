@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<helpItems xmlns="http://msh" schema="maml">
+
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+	<command:details>
+		<command:name>
+                   Start-Transcript
+		</command:name>
+		<maml:description>
+			<maml:para>Creates a record of all or part of a Windows PowerShell session in a text file.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para></maml:para>
+		</maml:copyright>
+		<command:verb>start</command:verb>
+		<command:noun>transcript</command:noun>
+		<dev:version></dev:version>
+	</command:details>
+	<maml:description>
+		<maml:para>The Start-Transcript cmdlet creates a record of all or part of a Windows PowerShell session in a text file. The transcript includes all command that the user types and all output that appears on the console.</maml:para>
+	</maml:description>
+	<!-- Cmdlet syntax section-->
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>Start-Transcript</maml:name>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1">
+				<maml:name>path</maml:name>
+				<maml:description><maml:para>Specifies a location for the transcript file. Enter a path to a .txt file. Wildcards are not permitted.
+
+If you do not specify a path, Start-Transcript uses the path in the value of the $Transcript global variable. If you have not created this variable, Start-Transcript stores the transcripts in the $Home\My Documents directory as \PowerShell_transcript.&lt;time-stamp&gt;.txt files.
+
+If any of the directories in the path do not exist, the command fails.</maml:para></maml:description>
+				<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>force</maml:name>
+				<maml:description><maml:para>Overrides restrictions that prevent the command from succeeding, just so the changes do not compromise security. For example, Force will override the read-only attribute or create directories to complete a file path, but it will not attempt to change file permissions.</maml:para></maml:description>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>noClobber</maml:name>
+				<maml:description><maml:para>Will not overwrite (replace the contents) of an existing file. By default, if a transcript file exists in the specified path, Start-Transcript overwrites the file without warning.</maml:para></maml:description>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>append</maml:name>
+				<maml:description><maml:para>Adds the new transcript to the end of an existing file. Use the Path parameter to specify the file.</maml:para></maml:description>
+			</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+    <maml:name>whatIf</maml:name>
+    <maml:description>
+    <maml:para>Describes what would happen if you executed the command without actually executing the command.</maml:para>
+    </maml:description>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+    <maml:name>confirm</maml:name>
+    <maml:description>
+    <maml:para>Prompts you for confirmation before executing the command.</maml:para>
+    </maml:description>
+</command:parameter>
+		</command:syntaxItem>
+	</command:syntax>
+	<!-- Cmdlet parameter section  -->
+	<command:parameters>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1">
+			<maml:name>path</maml:name>
+			<maml:description>
+				<maml:para>Specifies a location for the transcript file. Enter a path to a .txt file. Wildcards are not permitted.
+
+If you do not specify a path, Start-Transcript uses the path in the value of the $Transcript global variable. If you have not created this variable, Start-Transcript stores the transcripts in the $Home\My Documents directory as \PowerShell_transcript.&lt;time-stamp&gt;.txt files.
+
+If any of the directories in the path do not exist, the command fails.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			<dev:type>
+				<maml:name>string</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue>variable</dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+			<maml:name>force</maml:name>
+			<maml:description>
+				<maml:para>Overrides restrictions that prevent the command from succeeding, just so the changes do not compromise security. For example, Force will override the read-only attribute or create directories to complete a file path, but it will not attempt to change file permissions.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+			<dev:type>
+				<maml:name>SwitchParameter</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue>False</dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+			<maml:name>noClobber</maml:name>
+			<maml:description>
+				<maml:para>Will not overwrite (replace the contents) of an existing file. By default, if a transcript file exists in the specified path, Start-Transcript overwrites the file without warning.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+			<dev:type>
+				<maml:name>SwitchParameter</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue>False</dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+			<maml:name>append</maml:name>
+			<maml:description>
+				<maml:para>Adds the new transcript to the end of an existing file. Use the Path parameter to specify the file.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+			<dev:type>
+				<maml:name>SwitchParameter</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue>Force</dev:defaultValue>
+		</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+    <maml:name>whatIf</maml:name>
+    <maml:description>
+    <maml:para>Describes what would happen if you executed the command without actually executing the command.</maml:para>
+    </maml:description>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+    <maml:name>confirm</maml:name>
+    <maml:description>
+    <maml:para>Prompts you for confirmation before executing the command.</maml:para>
+    </maml:description>
+</command:parameter>
+	</command:parameters>
+	<!-- Input - Output section-->
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri/>
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						The command shell session.
+					</maml:para>
+				</maml:description>
+			</dev:type>
+			<maml:description></maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri />
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						A file in which the session is recorded.
+					</maml:para>
+				</maml:description>
+			</dev:type>   
+			<maml:description></maml:description> 
+		</command:returnValue>
+	</command:returnValues>
+	<command:terminatingErrors />
+	<command:nonTerminatingErrors />
+	<!-- Notes section  -->
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para>
+                          For more information, type &quot;Get-Help Start-Transcript -detailed&quot;. For technical information, type &quot;Get-Help Start-Transcript -full&quot;.
+
+When specifying multiple values for a parameter, use commas to separate the values. For example, &quot;&lt;parameter-name&gt; &lt;value1&gt;, &lt;value2&gt;&quot;.
+
+To stop a transcript, use the Stop-Transcript cmdlet.
+
+To record an entire session, add the Start-Transcript command to your profile. For information, About_Profiles.
+                        </maml:para>
+		</maml:alert>
+		<maml:alert>
+			<maml:para></maml:para>
+		</maml:alert>
+	</maml:alertSet>
+	<!-- Example section  --> 
+	<command:examples>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 1 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>start-transcript</dev:code>
+  			<dev:remarks>
+				<maml:para>This command starts a transcript in the default file location.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 2 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>start-transcript -path c:\transcripts\transcript0.txt -noclobber</dev:code>
+  			<dev:remarks>
+				<maml:para>This command starts a transcript in the Transcript0.txt file in C:\transcripts. The NoClobber parameter prevents any existing files from being overwritten. If the Transcript0.txt file already exists, the command fails.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+	</command:examples>
+	<!-- Link section  -->
+	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>Stop-Transcript</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+	</maml:relatedLinks>
+</command:command>
+
+
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+	<command:details>
+		<command:name>
+                   Stop-Transcript
+		</command:name>
+		<maml:description>
+			<maml:para>Stops a transcript.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para></maml:para>
+		</maml:copyright>
+		<command:verb>stop</command:verb>
+		<command:noun>transcript</command:noun>
+		<dev:version></dev:version>
+	</command:details>
+	<maml:description>
+		<maml:para>The Stop-Transcript cmdlet stops a transcript that was started by using the Start-Transcript cmdlet. You can also stop a transcript by ending the session.</maml:para>
+	</maml:description>
+	<!-- Cmdlet syntax section-->
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>Stop-Transcript</maml:name>
+		</command:syntaxItem>
+	</command:syntax>
+	<!-- Input - Output section-->
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri/>
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						
+					</maml:para>
+				</maml:description>
+			</dev:type>
+			<maml:description></maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri />
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						
+					</maml:para>
+				</maml:description>
+			</dev:type>   
+			<maml:description></maml:description> 
+		</command:returnValue>
+	</command:returnValues>
+	<command:terminatingErrors />
+	<command:nonTerminatingErrors />
+	<!-- Notes section  -->
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para>
+                          For more information, type &quot;Get-Help Stop-Transcript -detailed&quot;. For technical information, type &quot;Get-Help Stop-Transcript -full&quot;.
+
+When specifying multiple values for a parameter, use commas to separate the values. For example, &quot;&lt;parameter-name&gt; &lt;value1&gt;, &lt;value2&gt;&quot;.
+
+If a transcript is not started, the command fails.
+                        </maml:para>
+		</maml:alert>
+		<maml:alert>
+			<maml:para></maml:para>
+		</maml:alert>
+	</maml:alertSet>
+	<!-- Example section  --> 
+	<command:examples>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 1 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>stop-transcript </dev:code>
+  			<dev:remarks>
+				<maml:para>This command stops any running transcripts.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+	</command:examples>
+	<!-- Link section  -->
+	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>Start-Transcript</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+	</maml:relatedLinks>
+</command:command>
+
+
+</helpItems>

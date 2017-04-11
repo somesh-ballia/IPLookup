@@ -1,0 +1,155 @@
+TOPIC
+    Environment variables
+
+SHORT DESCRIPTION
+    How to access Windows environment variables in Windows PowerShell 
+    
+
+LONG DESCRIPTION
+    Environment variables store information about the operating system
+    environment. This information includes details such as the operating 
+    system path, the number of processors used by the operating system, 
+    and the location of temporary folders. 
+
+    The environment variables store data that is used by the operating system
+    and other programs. For example, the "windir" environment variable
+    contains the location of the Windows installation directory. Programs
+    can query the value of this variable to determine where Windows operating
+    system files are located.
+
+
+WINDOWS POWERSHELL ENVIRONMENT PROVIDER
+    The Windows PowerShell environment provider lets you access Windows
+    environment variable in Windows PowerShell in a Windows PowerShell drive,
+    Env:, that looks much like a file system drive. 
+
+    For example, to go to the Windows PowerShell Env: drive, type:
+
+	set-location env:
+
+    Then, to display the contents of the Windows PowerShell Env: drive, type:
+
+	get-childitem
+
+    You can view the environment variables in the Windows PowerShell Env:
+    drive from any other Windows PowerShell drive, and you can go into the
+    Windows PowerShell Env: drive to view and change the environment
+    variables.
+
+
+ENVIRONMENT VARIABLE OBJECTS    
+    In Windows PowerShell, each environment variable is represented by an
+    object that is an instance of the System.Collections.DictionaryEntry
+    class.
+	
+    In each DictionaryEntry object, the name of the environment variable
+    is the dictionary key and the value of the variable is the dictionary
+    value.
+
+    To display an environment variable in Windows PowerShell, get an object that
+    represents the variable and then display the values of the object 
+    properties. When you change an environment variable in Windows PowerShell, 
+    use the methods associated with the DictionaryEntry object.
+
+    To display the properties and methods of the object that represents an
+    environment variable in Windows PowerShell, use the Get-Member cmdlet.
+    For example, to display the methods and properties of all of the objects
+    in the Windows PowerShell Env: drive, type:
+
+	get-item -path env:* | get-member
+
+
+DISPLAYING ENVIRONMENT VARIABLES
+    You can use the Windows PowerShell Item cmdlets (*-Item) to display and
+    change the values of environment variables. Because environment variables
+    do not have child items, the output of Get-Item and Get-Childitem is the
+    same.
+
+    When referring to an environment variable, type the "Env:" drive name and
+    then the name of the variable. For example, to display the value of the
+    COMPUTERNAME environment variable, type:
+
+	get-childitem env:computername
+
+    To display the values of all environment variables, type:
+
+	get-childitem env:
+
+    By default, Windows PowerShell displays the environment variables in the
+    order that it retrieves them. To sort the list of environment variables
+    by variable name, pipe the output of a Get-Childitem command to the 
+    Sort-Object cmdlet. For example, from any Windows PowerShell drive, type:
+
+	get-childitem env: | sort name
+
+
+    You can also go into the Windows PowerShell Env: drive by using the
+    Set-Location cmdlet.
+
+	set-location env:
+
+    When you are in the Windows PowerShell Env: drive, you can omit the 
+    "Env:" drive name from the path. For example, to display all of the
+    environment variables, type:
+
+	get-childitem
+
+    To display the value of the COMPUTERNAME variable from within the Windows
+    PowerShell Env: drive, type:
+
+	get-childitem computername
+
+    You can also display and change the values of environment variables
+    without using a cmdlet by using the expression parser in Windows
+    PowerShell. To display the value of an environment variable, use the
+    follow syntax:
+
+	$env:<variable-name>
+
+    For example, to display the value of the Windir environment variable,
+    at the Windows PowerShell command prompt, type:
+
+	$env:windir
+
+    In this syntax, the dollar sign ($) indicates a variable and the drive
+    name, "env:" indicates an environment variable.
+
+
+
+CHANGING ENVIRONMENT VARIABLES
+    When you change environment variables in Windows PowerShell, the change
+    affects only the current session, much like using the Set command in 
+    Windows and the Setenv command in Unix. To make the changes permanent,
+    you have to change them in the registry.
+
+    You must also have permission to change the values of the variables. If
+    you try to change a value without sufficient permission, the command fails
+    and Windows PowerShell displays an error.
+
+    You can change the values of variables without using a cmdlet by using
+    the following syntax:
+
+        $env:<variable-name> = "<new-value>"
+
+    For example, to append ";c:\temp" to the value of the Path
+    environment variable, use the following syntax:
+
+	$env:path = $env:path + ";c:\temp"	
+
+    You can also use the Item cmdlets, such as Set-Item, Remove-Item, and 
+    Copy-Item to change the values of environment variables. For example, to 
+    use the Set-Item cmdlet to append ";c:\temp" to the value of the Path
+    environment variable, use the following syntax:
+
+        set-item -path env:path -value ($env:path + ";c:\temp")
+	
+    In this command, the value is enclosed in parentheses so that it is 
+    interpreted as a unit.
+
+SEE ALSO
+    For information about the Windows PowerShell environment provider,
+    type:
+
+	Get-Help Environment-PSProvider
+
+

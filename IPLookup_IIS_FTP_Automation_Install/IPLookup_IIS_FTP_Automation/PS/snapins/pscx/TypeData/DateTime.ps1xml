@@ -1,0 +1,8 @@
+﻿<Types>
+  <Type>
+    <Name>System.DateTime</Name>
+    <TypeConverter>
+      <TypeName>Pscx.TypeConverters.DmtfDateTimeTypeConverter</TypeName>
+    </TypeConverter>
+  </Type>
+</Types>

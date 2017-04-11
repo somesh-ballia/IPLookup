@@ -1,0 +1,2561 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<helpItems xmlns="http://msh" schema="maml">
+
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+	<command:details>
+		<command:name>
+                   ConvertFrom-SecureString
+		</command:name>
+		<maml:description>
+			<maml:para>Converts a secure string into an encrypted standard string.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para></maml:para>
+		</maml:copyright>
+		<command:verb>convertfrom</command:verb>
+		<command:noun>securestring</command:noun>
+		<dev:version></dev:version>
+	</command:details>
+	<maml:description>
+		<maml:para>Converts a secure string (System.Security.SecureString) into an encrypted standard string (System.String). Unlike a secure string, the encrypted standard string can be saved in a file for later use. The encrypted standard string can be converted back to its secure string format by using the ConvertTo-SecureString Cmdlet. If an encryption key is explicitly specified by using the Key or SecureKey parameters, the Rijndael encryption algorithm is used. The key specified must have a length of 128, 192 or 256 bits because those are the key lengths supported by the Rijndael encryption algorithm. If no key is specified, the Windows Data Protection API (DPAPI) is used to encrypt the standard string representation.</maml:para>
+	</maml:description>
+	<!-- Cmdlet syntax section-->
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>ConvertFrom-SecureString</maml:name>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue)" position="1">
+				<maml:name>secureString</maml:name>
+				<maml:description>
+					<maml:para>Specifies the secure string to convert to an encrypted standard string.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2">
+				<maml:name>secureKey</maml:name>
+				<maml:description>
+					<maml:para>Specifies the encryption key as a secure string. The secure string value is converted to a byte array before being used as the key. </maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
+			</command:parameter>
+		</command:syntaxItem>
+		<command:syntaxItem>
+			<maml:name>ConvertFrom-SecureString</maml:name>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue)" position="1">
+				<maml:name>secureString</maml:name>
+				<maml:description>
+					<maml:para>Specifies the secure string to convert to an encrypted standard string.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>key</maml:name>
+				<maml:description>
+					<maml:para>Specifies the encryption key as a byte array.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">Byte[]</command:parameterValue>
+			</command:parameter>
+		</command:syntaxItem>
+	</command:syntax>
+	<!-- Cmdlet parameter section  -->
+	<command:parameters>
+		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue)" position="1">
+			<maml:name>secureString</maml:name>
+			<maml:description>
+				<maml:para>Specifies the secure string to convert to an encrypted standard string.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
+			<dev:type>
+				<maml:name>SecureString</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue>null</dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2">
+			<maml:name>secureKey</maml:name>
+			<maml:description>
+				<maml:para>Specifies the encryption key as a secure string. The secure string value is converted to a byte array before being used as the key. </maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
+			<dev:type>
+				<maml:name>SecureString</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+			<maml:name>key</maml:name>
+			<maml:description>
+				<maml:para>Specifies the encryption key as a byte array.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">Byte[]</command:parameterValue>
+			<dev:type>
+				<maml:name>Byte[]</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue>null</dev:defaultValue>
+		</command:parameter>
+	</command:parameters>
+	<!-- Input - Output section-->
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name>SecureString</maml:name>
+				<maml:uri/>
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						
+					</maml:para>
+				</maml:description>
+			</dev:type>
+			<maml:description></maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name>String</maml:name>
+				<maml:uri />
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						
+					</maml:para>
+				</maml:description>
+			</dev:type>   
+			<maml:description></maml:description> 
+		</command:returnValue>
+	</command:returnValues>
+	<command:terminatingErrors />
+	<command:nonTerminatingErrors />
+	<!-- Notes section  -->
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para>
+                          For more information, type &quot;Get-Help ConvertFrom-SecureString -detailed&quot;. For technical information, type &quot;Get-Help ConvertFrom-SecureString -full&quot;.
+
+When specifying multiple values for a parameter, use commas to separate the values. For example, &quot;&lt;parameter-name&gt; &lt;value1&gt;, &lt;value2&gt;&quot;.
+
+Use the Read-Host Cmdlet, with the asSecureString parameter specified, to create a secure string by typing at the command prompt.
+
+When you specify a key explicity by using the Key or SecureKey parameters, the key length must be correct. For example, a key of 128 bits can be specified as a byte array of 16 digits. Similarly, 192 and 256 bit keys correspond to byte arrays of 24 and 32 digits.
+                        </maml:para>
+		</maml:alert>
+		<maml:alert>
+			<maml:para></maml:para>
+		</maml:alert>
+	</maml:alertSet>
+	<!-- Example section  --> 
+	<command:examples>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 1 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>$securestring = read-host -assecurestring</dev:code>
+  			<dev:remarks>
+				<maml:para>This command enables you to create a secure string by typing at the command prompt. After entering the command, type the string you want to store as a secure string. An asterisk (*) will be displayed in response to each character you type.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 2 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>$standardstring = convertfrom-securestring  $securestring</dev:code>
+  			<dev:remarks>
+				<maml:para>This command converts a secure string stored in the $securestring variable to an encrypted standard string. The resulting encrypted standard string is stored in the $standardstring variable and can be displayed by typing $standardstring.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 3 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>$key = (3,4,2,3,56,34,254,222,1,1,2,23,42,54,33,233,1,34,2,7,6,5,35,43)
+$standardstring = convertfrom-securestring  $securestring -key $key</dev:code>
+  			<dev:remarks>
+				<maml:para>This command converts a secure string stored in the $securestring variable to an encrypted standard string using the Rijndael algorithm with a 192 bit key. The resulting encrypted standard string is stored in the $standardstring variable and can be displayed by typing $standardstring. The key is stored in the $key variable and passed to the Cmdlet as the value of the Key parameter. The key is an array of 24 digits, all of which are less than 256. There are 24 because each represents a byte (8 bits) and 8 bits*24= 192 bits, which is a valid key length for the Rijndael algorithm. Each individual value is less than 256 because that is the maximum value that can be stored in an unsigned byte.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+	</command:examples>
+	<!-- Link section  -->
+	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>ConvertTo-SecureString</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Read-Host</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+	</maml:relatedLinks>
+</command:command>
+
+
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+	<command:details>
+		<command:name>
+                   ConvertTo-SecureString
+		</command:name>
+		<maml:description>
+			<maml:para>Converts encrypted standard strings to secure strings. It can also convert plain text to secure strings. It is used with ConvertFrom-SecureString and Read-Host.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para></maml:para>
+		</maml:copyright>
+		<command:verb>convertto</command:verb>
+		<command:noun>securestring</command:noun>
+		<dev:version></dev:version>
+	</command:details>
+	<maml:description>
+		<maml:para>Converts encrypted standard strings into secure strings. It can also convert plain text to secure strings. It is used with ConvertFrom-SecureString and Read-Host. The secure string created by the cmdlet can be used with cmdlets or functions that require a parameter of type SecureString. The secure string can be converted back to an encrypted, standard string using the ConvertFrom-SecureString cmdlet. This enables it to be stored in a file for later use.
+
+If the standard string being converted was encrypted with ConvertFrom-SecureString using a specified key, that same key must be provided as the value of the Key or SecureKey parameter of the ConvertTo-SecureString cmdlet.</maml:para>
+	</maml:description>
+	<!-- Cmdlet syntax section-->
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>ConvertTo-SecureString</maml:name>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue)" position="1">
+				<maml:name>string</maml:name>
+				<maml:description>
+					<maml:para>Specifies the string to convert to a secure string.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2">
+				<maml:name>secureKey</maml:name>
+				<maml:description>
+					<maml:para>Specifies the encryption key to use when converting a secure string into an encrypted standard string. The key must be provided in the format of a secure string. The secure string is converted to a byte array before being used as the key. Valid key lengths are 16, 24, and 32 bytes.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
+			</command:parameter>
+		</command:syntaxItem>
+		<command:syntaxItem>
+			<maml:name>ConvertTo-SecureString</maml:name>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue)" position="1">
+				<maml:name>string</maml:name>
+				<maml:description>
+					<maml:para>Specifies the string to convert to a secure string.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>key</maml:name>
+				<maml:description>
+					<maml:para>Specifies the encryption key to use when converting a secure string into an encrypted standard string. Valid key lengths are 16, 24, and 32 bytes.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">Byte[]</command:parameterValue>
+			</command:parameter>
+		</command:syntaxItem>
+		<command:syntaxItem>
+			<maml:name>ConvertTo-SecureString</maml:name>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue)" position="1">
+				<maml:name>string</maml:name>
+				<maml:description>
+					<maml:para>Specifies the string to convert to a secure string.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2">
+				<maml:name>asPlainText</maml:name>
+				<maml:description>
+					<maml:para>Specifies a plain text string to convert to a secure string. The secure string cmdlets help protect confidential text.  The text is encrypted for privacy and is deleted from computer memory after it is used. If you use this parameter to provide plain text as input,  the system cannot protect that input in this manner.  To use this parameter, you must also specify the Force parameter.</maml:para>
+				</maml:description>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="3">
+				<maml:name>force</maml:name>
+				<maml:description>
+					<maml:para>Confirms that you understand the implications of using  the AsPlainText parameter and still want to use it.</maml:para>
+				</maml:description>
+			</command:parameter>
+		</command:syntaxItem>
+	</command:syntax>
+	<!-- Cmdlet parameter section  -->
+	<command:parameters>
+		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue)" position="1">
+			<maml:name>string</maml:name>
+			<maml:description>
+				<maml:para>Specifies the string to convert to a secure string.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			<dev:type>
+				<maml:name>string</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2">
+			<maml:name>secureKey</maml:name>
+			<maml:description>
+				<maml:para>Specifies the encryption key to use when converting a secure string into an encrypted standard string. The key must be provided in the format of a secure string. The secure string is converted to a byte array before being used as the key. Valid key lengths are 16, 24, and 32 bytes.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
+			<dev:type>
+				<maml:name>SecureString</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+			<maml:name>key</maml:name>
+			<maml:description>
+				<maml:para>Specifies the encryption key to use when converting a secure string into an encrypted standard string. Valid key lengths are 16, 24, and 32 bytes.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">Byte[]</command:parameterValue>
+			<dev:type>
+				<maml:name>Byte[]</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue>null</dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2">
+			<maml:name>asPlainText</maml:name>
+			<maml:description>
+				<maml:para>Specifies a plain text string to convert to a secure string. The secure string cmdlets help protect confidential text.  The text is encrypted for privacy and is deleted from computer memory after it is used. If you use this parameter to provide plain text as input,  the system cannot protect that input in this manner.  To use this parameter, you must also specify the Force parameter.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+			<dev:type>
+				<maml:name>SwitchParameter</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="3">
+			<maml:name>force</maml:name>
+			<maml:description>
+				<maml:para>Confirms that you understand the implications of using  the AsPlainText parameter and still want to use it.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+			<dev:type>
+				<maml:name>SwitchParameter</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+	</command:parameters>
+	<!-- Input - Output section-->
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name>String</maml:name>
+				<maml:uri/>
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						
+					</maml:para>
+				</maml:description>
+			</dev:type>
+			<maml:description></maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name>Secure String</maml:name>
+				<maml:uri />
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						
+					</maml:para>
+				</maml:description>
+			</dev:type>   
+			<maml:description></maml:description> 
+		</command:returnValue>
+	</command:returnValues>
+	<command:terminatingErrors />
+	<command:nonTerminatingErrors />
+	<!-- Notes section  -->
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para>
+                          For more information, type &quot;Get-Help ConvertTo-SecureString -detailed&quot;. For technical information, type &quot;Get-Help ConvertTo-SecureString -full&quot;.
+
+When specifying multiple values for a parameter, use commas to separate the values. For example, &quot;&lt;parameter-name&gt; &lt;value1&gt;, &lt;value2&gt;&quot;.
+                        </maml:para>
+		</maml:alert>
+		<maml:alert>
+			<maml:para></maml:para>
+		</maml:alert>
+	</maml:alertSet>
+	<!-- Example section  --> 
+	<command:examples>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 1 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>$pwd = read-host -assecurestring
+$pwd
+$pwd = convertfrom-securestring $pwd
+$pwd
+$pwd = convertto-securestring $pwd
+$pwd</dev:code>
+  			<dev:remarks>
+				<maml:para>This command creates a secure string using the Read-Host cmdlet. To create a secure string, you must type some characters and press the Enter key following the first command. It then displays the result that is stored in the $pwd variable. Because it is a secure string, the result is just the type System.Security.SecureString. It then converts the contents of the $pwd variable to an encrypted standard string by using the ConvertFrom-SecureString cmdlet. In the fourth line, it displays that encrypted, standard string. In the fifth line, it uses the ConvertTo-SecureString cmdlet to convert the encrypted standard string stored in the $pwd variable back into a secure string. The last line of the command attempts to display the secure string. The result is that the type System.Security.SecureString is displayed, confirming that the contents of the $pwd variable has been converted back to a secure string.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 2 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>$pwd = read-host -assecurestring
+$pwd
+$pwd = convertfrom-securestring $pwd -key (1..16)
+$pwd
+$pwd &gt; enc_pwd.txt
+$pwd = convertto-securestring (get-content enc_pwd.txt) -key (1..16)
+$pwd</dev:code>
+  			<dev:remarks>
+				<maml:para>This command creates a secure string using the Read-Host cmdlet. To create a secure string, you must type some characters and press the Enter key following the first command. It then displays the result that is stored in the $pwd variable. Because it is a secure string, the result is just the type System.Security.SecureString. It then converts the contents of the $pwd variable to an encrypted standard string with a key value of (1..16) by using the ConvertFrom-SecureString cmdlet. In the fourth line, it displays that encrypted, standard string. In the fifth line, it uses the ConvertTo-SecureString cmdlet to convert the encrypted standard string stored in the $pwd variable back into a secure string. The last line of the command attempts to display the secure string. The result is that the type System.Security.SecureString is displayed, confirming that the contents of the $pwd variable has been converted back to a secure string.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 3 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>$secure_string_pwd = convertto-securestring &quot;P@ssW0rD!&quot; -asplaintext -force</dev:code>
+  			<dev:remarks>
+				<maml:para>This command converts the plain text string &quot;P@ssW0rD!&quot; into a secure string and stores the result in the $secure_string_pwd variable. To use the AsPlainText parameter, the command must also include the Force parameter.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+	</command:examples>
+	<!-- Link section  -->
+	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>ConvertFrom-SecureString</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Read-Host</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+	</maml:relatedLinks>
+</command:command>
+
+
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+	<command:details>
+		<command:name>
+                   Get-Acl
+		</command:name>
+		<maml:description>
+			<maml:para>Gets the security descriptor for a resource, such as a file or registry key.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para></maml:para>
+		</maml:copyright>
+		<command:verb>get</command:verb>
+		<command:noun>acl</command:noun>
+		<dev:version></dev:version>
+	</command:details>
+	<maml:description>
+		<maml:para>The Get-Acl cmdlet gets objects that represent the security descriptor of a file or resource. The security descriptor contains the access control lists (ACLs) of the resource. The ACL specifies the permissions that users and user groups that have to access the resource.</maml:para>
+	</maml:description>
+	<!-- Cmdlet syntax section-->
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>Get-Acl</maml:name>
+			<command:parameter required="false" variableLength="true" globbing="true" pipelineInput="true (ByValue, ByPropertyName)" position="1">
+				<maml:name>path</maml:name>
+				<maml:description><maml:para>Specifies the path to a resource. Get-Acl gets the security descriptor of the resource indicated by the path. Wildcards are permitted. If you omit the Path parameter, Get-Acl gets the security descriptor of the current directory.
+
+The parameter name (&quot;-Path&quot;) is optional.</maml:para></maml:description>
+				<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>filter</maml:name>
+				<maml:description><maml:para>Specifies a filter in the provider's format or language. The value of this parameter qualifies the Path parameter. The syntax of the filter, including the use of wildcards, depends on the provider. Filters are more efficient than other parameters, because the provider applies them when retrieving the objects, rather than having Windows PowerShell filter the objects after they are retrieved.</maml:para></maml:description>
+				<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="true" globbing="true" pipelineInput="false" position="named">
+				<maml:name>include</maml:name>
+				<maml:description><maml:para>Retrieves only the specified items. The value of this parameter qualifies the Path parameter. Enter a path element or pattern, such as &quot;*.txt&quot;. Wildcards are permitted.</maml:para></maml:description>
+				<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="true" globbing="true" pipelineInput="false" position="named">
+				<maml:name>exclude</maml:name>
+				<maml:description><maml:para>Omits the specified items. The value of this parameter qualifies the Path parameter. Enter a path element or pattern, such as &quot;*.txt&quot;. Wildcards are permitted.</maml:para></maml:description>
+				<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>audit</maml:name>
+				<maml:description><maml:para>Gets the audit data for the security descriptor from the system access control list (SACL).</maml:para></maml:description>
+			</command:parameter>
+		</command:syntaxItem>
+	</command:syntax>
+	<!-- Cmdlet parameter section  -->
+	<command:parameters>
+		<command:parameter required="false" variableLength="true" globbing="true" pipelineInput="true (ByValue, ByPropertyName)" position="1">
+			<maml:name>path</maml:name>
+			<maml:description>
+				<maml:para>Specifies the path to a resource. Get-Acl gets the security descriptor of the resource indicated by the path. Wildcards are permitted. If you omit the Path parameter, Get-Acl gets the security descriptor of the current directory.
+
+The parameter name (&quot;-Path&quot;) is optional.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			<dev:type>
+				<maml:name>string[]</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue>.</dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+			<maml:name>filter</maml:name>
+			<maml:description>
+				<maml:para>Specifies a filter in the provider's format or language. The value of this parameter qualifies the Path parameter. The syntax of the filter, including the use of wildcards, depends on the provider. Filters are more efficient than other parameters, because the provider applies them when retrieving the objects, rather than having Windows PowerShell filter the objects after they are retrieved.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			<dev:type>
+				<maml:name>string</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="true" globbing="true" pipelineInput="false" position="named">
+			<maml:name>include</maml:name>
+			<maml:description>
+				<maml:para>Retrieves only the specified items. The value of this parameter qualifies the Path parameter. Enter a path element or pattern, such as &quot;*.txt&quot;. Wildcards are permitted.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			<dev:type>
+				<maml:name>string[]</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="true" globbing="true" pipelineInput="false" position="named">
+			<maml:name>exclude</maml:name>
+			<maml:description>
+				<maml:para>Omits the specified items. The value of this parameter qualifies the Path parameter. Enter a path element or pattern, such as &quot;*.txt&quot;. Wildcards are permitted.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			<dev:type>
+				<maml:name>string[]</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+			<maml:name>audit</maml:name>
+			<maml:description>
+				<maml:para>Gets the audit data for the security descriptor from the system access control list (SACL).</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+			<dev:type>
+				<maml:name>SwitchParameter</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue>False</dev:defaultValue>
+		</command:parameter>
+	</command:parameters>
+	<!-- Input - Output section-->
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name>String</maml:name>
+				<maml:uri/>
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						Path to the item
+					</maml:para>
+				</maml:description>
+			</dev:type>
+			<maml:description></maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name>System.Security.AccessControl.DirectorySecurity object</maml:name>
+				<maml:uri />
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						System.Security.AccessControl.DirectorySecurity object. 
+					</maml:para>
+				</maml:description>
+			</dev:type>   
+			<maml:description></maml:description> 
+		</command:returnValue>
+	</command:returnValues>
+	<command:terminatingErrors />
+	<command:nonTerminatingErrors />
+	<!-- Notes section  -->
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para>
+                          For more information, type &quot;Get-Help Get-Acl -detailed&quot;. For technical information, type &quot;Get-Help Get-Acl -full&quot;.
+
+When specifying multiple values for a parameter, use commas to separate the values. For example, &quot;&lt;parameter-name&gt; &lt;value1&gt;, &lt;value2&gt;&quot;.
+
+By default, Get-Acl displays the Windows PowerShell path to the resource (&lt;provider&gt;::&lt;resource-path&gt;), the owner of the resource, and &quot;Access&quot;, a list (array) of the access control entries in the discretionary access control list (DACL) for the resource. The DACL list is controlled by the resource owner.
+
+When you format the result as a list, (&quot;get-acl | format-list&quot;), in addition to the path, owner, and access list, Windows PowerShell displays the following fields:
+
+-- Group: The security group of the owner.
+
+-- Audit:  A list (array) of entries in the system access control list (SACL). The SACL specifies the types of access attempts for which Windows generates audit records.
+
+-- Sddl: The security descriptor of the resource displayed in a single text string in Security Descriptor Definition Language format. Windows PowerShell uses the GetSddlForm method of security descriptors to retrieve this data.
+
+Because Get-Acl is supported by the file system and registry providers, you can use Get-Acl to view the ACL of file system objects, like files and directories, and registry objects, like registry keys and entries.
+                        </maml:para>
+		</maml:alert>
+		<maml:alert>
+			<maml:para></maml:para>
+		</maml:alert>
+	</maml:alertSet>
+	<!-- Example section  --> 
+	<command:examples>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 1 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>get-acl C:\windows</dev:code>
+  			<dev:remarks>
+				<maml:para>This command gets the security descriptor of the C:Windows directory.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 2 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>get-acl C:\Windows\k*.log | select-object PSPath, Sddl | format-list</dev:code>
+  			<dev:remarks>
+				<maml:para>This command gets the Path and SDDL strings for all of the .log files in the C:\windows director whose names begin with &quot;k.&quot; 
+
+The command uses Get-Acl to get objects representing the security descriptors of each log file. It passes the results to the Select-Object cmdlet, which selects only the values of the PSPath and SDDL fields. Then, it passes the results to the Format-List cmdlet to display the results as a list. Lists are often used in Windows Powershell, because long values appear truncated in tables.
+
+The SDDL values are valuable to system adminstrators, because they are simple text strings that contain all of the information in the security descriptor. As such, they are easy to pass and store, and can be parsed when needed.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 3 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>get-ACL c:/windows/k*.log -Audit | foreach-object { $_.Audit.Count }</dev:code>
+  			<dev:remarks>
+				<maml:para>This command gets the security descriptors of the .log files in the C:\Windows directory whose names begin with &quot;k.&quot; It uses the Audit parameter to retrieve the audit records from the SACL in the security descriptor. Then it uses the For-EachObject parameter to count the number of audit records associated with each file. The result is a list of numbers representing the number of audit records for each log file.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 4 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>get-acl -path hklm:\system\currentcontrolset\control | format-list</dev:code>
+  			<dev:remarks>
+				<maml:para>This command uses Get-Acl to get the security descriptor of the Control subkey (HKLM\SYSTEM\CurrentControlSet\Control) of the registry.
+
+The Path parameter specifies the Control subkey. The pipeline operator (|) passes the security descriptor that Get-Acl retrieves to the Format-List command, which formats the properties of the security descriptor as a list so that they are easy to read.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+	</command:examples>
+	<!-- Link section  -->
+	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>Set-Acl</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>about_namespace</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+	</maml:relatedLinks>
+</command:command>
+
+
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+	<command:details>
+		<command:name>
+                   Get-AuthenticodeSignature
+		</command:name>
+		<maml:description>
+			<maml:para>Gets information about the Authenticode signature in a file.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para></maml:para>
+		</maml:copyright>
+		<command:verb>get</command:verb>
+		<command:noun>authenticodesignature</command:noun>
+		<dev:version></dev:version>
+	</command:details>
+	<maml:description>
+		<maml:para>The Get-AuthenticodeSignature cmdlet gets information about the Authenticode signature in a file. If the file is not signed, the information is retrieved, but it the fields are blank.</maml:para>
+	</maml:description>
+	<!-- Cmdlet syntax section-->
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>Get-AuthenticodeSignature</maml:name>
+			<command:parameter required="true" variableLength="true" globbing="true" pipelineInput="true (ByValue, ByPropertyName)" position="1">
+				<maml:name>filePath</maml:name>
+				<maml:description><maml:para>The path to the file being examined. Wildcards are permitted, but they must lead to a single file. The parameter name (&quot;-FilePath&quot;) is optional.</maml:para></maml:description>
+				<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			</command:parameter>
+		</command:syntaxItem>
+	</command:syntax>
+	<!-- Cmdlet parameter section  -->
+	<command:parameters>
+		<command:parameter required="true" variableLength="true" globbing="true" pipelineInput="true (ByValue, ByPropertyName)" position="1">
+			<maml:name>filePath</maml:name>
+			<maml:description>
+				<maml:para>The path to the file being examined. Wildcards are permitted, but they must lead to a single file. The parameter name (&quot;-FilePath&quot;) is optional.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			<dev:type>
+				<maml:name>string[]</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+	</command:parameters>
+	<!-- Input - Output section-->
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name>String</maml:name>
+				<maml:uri/>
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						Path to file being checked.
+					</maml:para>
+				</maml:description>
+			</dev:type>
+			<maml:description></maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name>SignatureObject</maml:name>
+				<maml:uri />
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						
+					</maml:para>
+				</maml:description>
+			</dev:type>   
+			<maml:description></maml:description> 
+		</command:returnValue>
+	</command:returnValues>
+	<command:terminatingErrors />
+	<command:nonTerminatingErrors />
+	<!-- Notes section  -->
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para>
+                          For more information, type &quot;Get-Help Get-AuthenticodeSignature -detailed&quot;. For technical information, type &quot;Get-Help Get-AuthenticodeSignature -full&quot;.
+
+For information about Authenticode signatures in Windows PowerShell, type &quot;get-help About_Signing&quot;.
+
+When specifying multiple values for a parameter, use commas to separate the values. For example, &quot;&lt;parameter-name&gt; &lt;value1&gt;, &lt;value2&gt;&quot;.
+                        </maml:para>
+		</maml:alert>
+		<maml:alert>
+			<maml:para></maml:para>
+		</maml:alert>
+	</maml:alertSet>
+	<!-- Example section  --> 
+	<command:examples>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 1 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>get-AuthenticodeSignature -filepath C:\Test\NewScript.ps1</dev:code>
+  			<dev:remarks>
+				<maml:para>This command gets information about the Authenticode signature in the NewScript.ps1 file. It uses the Filepath parameter to specify the file.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 2 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>get-authenticodesignature test.ps1, test1.ps1, sign-file.ps1, makexml.ps1</dev:code>
+  			<dev:remarks>
+				<maml:para>This command gets information about the Authenticode signature in the four files listed at the command line. In this command, the name of the Filepath parameter, which is optional, is omitted.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+	</command:examples>
+	<!-- Link section  -->
+	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>Set-AuthenticodeSignature</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Get-ExecutionPolicy</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Set-ExecutionPolicy</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>about_signing</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+	</maml:relatedLinks>
+</command:command>
+
+
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+	<command:details>
+		<command:name>
+                   Get-Credential
+		</command:name>
+		<maml:description>
+			<maml:para>Gets a credential object based on a user name and password.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para></maml:para>
+		</maml:copyright>
+		<command:verb>get</command:verb>
+		<command:noun>credential</command:noun>
+		<dev:version></dev:version>
+	</command:details>
+	<maml:description>
+		<maml:para>The Get-Credential cmdlet creates a credential object for a specified username and password. You can use the credential object in security operations.</maml:para>
+	</maml:description>
+	<!-- Cmdlet syntax section-->
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>Get-Credential</maml:name>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
+				<maml:name>credential</maml:name>
+				<maml:description><maml:para>Specifies a user name for the credential, such as &quot;User01&quot; or &quot;Domain01\User01&quot;. The parameter name (&quot;-Credential&quot;) is optional.
+
+When you enter the command, you will be prompted for a password. 
+
+If you omit this parameter, you will be prompted for a user name and a password.</maml:para></maml:description>
+				<command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+			</command:parameter>
+		</command:syntaxItem>
+	</command:syntax>
+	<!-- Cmdlet parameter section  -->
+	<command:parameters>
+		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
+			<maml:name>credential</maml:name>
+			<maml:description>
+				<maml:para>Specifies a user name for the credential, such as &quot;User01&quot; or &quot;Domain01\User01&quot;. The parameter name (&quot;-Credential&quot;) is optional.
+
+When you enter the command, you will be prompted for a password. 
+
+If you omit this parameter, you will be prompted for a user name and a password.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+			<dev:type>
+				<maml:name>PSCredential</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue>null</dev:defaultValue>
+		</command:parameter>
+	</command:parameters>
+	<!-- Input - Output section-->
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name>None</maml:name>
+				<maml:uri/>
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						
+					</maml:para>
+				</maml:description>
+			</dev:type>
+			<maml:description></maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name>CredentialObject</maml:name>
+				<maml:uri />
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						
+					</maml:para>
+				</maml:description>
+			</dev:type>   
+			<maml:description></maml:description> 
+		</command:returnValue>
+	</command:returnValues>
+	<command:terminatingErrors />
+	<command:nonTerminatingErrors />
+	<!-- Notes section  -->
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para>
+                          For more information, type &quot;Get-Help Get-Credential -detailed&quot;. For technical information, type &quot;Get-Help Get-Credential -full&quot;.
+
+You can use the PSCredential object that Get-Credential creates in cmdlets that request user authentication, such as those with a Credential parameter.
+
+The Credential parameter is not supported by the providers that are installed with Windows PowerShell. However, you can use the Credential parameter with Get-WmiObject, because it calls .NET directly.
+
+When specifying multiple values for a parameter, use commas to separate the values. For example, &quot;&lt;parameter-name&gt; &lt;value1&gt;, &lt;value2&gt;&quot;.
+                        </maml:para>
+		</maml:alert>
+		<maml:alert>
+			<maml:para></maml:para>
+		</maml:alert>
+	</maml:alertSet>
+	<!-- Example section  --> 
+	<command:examples>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 1 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>$c = Get-Credential</dev:code>
+  			<dev:remarks>
+				<maml:para>This command gets a credential object and saves it in the $c variable. 
+
+When you enter the command, a dialog box appears requesting a user name and password. When you enter the requested information, the cmdlet creates a PSCredential object representing the credentials of the user and saves it in the $c variable. 
+
+You can use the object as input to cmdlets that request user authentication, such as those with a Credential parameter. However, the providers that are installed with Windows PowerShell do not support the Credential parameter.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 2 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>$c = Get-Credential
+
+C:\PS&gt;Get-WmiObject Win32_DiskDrive -ComputerName Server01 -Credential $c</dev:code>
+  			<dev:remarks>
+				<maml:para>These commands use a credential object from Get-Credential to authenticate a user on a remote computer so they can use Windows Management Instrumentation (WMI) to manage the computer.
+
+The first command gets a credential object and saves it in the $c variable. The second command uses the credential object in a Get-WmiObject command. This command gets information about the disk drives on the Server01 computer.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 3 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>C:\PS&gt;Get-WmiObject Win32_BIOS -ComputerName Server01 '
+-Credential (get-credential Domain01\User01)</dev:code>
+  			<dev:remarks>
+				<maml:para>This command shows how to include a Get-Credential command in a Get-WmiObject command.
+
+This command uses the Get-WmiObject cmdlet to get information about the BIOS on the Server01 computer. It uses the Credential parameter to authenticate the user, Domain01\User01, and a Get-Credential command as the value of the Credential parameter.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+	</command:examples>
+	<!-- Link section  -->
+	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>Get-WmiObject</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+	</maml:relatedLinks>
+</command:command>
+
+
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+	<command:details>
+		<command:name>
+                   Get-ExecutionPolicy
+		</command:name>
+		<maml:description>
+			<maml:para>Gets the current execution policy for the shell.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para></maml:para>
+		</maml:copyright>
+		<command:verb>get</command:verb>
+		<command:noun>executionpolicy</command:noun>
+		<dev:version></dev:version>
+	</command:details>
+	<maml:description>
+		<maml:para>The Get-ExecutionPolicy cmdlet gets the execution policy that is effective in the shell. The execution policy is determined by the user preference that you set by using Set-ExecutionPolicy and the Group Policy settings for the Windows PowerShell execution policy. The default is &quot;Restricted.&quot;</maml:para>
+	</maml:description>
+	<!-- Cmdlet syntax section-->
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>Get-ExecutionPolicy</maml:name>
+		</command:syntaxItem>
+	</command:syntax>
+	<!-- Input - Output section-->
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri/>
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						
+					</maml:para>
+				</maml:description>
+			</dev:type>
+			<maml:description></maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name>System.String</maml:name>
+				<maml:uri />
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						A string containing the execution policy.
+					</maml:para>
+				</maml:description>
+			</dev:type>   
+			<maml:description></maml:description> 
+		</command:returnValue>
+	</command:returnValues>
+	<command:terminatingErrors />
+	<command:nonTerminatingErrors />
+	<!-- Notes section  -->
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para>
+                          For more information, type &quot;Get-Help Get-ExecutionPolicy -detailed&quot;. For technical information, type &quot;Get-Help Get-ExecutionPolicy -full&quot;.
+
+For detailed information about Windows PowerShell execution policy, including definitions of the Windows PowerShell policies, type &quot;Get-Help About_Signing&quot;. 
+
+The execution policy is part of the security strategy of Windows PowerShell. It determines whether you can load configuration files (including your Windows PowerShell profile) and run scripts, and determines which scripts, if any, must be digitally signed before they will run.
+
+The effective execution policy is determined by the preference that you set by using Set-ExecutionPolicy and the &quot;Turn on Script Execution&quot; group policies for computers and users. The precedence order is Computer Policy &gt; User Policy &gt; Set-ExecutionPolicy user preference.
+                        </maml:para>
+		</maml:alert>
+		<maml:alert>
+			<maml:para></maml:para>
+		</maml:alert>
+	</maml:alertSet>
+	<!-- Example section  --> 
+	<command:examples>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 1 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>get-executionpolicy</dev:code>
+  			<dev:remarks>
+				<maml:para>This command gets the current execution policy for the shell.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para>Restricted</maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 2 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>set-executionpolicy RemoteSigned; get-executionPolicy</dev:code>
+  			<dev:remarks>
+				<maml:para>These commands set a new user preference for the shell execution policy and then display the effective execution policy. The commands are separated by a semicolon (;). In this example, because there is no group policy setting, the user preference is the effective policy for the shell.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para>RemoteSigned</maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+	</command:examples>
+	<!-- Link section  -->
+	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>Set-ExecutionPolicy</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Get-AuthenticodeSignature</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Set-AuthenticodeSignature</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>about_signing</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+	</maml:relatedLinks>
+</command:command>
+
+
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+	<command:details>
+		<command:name>
+                   Get-PfxCertificate
+		</command:name>
+		<maml:description>
+			<maml:para>Gets information about .pfx certificate files on the computer.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para></maml:para>
+		</maml:copyright>
+		<command:verb>get</command:verb>
+		<command:noun>pfxcertificate</command:noun>
+		<dev:version></dev:version>
+	</command:details>
+	<maml:description>
+		<maml:para>The Get-PfxCertificate cmdlet gets an object representing each specified .pfx certificate file. A .pfx file includes both the certificate and a private key.</maml:para>
+	</maml:description>
+	<!-- Cmdlet syntax section-->
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>Get-PfxCertificate</maml:name>
+			<command:parameter required="true" variableLength="true" globbing="true" pipelineInput="true (ByValue, ByPropertyName)" position="1">
+				<maml:name>filePath</maml:name>
+				<maml:description><maml:para>The full path to the .pfx file of the secured file. The parameter name (&quot;-FilePath&quot;) is optional.</maml:para></maml:description>
+				<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			</command:parameter>
+		</command:syntaxItem>
+	</command:syntax>
+	<!-- Cmdlet parameter section  -->
+	<command:parameters>
+		<command:parameter required="true" variableLength="true" globbing="true" pipelineInput="true (ByValue, ByPropertyName)" position="1">
+			<maml:name>filePath</maml:name>
+			<maml:description>
+				<maml:para>The full path to the .pfx file of the secured file. The parameter name (&quot;-FilePath&quot;) is optional.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			<dev:type>
+				<maml:name>string[]</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+	</command:parameters>
+	<!-- Input - Output section-->
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name>String</maml:name>
+				<maml:uri/>
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						Path to the .pfx file
+					</maml:para>
+				</maml:description>
+			</dev:type>
+			<maml:description></maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name>certificateObject</maml:name>
+				<maml:uri />
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						
+					</maml:para>
+				</maml:description>
+			</dev:type>   
+			<maml:description></maml:description> 
+		</command:returnValue>
+	</command:returnValues>
+	<command:terminatingErrors />
+	<command:nonTerminatingErrors />
+	<!-- Notes section  -->
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para>
+                          You can retrieve information about a collection object either by using the InputObject parameter or by piping the object, preceeded by a comma, to Get-Member.
+
+For more information, type &quot;Get-Help Get-PfxCertificate -detailed&quot;. For technical information, type &quot;Get-Help Get-PfxCertificate -full&quot;.
+
+ When specifying multiple values for a parameter, use commas to separate the values. For example, &quot;&lt;parameter-name&gt; &lt;value1&gt;, &lt;value2&gt;&quot;.
+                        </maml:para>
+		</maml:alert>
+		<maml:alert>
+			<maml:para></maml:para>
+		</maml:alert>
+	</maml:alertSet>
+	<!-- Example section  --> 
+	<command:examples>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 1 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>get-pfxcertificate -filepath C:\windows\system32\Test.pfx</dev:code>
+  			<dev:remarks>
+				<maml:para>This command gets information about the Test.pfx certificate on the system.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para>Password: ******
+Signer Certificate:      Rob Barker (Self Certificate)
+Time Certificate:
+Time Stamp:
+Path:                    C:\windows\system32\zap.pfx</maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+	</command:examples>
+	<!-- Link section  -->
+	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>Get-AuthenticodeSignature</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Set-AuthenticodeSignature</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>About_Signing</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+	</maml:relatedLinks>
+</command:command>
+
+
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+	<command:details>
+		<command:name>
+                   Set-Acl
+		</command:name>
+		<maml:description>
+			<maml:para>Changes the security descriptor of a specified resource, such as a file or a registry key.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para></maml:para>
+		</maml:copyright>
+		<command:verb>set</command:verb>
+		<command:noun>acl</command:noun>
+		<dev:version></dev:version>
+	</command:details>
+	<maml:description>
+		<maml:para>The Set-Acl cmdlet changes the security descriptor of a specified resource, such as a file or a registry key, to match the values in a security descriptor that you supply.
+
+To use Set-Acl, use the Path parameter to identify the resource whose security descriptor you want to change, and use the AclObject parameter to supply a security descriptor that has the values you want to apply. Set-Acl uses the value of the AclObject parameter as a model and changes the values in the resource's security descriptor to match the values in the AclObject parameter.</maml:para>
+	</maml:description>
+	<!-- Cmdlet syntax section-->
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>Set-Acl</maml:name>
+			<command:parameter required="true" variableLength="true" globbing="true" pipelineInput="true (ByPropertyName)" position="1">
+				<maml:name>path</maml:name>
+				<maml:description><maml:para>Identifies the resource whose security descriptor you want to change. Enter the path to a resource, such as a path to a file or registry key. Wildcards are permitted.
+
+If you pass a security object to Set-Acl (either by using the AclObject parameter or by passing an object from Get-Acl to Set-Acl), and you omit the Path parameter (name and value), Set-Acl uses the path that is included in the security object.</maml:para></maml:description>
+				<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue)" position="2">
+				<maml:name>aclObject</maml:name>
+				<maml:description><maml:para>Specifies an ACL with the desired property values. Set-Acl changes the ACL of resource specified by the Path parameter to match the values in the specified security object.
+
+You can save the output of a Get-Acl command in a variable and then use the AclObject parameter to pass the variable, or type a Get-Acl command.</maml:para></maml:description>
+				<command:parameterValue required="true" variableLength="false">ObjectSecurity</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>filter</maml:name>
+				<maml:description><maml:para>Specifies a filter in the provider's format or language. The value of this parameter qualifies the Path parameter. The syntax of the filter, including the use of wildcards, depends on the provider. 
+
+Filters are more efficient than other parameters, because the provider applies them when retrieving the objects, rather than having Windows PowerShell filter the objects after they are retrieved.</maml:para></maml:description>
+				<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="true" globbing="true" pipelineInput="false" position="named">
+				<maml:name>include</maml:name>
+				<maml:description><maml:para>Changes only the specified items. The value of this parameter qualifies the Path parameter. Enter a path element or pattern, such as &quot;*.txt&quot;. Wildcards are permitted.</maml:para></maml:description>
+				<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="true" globbing="true" pipelineInput="false" position="named">
+				<maml:name>exclude</maml:name>
+				<maml:description><maml:para>Omits the specified items. The value of this parameter qualifies the Path parameter. Enter a path element or pattern, such as &quot;*.txt&quot;. Wildcards are permitted.</maml:para></maml:description>
+				<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>passThru</maml:name>
+				<maml:description><maml:para>Passes the object created by this cmdlet through the pipeline. By default, this cmdlet does not pass any objects through the pipeline.</maml:para></maml:description>
+			</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+    <maml:name>whatIf</maml:name>
+    <maml:description>
+    <maml:para>Describes what would happen if you executed the command without actually executing the command.</maml:para>
+    </maml:description>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+    <maml:name>confirm</maml:name>
+    <maml:description>
+    <maml:para>Prompts you for confirmation before executing the command.</maml:para>
+    </maml:description>
+</command:parameter>
+		</command:syntaxItem>
+	</command:syntax>
+	<!-- Cmdlet parameter section  -->
+	<command:parameters>
+		<command:parameter required="true" variableLength="true" globbing="true" pipelineInput="true (ByPropertyName)" position="1">
+			<maml:name>path</maml:name>
+			<maml:description>
+				<maml:para>Identifies the resource whose security descriptor you want to change. Enter the path to a resource, such as a path to a file or registry key. Wildcards are permitted.
+
+If you pass a security object to Set-Acl (either by using the AclObject parameter or by passing an object from Get-Acl to Set-Acl), and you omit the Path parameter (name and value), Set-Acl uses the path that is included in the security object.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			<dev:type>
+				<maml:name>string[]</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue)" position="2">
+			<maml:name>aclObject</maml:name>
+			<maml:description>
+				<maml:para>Specifies an ACL with the desired property values. Set-Acl changes the ACL of resource specified by the Path parameter to match the values in the specified security object.
+
+You can save the output of a Get-Acl command in a variable and then use the AclObject parameter to pass the variable, or type a Get-Acl command.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">ObjectSecurity</command:parameterValue>
+			<dev:type>
+				<maml:name>ObjectSecurity</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+			<maml:name>filter</maml:name>
+			<maml:description>
+				<maml:para>Specifies a filter in the provider's format or language. The value of this parameter qualifies the Path parameter. The syntax of the filter, including the use of wildcards, depends on the provider. 
+
+Filters are more efficient than other parameters, because the provider applies them when retrieving the objects, rather than having Windows PowerShell filter the objects after they are retrieved.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			<dev:type>
+				<maml:name>string</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="true" globbing="true" pipelineInput="false" position="named">
+			<maml:name>include</maml:name>
+			<maml:description>
+				<maml:para>Changes only the specified items. The value of this parameter qualifies the Path parameter. Enter a path element or pattern, such as &quot;*.txt&quot;. Wildcards are permitted.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			<dev:type>
+				<maml:name>string[]</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="true" globbing="true" pipelineInput="false" position="named">
+			<maml:name>exclude</maml:name>
+			<maml:description>
+				<maml:para>Omits the specified items. The value of this parameter qualifies the Path parameter. Enter a path element or pattern, such as &quot;*.txt&quot;. Wildcards are permitted.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			<dev:type>
+				<maml:name>string[]</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+			<maml:name>passThru</maml:name>
+			<maml:description>
+				<maml:para>Passes the object created by this cmdlet through the pipeline. By default, this cmdlet does not pass any objects through the pipeline.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+			<dev:type>
+				<maml:name>SwitchParameter</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue>False</dev:defaultValue>
+		</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+    <maml:name>whatIf</maml:name>
+    <maml:description>
+    <maml:para>Describes what would happen if you executed the command without actually executing the command.</maml:para>
+    </maml:description>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+    <maml:name>confirm</maml:name>
+    <maml:description>
+    <maml:para>Prompts you for confirmation before executing the command.</maml:para>
+    </maml:description>
+</command:parameter>
+	</command:parameters>
+	<!-- Input - Output section-->
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri/>
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						Uses security objects retrieved by the Get-Acl cmdlet. The type of the security object depends on the type of the resource.
+					</maml:para>
+				</maml:description>
+			</dev:type>
+			<maml:description></maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri />
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						By default, Set-Acl does not generate any output. However, if you use the -Passthru parameter, it generates a security object that you can pass through the pipeline to other commands. The type of the security object depends on the type of the resource. 
+					</maml:para>
+				</maml:description>
+			</dev:type>   
+			<maml:description></maml:description> 
+		</command:returnValue>
+	</command:returnValues>
+	<command:terminatingErrors />
+	<command:nonTerminatingErrors />
+	<!-- Notes section  -->
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para>
+                          For more information, type &quot;Get-Help Set-Acl -detailed&quot;. For technical information, type &quot;Get-Help Set-Acl -full&quot;.
+
+The Set-Acl cmdlet is supported by the Windows PowerShell file system and registry providers. As such, you can use it to change the security descriptors of files, directories, and registry keys.
+
+When specifying multiple values for a parameter, use commas to separate the values. For example, &quot;&lt;parameter-name&gt; &lt;value1&gt;, &lt;value2&gt;&quot;.
+                        </maml:para>
+		</maml:alert>
+		<maml:alert>
+			<maml:para></maml:para>
+		</maml:alert>
+	</maml:alertSet>
+	<!-- Example section  --> 
+	<command:examples>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 1 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>$DogACL = get-acl c:\dog.txt
+
+C:\PS&gt;set-acl -path C:\cat.txt -AclObject $DogACL</dev:code>
+  			<dev:remarks>
+				<maml:para>These commands copy the values from the security descriptor of the Dog.txt file to the security descriptor of the Cat.txt file. When the commands complete, the security descriptors of the Dog.txt and Cat.txt files are identical.
+
+The first command uses the Get-Acl cmdlet to get the security descriptor of the Dog.txt file. The assignment operator (=) stores the security descriptor in the value of the $DogACL variable. 
+
+The second command uses Set-Acl to change the values in the ACL of Cat.txt to the values in $DogACL.
+
+The value of the Path parameter is the path to the Cat.txt file. The value of the AclObject parameter is the model ACL, in this case, the ACL of Dog.txt as saved in the $DogACL variable.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 2 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>get-acl c:\dog.txt | set-acl -path C:\cat.txt</dev:code>
+  			<dev:remarks>
+				<maml:para>This command is almost the same as the command in the previous example, except that it uses a pipeline operator to send the security descriptor retrieved in a Get-Acl command to a Set-Acl command.
+
+The first command uses the Get-Acl cmdlet to get the security descriptor of the Dog.txt file. The pipeline operator (|) passes an object that represents the Dog.txt security descriptor to the Set-Acl command.
+
+The second command uses Set-Acl to apply the security descriptor of  Dog.txt to Cat.txt. When the command completes, the ACLs of the Dog.txt and Cat.txt files are identical.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 3 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>$newACL = get-acl file0.txt
+
+C:\PS&gt;get-childitem c:\temp -recurse -include *.txt -force | set-acl -aclobject $newacl</dev:code>
+  			<dev:remarks>
+				<maml:para>These commands apply the security descriptors in the File0.txt file to all text files in the C:\Temp directory and all of its subdirectories.
+
+The first command gets the security descriptor of the File0.txt file in the current directory and uses the assignment operator (=) to store it in the $newACL variable.
+
+The first command in the pipeline uses the Get-Childitem cmdlet to get all of the text files in the C:\Temp directory. The Recurse parameter extends the command to all subdirectories of C:\temp. The Include parameter limits the files retrieved to those with the &quot;.txt&quot; file name extension. The Force parameter gets hidden files, which would otherwise be excluded. (You cannot use &quot;c:\temp\*.txt&quot;, because the Recurse parameter works on directories, not on files.)
+
+The pipeline operator (|) sends the objects representing the retrieved files to Set-Acl command, which applies the security descriptor in the AclObject parameter to all of the files in the pipeline.
+
+In practice, it is best to use the Whatif parameter with all Set-Acl commands that can affect more than one resource. In this case, the second command in the pipeline would be &quot;set-acl -aclobject $newacl -whatif&quot;. This command lists the files that would be affected by the command. After reviewing the result, you can run the command again without the Whatif parameter.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+	</command:examples>
+	<!-- Link section  -->
+	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>Get-Acl</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>about_namespace</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+	</maml:relatedLinks>
+</command:command>
+
+
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+	<command:details>
+		<command:name>
+                   Set-AuthenticodeSignature
+		</command:name>
+		<maml:description>
+			<maml:para>Uses an authenticode signature to sign a Windows PowerShell script or other file.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para></maml:para>
+		</maml:copyright>
+		<command:verb>set</command:verb>
+		<command:noun>authenticodesignature</command:noun>
+		<dev:version></dev:version>
+	</command:details>
+	<maml:description>
+		<maml:para>The Set-AuthenticodeSignature cmdlet adds an authenticode signature in any file that supports Session Initiation Protocol (SIP).  In a Windows PowerShell script file, the signature takes the form of a block of text that indicates the end of the instructions that are executed in the script. If there is already a signature exists in the file when this cmdlet is run, that signature is removed.</maml:para>
+	</maml:description>
+	<!-- Cmdlet syntax section-->
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>Set-AuthenticodeSignature</maml:name>
+			<command:parameter required="true" variableLength="true" globbing="true" pipelineInput="true (ByValue, ByPropertyName)" position="1">
+				<maml:name>filePath</maml:name>
+				<maml:description><maml:para>Specifies the path to a file that is being signed.</maml:para></maml:description>
+				<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2">
+				<maml:name>certificate</maml:name>
+				<maml:description><maml:para>Specifies the certificate that will be used to sign the script or file. Enter a variable that stores an object representing the certificate or an expression that gets the certificate.
+
+To find the certificate, use Get-PfxCertificate or Get-ChildItem. If the certificate is not valid or does not have code-signing authority, the command fails.</maml:para></maml:description>
+				<command:parameterValue required="true" variableLength="false">X509Certificate2</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>includeChain</maml:name>
+				<maml:description><maml:para>Determines which certificates in the certificate trust chain are included in the digital signature. &quot;NotRoot&quot; is the default.
+
+Valid values are:
+&quot;Signer&quot;: Includes only the signer's certificate.
+
+&quot;NotRoot&quot;: Include all of the certificates in the certificate chain, except for the root authority.
+
+&quot;All&quot;: Includes all certificates in the certificate chain.</maml:para></maml:description>
+				<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>timeStampServer</maml:name>
+				<maml:description><maml:para>Uses the specified timestamp server to certify the exact time that the certificate was added to the file. Type the URL of the timestamp server as a string.</maml:para></maml:description>
+				<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>force</maml:name>
+				<maml:description><maml:para>Overrides restrictions that prevent the command from succeeding, just so the changes do not compromise security. For example, Force will override the read-only attribute or create directories to complete a file path, but it will not attempt to change file permissions.</maml:para></maml:description>
+			</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+    <maml:name>whatIf</maml:name>
+    <maml:description>
+    <maml:para>Describes what would happen if you executed the command without actually executing the command.</maml:para>
+    </maml:description>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+    <maml:name>confirm</maml:name>
+    <maml:description>
+    <maml:para>Prompts you for confirmation before executing the command.</maml:para>
+    </maml:description>
+</command:parameter>
+		</command:syntaxItem>
+	</command:syntax>
+	<!-- Cmdlet parameter section  -->
+	<command:parameters>
+		<command:parameter required="true" variableLength="true" globbing="true" pipelineInput="true (ByValue, ByPropertyName)" position="1">
+			<maml:name>filePath</maml:name>
+			<maml:description>
+				<maml:para>Specifies the path to a file that is being signed.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			<dev:type>
+				<maml:name>string[]</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue>Null</dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2">
+			<maml:name>certificate</maml:name>
+			<maml:description>
+				<maml:para>Specifies the certificate that will be used to sign the script or file. Enter a variable that stores an object representing the certificate or an expression that gets the certificate.
+
+To find the certificate, use Get-PfxCertificate or Get-ChildItem. If the certificate is not valid or does not have code-signing authority, the command fails.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">X509Certificate2</command:parameterValue>
+			<dev:type>
+				<maml:name>X509Certificate2</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue>Null</dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+			<maml:name>includeChain</maml:name>
+			<maml:description>
+				<maml:para>Determines which certificates in the certificate trust chain are included in the digital signature. &quot;NotRoot&quot; is the default.
+
+Valid values are:
+&quot;Signer&quot;: Includes only the signer's certificate.
+
+&quot;NotRoot&quot;: Include all of the certificates in the certificate chain, except for the root authority.
+
+&quot;All&quot;: Includes all certificates in the certificate chain.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			<dev:type>
+				<maml:name>string</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue>notroot</dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+			<maml:name>timeStampServer</maml:name>
+			<maml:description>
+				<maml:para>Uses the specified timestamp server to certify the exact time that the certificate was added to the file. Type the URL of the timestamp server as a string.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			<dev:type>
+				<maml:name>string</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+			<maml:name>force</maml:name>
+			<maml:description>
+				<maml:para>Overrides restrictions that prevent the command from succeeding, just so the changes do not compromise security. For example, Force will override the read-only attribute or create directories to complete a file path, but it will not attempt to change file permissions.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+			<dev:type>
+				<maml:name>SwitchParameter</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue>False</dev:defaultValue>
+		</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+    <maml:name>whatIf</maml:name>
+    <maml:description>
+    <maml:para>Describes what would happen if you executed the command without actually executing the command.</maml:para>
+    </maml:description>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+    <maml:name>confirm</maml:name>
+    <maml:description>
+    <maml:para>Prompts you for confirmation before executing the command.</maml:para>
+    </maml:description>
+</command:parameter>
+	</command:parameters>
+	<!-- Input - Output section-->
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri/>
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						
+					</maml:para>
+				</maml:description>
+			</dev:type>
+			<maml:description></maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name>PsSignatureObject</maml:name>
+				<maml:uri />
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						
+					</maml:para>
+				</maml:description>
+			</dev:type>   
+			<maml:description></maml:description> 
+		</command:returnValue>
+	</command:returnValues>
+	<command:terminatingErrors />
+	<command:nonTerminatingErrors />
+	<!-- Notes section  -->
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para>
+                          For more information, type &quot;Get-Help Set-AuthenticodeSignature -detailed&quot;. For technical information, type &quot;Get-Help Set-AuthenticodeSignature -full&quot;.
+
+Before a signature is set in the file and after the certificate has been validated, the value of the Boolean shell variable &quot;SigningApproved&quot; must checked.  If this variable is unset or set to something other than true, the ShouldProcess method shall prompt the user to confirm the signing of the script. 
+
+If TimeStampServer is set, this indicates that the designated URL should be used to acquire a TimeStamp for the signature.
+
+The &quot;IncludeChain&quot; parameter indicates how much of the certificate trust-chain to embed in the signature block.  The three choices allowed for this parameter are:
+
+none
+Only the signer's certificate shall be encoded and embedded into the script file.
+notroot
+All certificates in the signer's trust-chain, except for the root certificate, shall be encoded and embedded into the script file.
+fullchain
+All certificates in the signer's trust-chain, including the root certificate shall be encoded and embedded into the script file.
+
+When specifying multiple values for a parameter, use commas to separate the values. For example, &quot;&lt;parameter-name&gt; &lt;value1&gt;, &lt;value2&gt;&quot;.
+                        </maml:para>
+		</maml:alert>
+		<maml:alert>
+			<maml:para></maml:para>
+		</maml:alert>
+	</maml:alertSet>
+	<!-- Example section  --> 
+	<command:examples>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 1 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>$cert=Get-ChildItem -FilePath cert:\CurrentUser\my -CodeSigningCert
+
+C:\PS&gt;Set-AuthenticodeSignature PsTestInternet2.ps1 -cert $cert</dev:code>
+  			<dev:remarks>
+				<maml:para>These commands retrieve a code-signing certificate from the Windows PowerShell certificate provider and use it to sign a Windows PowerShell script.
+
+The first command uses the Get-Childitem cmdlet and the Windows PowerShell certificate provider to get the certificates in the Cert:\CurrentUser\My subdirectory of the certificate store. (The Cert: drive is the drive exposed by the certificate provider.) The CodeSigningCert parameter, which is supported only by the certificate provider, limits the certificates retrieved to those with code-signing authority. The command stores the result in the $cert variable.
+
+The second command uses the Set-AuthenticodeSignature cmdlet to sign the PSTestInternet2.ps1 script. It uses the FilePath parameter to specify the name of the script and the Cert parameter to specify that the certificate is stored in the $cert variable.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 2 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>$cert = Get-PfxCertificate C:\Test\Mysign.pfx 
+
+C:\PS&gt;Set-AuthenticodeSignature -Filepath ServerProps.ps1 -Cert $cert</dev:code>
+  			<dev:remarks>
+				<maml:para>These commands use the Get-PfxCertificate cmdlet to find a code signing certificate and then uses it to sign a Windows PowerShell script. 
+
+The first command uses the Get-PfxCertificate cmdlet to find the C:\Test\MySign.pfx certificate and store it in the $cert variable.
+
+The second command use Set-AuthenticodeSignature to sign the script. The FilePath parameter of Set-Authenticode signature specifies the path to the script file being signed and the Cert parameter passes the $cert variable containing the certificate to Set-AuthenticodeSignature.
+
+If the certificate file is password protected, Windows PowerShell prompts you for the password.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 3 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>Set-AuthenticodeSignature -filepath c:\scripts\Remodel.ps1 -cert $cert -IncludeChain All -TimeStampServer &quot;http://www.fabrikam.com/TimeManager&quot; </dev:code>
+  			<dev:remarks>
+				<maml:para>This command adds a digital signature that includes the root authority in the trust chain and is signed by a third-party timestamp server. 
+
+The command uses the FilePath parameter to specify the script being signed and the Cert parameter to specify the certificate that is saved in the $cert variable. It uses the IncludeChain parameter to include all of the signatures in the trust chain (including the root authority) and the TimeStampServer parameter to specify the URL of a time stamp server that can certify the time that the script is signed.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+	</command:examples>
+	<!-- Link section  -->
+	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>Get-AuthenticodeSignature</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Get-PfxCertificate</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Get-ExecutionPolicy</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Set-ExecutionPolicy</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>about_signing</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+	</maml:relatedLinks>
+</command:command>
+
+
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+	<command:details>
+		<command:name>
+                   Set-ExecutionPolicy
+		</command:name>
+		<maml:description>
+			<maml:para>Changes the user preference for the execution policy of the shell.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para></maml:para>
+		</maml:copyright>
+		<command:verb>set</command:verb>
+		<command:noun>executionpolicy</command:noun>
+		<dev:version></dev:version>
+	</command:details>
+	<maml:description>
+		<maml:para>The Set-ExecutionPolicy changes the user preference for the execution policy of the shell. The execution policy is part of the security strategy of Windows PowerShell. It determines whether you can load configuration files (including your Windows PowerShell profile) and run scripts, and it determines which scripts, if any, must be digitally signed before they will run.</maml:para>
+	</maml:description>
+	<!-- Cmdlet syntax section-->
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>Set-ExecutionPolicy</maml:name>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue)" position="1">
+				<maml:name>executionPolicy</maml:name>
+				<maml:description><maml:para>Specifies a new execution policy for the shell. The parameter name (&quot;-Name&quot;) is optional. 
+
+Valid values are:
+
+-- Restricted: Does not load configuration files or run scripts. &quot;Restricted&quot; is the default.
+
+-- AllSigned: Requires that all scripts and configuration files be signed by a trusted publisher, including scripts that you write on the local computer.
+
+-- RemoteSigned: Requires that all scripts and configuration files downloaded from the Internet be signed by a trusted publisher.
+
+-- Unrestricted: Loads all configuration files and runs all scripts. If you run an unsigned script that was downloaded from the Internet, you are prompted for permission before it runs.</maml:para></maml:description>
+				<command:parameterValueGroup>
+				<command:parameterValue required="false"  variableLength="false" >Unrestricted</command:parameterValue>
+				<command:parameterValue required="false"  variableLength="false" >RemoteSigned</command:parameterValue>
+				<command:parameterValue required="false"  variableLength="false" >AllSigned</command:parameterValue>
+				<command:parameterValue required="false"  variableLength="false" >Restricted</command:parameterValue>
+				<command:parameterValue required="false"  variableLength="false" >Default</command:parameterValue>
+				</command:parameterValueGroup>
+			</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+    <maml:name>whatIf</maml:name>
+    <maml:description>
+    <maml:para>Describes what would happen if you executed the command without actually executing the command.</maml:para>
+    </maml:description>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+    <maml:name>confirm</maml:name>
+    <maml:description>
+    <maml:para>Prompts you for confirmation before executing the command.</maml:para>
+    </maml:description>
+</command:parameter>
+		</command:syntaxItem>
+	</command:syntax>
+	<!-- Cmdlet parameter section  -->
+	<command:parameters>
+		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue)" position="1">
+			<maml:name>executionPolicy</maml:name>
+			<maml:description>
+				<maml:para>Specifies a new execution policy for the shell. The parameter name (&quot;-Name&quot;) is optional. 
+
+Valid values are:
+
+-- Restricted: Does not load configuration files or run scripts. &quot;Restricted&quot; is the default.
+
+-- AllSigned: Requires that all scripts and configuration files be signed by a trusted publisher, including scripts that you write on the local computer.
+
+-- RemoteSigned: Requires that all scripts and configuration files downloaded from the Internet be signed by a trusted publisher.
+
+-- Unrestricted: Loads all configuration files and runs all scripts. If you run an unsigned script that was downloaded from the Internet, you are prompted for permission before it runs.</maml:para>
+				<maml:para>The following lists the acceptable values for this parameter:</maml:para>				
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">ExecutionPolicy</command:parameterValue>
+			<dev:type>
+				<maml:name>ExecutionPolicy</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue>N/A</dev:defaultValue>
+			<dev:possibleValues>
+				<dev:possibleValue>
+					<dev:value>Unrestricted</dev:value>
+					<maml:description>
+					    <maml:para></maml:para>
+					</maml:description>
+				</dev:possibleValue>
+				<dev:possibleValue>
+					<dev:value>RemoteSigned</dev:value>
+					<maml:description>
+					    <maml:para></maml:para>
+					</maml:description>
+				</dev:possibleValue>
+				<dev:possibleValue>
+					<dev:value>AllSigned</dev:value>
+					<maml:description>
+					    <maml:para></maml:para>
+					</maml:description>
+				</dev:possibleValue>
+				<dev:possibleValue>
+					<dev:value>Restricted</dev:value>
+					<maml:description>
+					    <maml:para></maml:para>
+					</maml:description>
+				</dev:possibleValue>
+				<dev:possibleValue>
+					<dev:value>Default</dev:value>
+					<maml:description>
+					    <maml:para></maml:para>
+					</maml:description>
+				</dev:possibleValue>
+			</dev:possibleValues>
+		</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+    <maml:name>whatIf</maml:name>
+    <maml:description>
+    <maml:para>Describes what would happen if you executed the command without actually executing the command.</maml:para>
+    </maml:description>
+</command:parameter>
+<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+    <maml:name>confirm</maml:name>
+    <maml:description>
+    <maml:para>Prompts you for confirmation before executing the command.</maml:para>
+    </maml:description>
+</command:parameter>
+	</command:parameters>
+	<!-- Input - Output section-->
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name>System.String</maml:name>
+				<maml:uri/>
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						Valid values are &quot;Unrestricted&quot;, &quot;RemoteSigned&quot;, &quot;AllSigned&quot;, &quot;Restricted&quot; or &quot;Default&quot;.
+					</maml:para>
+				</maml:description>
+			</dev:type>
+			<maml:description></maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri />
+				<maml:description>
+					<maml:para>
+						<!-- description  -->
+						
+					</maml:para>
+				</maml:description>
+			</dev:type>   
+			<maml:description></maml:description> 
+		</command:returnValue>
+	</command:returnValues>
+	<command:terminatingErrors />
+	<command:nonTerminatingErrors />
+	<!-- Notes section  -->
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para>
+                          For more information, type &quot;Get-Help Set-ExecutionPolicy -detailed&quot;. For technical information, type &quot;Get-Help Set-ExecutionPolicy -full&quot;.
+
+When you use Set-ExecutionPolicy, the new user preference is written to the registry and remains unchanged until you change it.
+
+However, if the &quot;Turn on Script Execution&quot; Group Policy is enabled for the computer or user, the user preference is written to the registry, but it is not effective, and Windows PowerShell displays a message explaining the conflict. You cannot use Set-ExecutionPolicy to override a group policy, even if the user preference is more restrictive than the policy.
+
+For detailed information about Windows PowerShell execution policy, including the group policies, type &quot;Get-Help About_Signing&quot;. 
+
+When specifying multiple values for a parameter, use commas to separate the values. For example, &quot;&lt;parameter-name&gt; &lt;value1&gt;, &lt;value2&gt;&quot;.
+                        </maml:para>
+		</maml:alert>
+		<maml:alert>
+			<maml:para></maml:para>
+		</maml:alert>
+	</maml:alertSet>
+	<!-- Example section  --> 
+	<command:examples>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 1 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>set-executionpolicy remotesigned</dev:code>
+  			<dev:remarks>
+				<maml:para>This command sets the user preference for the shell execution policy to RemoteSigned.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para></maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 2 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>Set-ExecutionPolicy Restricted</dev:code>
+  			<dev:remarks>
+				<maml:para>This command attempts to set the execution policy for the shell to &quot;Restricted.&quot; The &quot;Restricted&quot; setting is written to the registry, but because it conflicts with a group policy, it is not effective, even though it is more restrictive than the policy.</maml:para>
+				<maml:para></maml:para>				
+				<maml:para></maml:para>
+   				<maml:para>Set-ExecutionPolicy : Windows PowerShell updated your local preference successfully, but the setting is overridden by the group policy applied to your system. Due to the override, your shell will retain its current effective execution policy of &quot;AllSigned&quot;. Contact your group policy administrator for more information.
+At line:1 char:20
++ set-executionpolicy  &lt;&lt;&lt;&lt; restricted</maml:para>
+				<maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+	</command:examples>
+	<!-- Link section  -->
+	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>Get-ExecutionPolicy</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Set-AuthenticodeSignature</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Get-AuthenticodeSignature</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>about_signing</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+	</maml:relatedLinks>
+</command:command>
+
+
+<providerHelp>
+<Name>
+	Certificate
+</Name>
+<Drives>
+	<Para>Cert:</Para>
+</Drives>
+<Synopsis>
+	Provides access to X509 certificate stores and certificates from within Windows PowerShell.
+</Synopsis>
+
+<DetailedDescription>
+	<para>The Windows PowerShell security strategy supports the use of Authenticode signatures to sign scripts using x509-encoded digital public key certificates. The signing features of Windows PowerShell are not intended to be complete, but they enable users to sign scripts and enable Windows PowerShell to recognize signed and unsigned scripts, and determine whether the scripts originate on the Internet.
+
+The Windows PowerShell Certificate provider lets you navigate through the certificate namespace and view the certificate stores and certificates. It also lets you copy, move, and delete certificates and certificate stores, and open the Certificates snap-in to the Microsoft Management Console (MMC).
+
+The Certificate provider exposes the certificate name space as the Cert: drive in Windows PowerShell. The Cert: drive has the following three levels:
+
+--  Store locations (Microsoft.PowerShell.Commands.X509StoreLocation), which are high-level containers to group the certificates for the current user and all users. Each system as a CurrentUser and LocalMachine (all users) store location.
+
+-- Certificates stores (System.Security.Cryptography.X509Certificates.X509Store), which are physical stores in which certificates are saved and managed.
+
+-- x509 Certificates (System.Security.Cryptography.X509Certificates.X509Certificate2), each of which represent an x509 certificate on the computer. Certificates are identified by their thumbprints.
+
+The Windows PowerShell Certificate provider supports the Set-Location, Get-Location, Get-Item, Get-Childitem, and Invoke-Item cmdlets.
+
+In addition, the Windows PowerShell Security snap-in (Microsoft.PowerShell.Security), which includes the Certificate provider, also includes snap-ins to get and set authenticode signatures and to get certificates. For a list of cmdlets in the Security snapin, type &quot;get-command -pssnapin *security&quot;.</para>
+</DetailedDescription>
+
+<Capabilities>
+	<para></para>
+</Capabilities>
+<Filters>
+	<para></para>
+</Filters>
+<Notes>
+	
+</Notes>
+<Tasks>
+	<Task>
+  		<Title>
+			Navigating the Cert: Drive
+		</Title>
+
+   		<Description>
+			<para></para>		
+		</Description>
+
+		<Examples>
+                        <Example>
+                        	<Title>
+					-------------------------- EXAMPLE 1 --------------------------
+				</Title> 
+				<Introduction>
+					<para>This command uses the Set-Location cmdlet to change the current location to the Cert: drive.</para>
+				</Introduction> 
+	  			<Code>
+					set-location cert:
+				</Code>
+				<Remarks>
+					<para></para>
+	  			</Remarks>
+			</Example>
+                        <Example>
+                        	<Title>
+					-------------------------- EXAMPLE 2 --------------------------
+				</Title> 
+				<Introduction>
+					<para>This command uses the set-location command to change the current location to the Root certificate store in the LocalMachine store location. Use a backslash (\) or forward slash (/) to indicate a level of the Cert: drive.</para>
+				</Introduction> 
+	  			<Code>
+					set-location -path LocalMachine\Root
+				</Code>
+				<Remarks>
+					<para>If you are not in the Cert: drive, begin the path with the drive name.</para>
+	  			</Remarks>
+			</Example>
+		</Examples>
+	</Task>
+	<Task>
+  		<Title>
+			Displaying the Contents of the Cert: Drive
+		</Title>
+
+   		<Description>
+			<para></para>		
+		</Description>
+
+		<Examples>
+                        <Example>
+                        	<Title>
+					-------------------------- EXAMPLE 1 --------------------------
+				</Title> 
+				<Introduction>
+					<para>This command uses the Get-Childitem cmdlet to display the certificate stores in the CurrentUser certificate store location.</para>
+				</Introduction> 
+	  			<Code>
+					get-childitem -path cert:\CurrentUser
+				</Code>
+				<Remarks>
+					<para>If you are in the cert: drive, you can omit the drive name.</para>
+	  			</Remarks>
+			</Example>
+                        <Example>
+                        	<Title>
+					-------------------------- EXAMPLE 2 --------------------------
+				</Title> 
+				<Introduction>
+					<para>This command uses the Get-Childitem cmdlet to display the certificates in the My certificate store.</para>
+				</Introduction> 
+	  			<Code>
+					get-childitem -path cert:\CurrentUser\My
+				</Code>
+				<Remarks>
+					<para>If you are in the cert: drive, you can omit the drive name.</para>
+	  			</Remarks>
+			</Example>
+                        <Example>
+                        	<Title>
+					-------------------------- EXAMPLE 3 --------------------------
+				</Title> 
+				<Introduction>
+					<para>This command uses the Get-Item cmdlet to get the &quot;My&quot; certificate store and the Property parameter of Format-List with a value of all (*) to display all of the properties of the store.</para>
+				</Introduction> 
+	  			<Code>
+					get-item -path cert:\CurrentUser\My | format-list *
+				</Code>
+				<Remarks>
+					<para></para>
+	  			</Remarks>
+			</Example>
+                        <Example>
+                        	<Title>
+					-------------------------- EXAMPLE 4 --------------------------
+				</Title> 
+				<Introduction>
+					<para>This command gets a certificate and display all of its properties. It uses the Get-Childitem cmdlet to get the certificate and the Property parameter of Format-List with a value of all (*) to display all of the properties of the certificate.
+
+The certificate is identified by its thumbprint.</para>
+				</Introduction> 
+	  			<Code>
+					get-childitem -path cert:\CurrentUser\my\6B8223358119BB08840DEE50FD8AF9EA776CE66B | format-list -property *
+				</Code>
+				<Remarks>
+					<para></para>
+	  			</Remarks>
+			</Example>
+                        <Example>
+                        	<Title>
+					-------------------------- EXAMPLE 5 --------------------------
+				</Title> 
+				<Introduction>
+					<para>This command uses the Get-Childitem cmdlet to get all of the certificates on the computer, and its CodeSigningCert dynamic parameter to get only the certificates that have code-signing authority.</para>
+				</Introduction> 
+	  			<Code>
+					get-childitem -path * -codesigningcert -recurse
+				</Code>
+				<Remarks>
+					<para></para>
+	  			</Remarks>
+			</Example>
+		</Examples>
+	</Task>
+	<Task>
+  		<Title>
+			Opening the Certificates MMC Snap-in
+		</Title>
+
+   		<Description>
+			<para></para>		
+		</Description>
+
+		<Examples>
+                        <Example>
+                        	<Title>
+					-------------------------- EXAMPLE 1 --------------------------
+				</Title> 
+				<Introduction>
+					<para>This command opens the Certificates MMC snap-in to manage the specified certificate.</para>
+				</Introduction> 
+	  			<Code>
+					invoke item cert:\CurrentUser\my\6B8223358119BB08840DEE50FD8AF9EA776CE66B 
+				</Code>
+				<Remarks>
+					<para></para>
+	  			</Remarks>
+			</Example>
+		</Examples>
+	</Task>
+</Tasks>
+<DynamicParameters>
+	<DynamicParameter>
+		<Name>CodeSigningCert</Name>
+
+		<CmdletSupported>Get-Item, Get-Childitem</CmdletSupported>
+
+		<Type>
+            		<Name>System.Management.Automation.SwitchParameter</Name>
+      		</Type>
+
+      		<Description>Gets only those certificates with code-signing authority.</Description>
+
+		<PossibleValues>
+			<PossibleValue>
+				<Value></Value>
+
+				<Description>
+					<para></para>
+				</Description>
+
+			</PossibleValue>
+		</PossibleValues>
+	</DynamicParameter>
+</DynamicParameters>
+<RelatedLinks>
+	About_Signing
+	Get-AuthenticodeSignature
+	Set-AuthenticodeSignature
+	Get-PfxCertificate
+	Set-PfxCertificate
+	about_provider
+</RelatedLinks>
+</providerHelp>
+
+</helpItems>

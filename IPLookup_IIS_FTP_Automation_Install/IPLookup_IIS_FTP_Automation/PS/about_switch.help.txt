@@ -1,0 +1,155 @@
+﻿
+about_Switch
+
+SHORT DESCRIPTION
+    Using a switch to handle multiple if statements.
+
+LONG DESCRIPTION
+
+    You use an If statement to make a decision in a script or program. 
+    Essentially, it says; “If this condition exists, perform this action. 
+    Otherwise do that action.” You can perform that operation as many 
+    times as you want, but if you have a long list of conditions, an If 
+    statement becomes unwieldy. You can combine a long list of conditions
+    in a switch statement. As in all branching statements, braces ({}) are
+    required to enclose script blocks.
+
+    A switch statement is, in effect, a series of If statements. It matches 
+    the expression with each of the conditions case by case. If a match 
+    is found, the action associated with that condition is performed. The 
+    switch statement, very basically, takes the following form:
+
+    PS> $a = 3
+    PS> switch ($a) {
+        1 {"It’s one"}
+        2 {"It’s two"}
+        3 {"It’s three"}
+        4 {"It’s four"}
+        }
+    It’s three
+
+    This simple example takes a value and compares it with each condition 
+    in the list. The action just echoes a string from the match. But you 
+    could face a problem if you check all of the conditions. 
+    For example:
+
+    PS> $day = "day5"
+    PS> switch ($day){
+        day1 {"They call it stormy Monday"; break}
+        day2 {"Tuesday's just as bad"; break}
+        day3 {"Wednesday's worse"; break}
+        day4 {"Thursday's oh so sad"; break}
+        day5 {"The eagle flies on Friday"; break}
+        day6 {"Saturday I go out to play"; break}
+        day7 {"Sunday I go out to play"; break}
+        day5 {"Wait, too many days."; break}
+        }
+        
+    The eagle flies on Friday
+
+    There are two day5 conditions in the list. But the break at the end of 
+    each condition tells the switch to stop looking further and do the 
+    action it finds. If the break statements were not there, then both 
+    day5 actions would take place. 
+
+    If the value to switch against is an array, then each element in the 
+    array will be evaluated in order, starting at element 0. At least 
+    one element must be present that meets at least one condition or 
+    an error will result. If there is more than one default clause, an 
+    error will result.
+
+    The complete switch syntax is as follows:
+
+        switch [-regex|-wildcard|-exact][-casesensitive] ( pipeline )
+    or
+        switch [-regex|-wildcard|-exact][-casesensitive] -file filename
+    followed by
+        { 
+            "string"|number|variable|{ expression } { statementlist }
+            default { statementlist } 
+        }
+
+    By default, if no options are used, switch behaves as if a case- 
+    insensitive exact match is in effect.  If "pipeline" results in an 
+    array, each element of the array will be evaluated in ascending offset 
+    order (starting at 0).   
+
+    At least one conditional element must be present in the switch 
+    codeblock and only one default clause may be present.  If more than 
+    one default clause is present, a ParseException will be thrown.
+
+    Switch has the following options:
+
+        -regex	        Indicates that the match clause, if a string, is 
+                        treated as a regex string.  Use of this parameter 
+                        disables -wildcard and -exact.  If not a string, 
+                        this option is ignored.
+
+        -wildcard	    Indicates that the match clause, if a string, is 
+                        treated as a wildcard string.  Use of this 
+                        parameter disables -regex and -exact.  If not a
+                        string, this option is ignored.
+
+        -exact	        Indicates that the match clause, if a string, must 
+                        match exactly.  Use of this parameter disables 
+                        -wildcard and -regex..  If not a string, 
+                        this option is ignored.
+
+        -casesensitive	Modify the match clause, if a string, to be case 
+                        sensitive.  If not a string, this option is ignored.
+
+        -file	        Take input from a file (or representative) rather 
+                        than a statement. If multiple -file parameters are 
+                        used, the last one is used.  Each line of the 
+                        file is read and passed through the switch block.
+
+    Multiple uses of -regex, -wildcard or -exact are allowed, however only 
+    the last parameter used governs the behavior.
+
+    The keyword "break" indicates that no more processing will occur and 
+    the switch statement will exit.  
+
+    The keyword "continue" indicates that no processing will continue 
+    against the current token and the next token in the conditional will 
+    be evaluated.  If no tokens are available, the switch statement will 
+    exit.
+
+    The “{ expression }” block may be a code block that will be evaluated 
+    at the time of the comparison.  The current object is bound to 
+    the automatic variable "$_" and is available during the evaluation of 
+    the expression.  A comparison is considered a match if the expression 
+    evaluates to "True".  This expression is evaluated in a new scope.
+
+    The “default” keyword within the switch statement indicates that if 
+    no matches are found, the code block that follows the keyword will 
+    be evaluated.  Program flow will not be allowed from block to 
+    block (e.g., the closing “}” in the compound-list is an explicit 
+    "break". )
+
+    If multiple matches are found, each match shall result in the 
+    expression being executed.  To avoid this, the break or continue 
+    keywords may be used to halt further comparisons.
+
+SEE ALSO
+    For information about break, type:
+
+
+        help about_break
+
+
+    For information about continue, type:
+
+
+        help about_continue
+
+
+    For information about the if conditional, type:
+
+
+        help about_if
+
+
+    For information about script blocks, type:
+
+
+        help about_Script_block

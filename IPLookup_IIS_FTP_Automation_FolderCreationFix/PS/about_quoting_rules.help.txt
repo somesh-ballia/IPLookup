@@ -1,0 +1,86 @@
+﻿TOPIC
+    Language quoting rules
+
+SHORT DESCRIPTION
+    Rules for setting the boundaries of a string
+
+LONG DESCRIPTION
+    At times, you might need to use special characters or reserved words in 
+    the character strings you supply as command arguments or when initalizing 
+    a string variable. To do this, you must enclose the string in quotation 
+    marks. For example, since blank spaces are used to separate command 
+    arguments, any character string that contains a space must be enclosed 
+    in quotation marks to ensure that it is treated as a single string.
+    
+    You can enclose a string with single quotation marks (') or double 
+    quotation marks ("). There is a difference in the way the enclosed 
+    strings are treated, depending on which character you use:
+    
+    When you use double quotation marks, variable names preceded by a 
+    dollar sign ($) are replaced with the variable's value before the string 
+    is passed to the command for processing. Consider the following example:
+
+        $i = 5
+        Write-Host "The value $i is $i"
+
+    The output from this command is: 
+
+        The value 5 is 5
+
+    When you use single-quotation marks, the enclosed string is passed to the
+    command exactly as you type it. No substitution is performed. Consider the 
+    following example:
+
+        $i = 5
+        Write-Host 'The value of $i is $i'
+
+    The output from this command is: 
+
+        The value $i is $i
+
+    In order to specify a variable as a literal in a string enclosed by 
+    double-quotes, use the grave-accent character (`). Grave-accent is a 
+    special Windows PowerShell escape character. You can find 
+    the key containing this character at the top left corner of a typical 
+    Qwerty keyboard. It's usually combined with the tilde (~) character.
+
+    In the following example the grave accent character preceding the first 
+    $home variable prevents PowerShell from replacing the variable name with 
+    its value. 
+    
+        Write-Host "`$home = $home"
+
+    The output from this command is: 
+ 
+        $home = C:\Windows
+    
+    You can nest double quotation marks in pairs of single quotation marks. 
+    The following example demonstrates how this feature can be used:
+
+        Write-Host 'As they say, "live and learn."'
+
+    The output from this command is:
+
+        As they say, "live and learn."
+
+    You can also nest single quotation marks within pairs of double quotation 
+    marks.
+
+    By using the ` escape character, you can preserve a quotation mark of the 
+    same type within a pair, as shown:
+
+        Write-Host 'It`'s easy to write literal statements in PowerShell.'
+
+    The output from this command is:
+
+        It's easy to write literal statements in PowerShell.
+
+Notice that the single quotation mark in the word, "It's" is preserved.
+
+
+SEE ALSO
+
+    For information about escape characters, enter the following command: 
+
+        help about_Escape_character
+

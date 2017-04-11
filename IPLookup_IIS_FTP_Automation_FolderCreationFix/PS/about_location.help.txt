@@ -1,0 +1,108 @@
+﻿TOPIC
+    Working location
+
+SHORT DESCRIPTION
+    Accessing items from the working location in the Windows PowerShell
+
+LONG DESCRIPTION
+    The current working location is the default location that commands 
+    point to. In other words, this is the location that PowerShell uses if 
+    you do not supply an explicit path to the item or location being affected 
+    by the command. In most cases, the current working location will be a 
+    drive accessed through the FileSystem PowerShell Provider and, in 
+    some cases, a directory on that drive. For example, you might set your 
+    current working location as c:\program files\Windows PowerShell. 
+    As a result, all commands are processed from this location unless 
+    another path is explicitly provided.
+
+    PowerShell maintains the current working location for each drive even when 
+    the drive is not the current drive. This allows you to access items from 
+    the current working location by referring only to the drive of another 
+    location. For example, suppose that your current working location is 
+    c:\windows. Now suppose you use the following command to change your 
+    current working location to the hklm: drive:
+
+        Set-Location hklm:
+
+    Although your current location is now the registry drive, you can still 
+    access items in the c:\windows directory simply by using the C drive, 
+    as shown in the following example:
+
+        Get-ChildItem c:
+
+    PowerShell remembers that your current working location for that drive is 
+    the Windows directory so it retrieves items from that directory. The 
+    results would be the same as specifying Get-ChildItem c:\windows.
+
+    In PowerShell, you can use the Get-Location command to determine the 
+    current working location, and you can use the Set-Location command to set 
+    the current working location. For example, the following command sets the 
+    current working location to the Windows directory of the C drive:
+
+    Set-Location c:\windows
+
+    Once you set the current working location, you can still access items 
+    from other drives simply by including the drive name (followed by a 
+    colon) in the command, as shown in the following example:
+
+        Get-ChildItem hklm:\software
+
+    The command retrieves a list of items in the Software container of the 
+    HKEY Local Machine hive in the Registry.
+
+    PowerShell also allows you to use special characters to represent the 
+    current working location and its parent location. To represent the current 
+    working location, use a single period. To represent the parent of the 
+    current working location, use two periods. For example, the following 
+    specifies a subdirectory named system in the current working 
+    location:
+
+        Get-ChildItem .\system
+
+    If the current working location is c:\windows, then this command 
+    returns a list of all the items in c:\windows\system. However, if you 
+    use a double period, the parent directory of the current working 
+    directory is used, as shown in the following example:
+
+        Get-ChildItem ..\"program files"
+
+    In this case, PowerShell treats the double periods as the C drive, so the 
+    command retrieves all items in c:\program files.
+
+    A path beginning with a slash identifies a path from the root of the 
+    current drive. For example, if your current working location is 
+    c:\program files\Windows PowerShell, the root of your drive is C. 
+    As a result, the following command lists all items in the c:\windows 
+    directory:
+
+        Get-ChildItem \windows
+
+    If you do not specify a path beginning with a drive name, slash, or 
+    period when supplying the name of a container or item, then the 
+    container or item is assumed to be located in the current working 
+    location. For example, if your current working location is c:\windows, 
+    the following command will return all items in the c:\windows\system 
+    directory:
+
+        Get-ChildItem system
+
+    If you were to specify a filename rather than a directory name, PowerShell 
+    would return details about that file, assuming that file was located in 
+    the current working location.
+
+SEE ALSO
+    For information about location-related Cmdlets, use the help alias (for 
+    the Get-Help Cmdlet) plus the Cmdlet name. For example, to view 
+    information about the Set-Location Cmdlet, enter the following command:
+
+        help Set-Location
+
+    For information about PowerShell Providers, enter the following 
+    command at the PowerShell command prompt:
+
+        help about_provider
+
+    For information about path syntax, enter the following command:
+
+        help about_path_syntax
+

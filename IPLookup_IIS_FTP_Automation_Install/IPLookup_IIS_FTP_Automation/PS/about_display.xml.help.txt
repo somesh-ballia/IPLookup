@@ -1,0 +1,105 @@
+﻿
+about_Display.xml
+
+SHORT DESCRIPTION
+    Controlling how objects are displayed
+
+LONG DESCRIPTION
+
+    Whenever a Windows PowerShell command displays an 
+    object, it determines how to represent the data in the object based on 
+    formatting defined for that object in the Display.xml file. By default, 
+    this file contains definitions for four different views for objects: 
+    table, list, wide, and complex. 
+    
+    The table view displays each object as a single row, displaying 
+    selected object properties in the columns of the table. The list view 
+    displays each object property on a separate line. The wide view 
+    displays a single property, usually the name, in multiple columns. The 
+    complex view is usually specific to the particular type of object; for 
+    example, the Get-Help command uses a complex view to display the 
+    contents of the object produced by the command.
+    
+    For example, when the output of the Get-ChildItem command is piped 
+    through the Format-List command, Format-List displays the object that 
+    it receives based on the definition of the list view for the object 
+    that Get-ChildItem passes to Format-List. 
+    A view in Display.xml is defined using a set of XML tags that describe 
+    the name of the view, the type of object to which it can be applied, 
+    the column headers, and the properties that are displayed in the body 
+    of the view. 
+    
+    You can add view definitions or override default view definitions by 
+    creating a Display.xml file containing your own view definitions and 
+    place it in any directory in the Windows PowerShell command path. If 
+    your file defines a view that already exists, it will replace the same 
+    view defined in any instance of Display.xml that occurs in a folder 
+    earlier in the command path.
+    
+    Display.xml affects the presentation of the object's properties at the 
+    point when it is being presented to the user. It does not affect how 
+    the object's properties are passed to another command in the pipeline, 
+    for example.
+    
+    The ViewDefinitions section of Display.xml contains the View tags that 
+    define each view. A typical View tag will include the following:
+    
+    *	A Name tag that identifies the name of the view
+    *	A ViewSelectedBy tag that specifies the object type or types to 
+         which the view applies
+    *	A GroupBy tag that specifies how items in the view are to be 
+         combined in groups
+    *	A TableControl, ListControl, WideControl, or ComplexControl tag 
+         that contains the tags that specify how each item is to be 
+         displayed
+    
+    The ViewSelectedBy tag can contain a TypeName tag for each object type 
+    that the view applies to, or it can contain a SelectionSetName tag that 
+    references a selection set defined elsewhere using a SelectionSet tag.
+    
+    The GroupBy tag contains a PropertyName tag that specifies the object 
+    property by which items are to be grouped. It also contains either a 
+    Label tag that specifies a string to be used as a label for each group 
+    or a ComplexControlName that references a complex control defined 
+    elsewhere using a Control tag that, in turn, contains a Name tag and a 
+    ComplexControl tag. 
+    
+    The TableControl tag typically contains TableHeaders and 
+    TableRowEntries tags that define the formatting for the table's heads 
+    and rows. The TableHeaders tag typically contains TableColumnHeader 
+    tags that, in turn contain Label, width, and Alignment tags. The 
+    TableRowEntries tag contains TableRowEntry tags for each row in the 
+    table. The TableRowEntry tag, in turn, contains a TableColumnItems tag 
+    that contains a TableColumnItem tag for each column in the row. 
+    Typically, the TableColumnItem tag contains either a PropertyName tag 
+    identifying the object property to be displayed in the defined location 
+    or a ScriptBlock tag containing script code that calculates a result 
+    that is to be displayed in the location. Note: Script blocks can also 
+    be used elsewhere in locations where calculated results can be useful. 
+    The TableColumnItem can also contain a FormatString tag that specifies 
+    how the property or calculated results is to be displayed.
+    
+    The ListControl tag typically contains a ListEntries tag that, in turn, 
+    contains a ListItems tag containing ListItem tags containing 
+    PropertyName tags that specify the object property to be displayed at 
+    the specified location in the list. If the view selection is defined 
+    using a selection set, the ListControl tag can also contain an 
+    EntrySelectedBy tag containing one or more TypeName tags specifying the 
+    object type that the ListControl is intended to display.
+    
+    The WideControl tag typically contains a WideEntries tag that in turn 
+    contains one or more WideEntry tags. A WideEntry tag typically contains 
+    a PropertyName tag that specifies the property to be displayed at the 
+    specified location in the view, and it can contain a FormatString tag 
+    that specifies how the property is to be displayed. 
+    
+    The ComplexControl tag, as its name suggests, contains more complex 
+    combinations of tags than in other view types. A ComplexControl tag 
+    typicall contains a ComplexEntries tag that in turn contains multiple 
+    ComplexEntry tags. A ComplexEntry tag typically contains a ComplexItem 
+    tag. This tag, in turn, can contain any of a number of tags that 
+    specify contents and formatting for the specified location in the view, 
+    including Text, Indentation, ExpressionBinding, and NewLine tags. See 
+    Display.xml for examples of how to combine these tags to present data 
+    using a complex view. 
+    

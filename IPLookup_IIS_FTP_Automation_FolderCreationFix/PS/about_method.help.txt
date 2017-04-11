@@ -1,0 +1,141 @@
+﻿TOPIC
+    Methods
+
+SHORT DESCRIPTION
+    Using methods to perform actions on objects in the Windows PowerShell 
+
+LONG DESCRIPTION
+    PowerShell uses structured collections of information, called objects, to 
+    represent items in data stores or the state of the computer. For 
+    example, when you access a file in PowerShell, you're not working with the 
+    actual file, but instead you're working with a FileInfo object, a type 
+    of object that acts as the file's proxy.
+
+    Most objects include methods. A method is a set of instructions that 
+    specify a particular action you can take with that object. For 
+    instance, the FileInfo object includes a method called CopyTo, which 
+    allows you to copy the file represented by the object.
+
+    To view a list of methods and method definitions associated with a 
+    particular object, you can use the Get-Member Cmdlet. However, to use 
+    the Cmdlet, the object must already exist in some form, either as 
+    represented through a variable, as an object created when you specify a 
+    command as an argument to the Get-Member command, or as an object 
+    passed down a pipeline. For example, suppose that the $a variable has 
+    been assigned a string value, which means that the variable is 
+    associated with a string object. To view a list of the object's 
+    methods, enter the following command at the PowerShell command prompt:
+
+        Get-Member -inputobject $a -membertype method
+
+    If you want to see what methods and method definitions are associated 
+    with an object that is passed down the pipeline, you would use a Get-
+    Member command within the pipeline, as shown in the following example:
+
+        Get-ChildItem c:\final.txt | Get-Member -membertype method
+
+    The most common way to invoke a method is to specify the method name 
+    after an object reference (such as a variable or expression). You must 
+    separate the object reference and the method with a period. In 
+    addition, you must use parentheses immediately following the method 
+    name to enclose any arguments that should be passed to the method. 
+
+    If no arguments are being passed in a method signature, you must still 
+    use a set of empty parentheses.
+
+    For example, the following command uses the GetType() method to return 
+    the data type associated with the $a string object:
+
+        $a.GetType()
+
+    The GetType() method will return the data type for any object, and a 
+    variable always represents an object. The type of object depends on the 
+    type of data stored within that variable.
+
+    Every action you take in PowerShell is associated with objects, whether 
+    you're declaring a variable or combining commands into a pipeline. As a 
+    result, methods can be used in a variety of situations. For example, 
+    you can use a method to take an action on a property value, as shown in 
+    the following command:
+
+        (Get-ChildItem c:\final.txt).name.ToUpper()
+
+    In this case, the object on which the ToUpper method is being invoked 
+    is the string object associated with the name property. (Note that the 
+    final.txt file must exist on the root of the c: drive for this example 
+    to work.) The name property is actually a property of the FileInfo 
+    object returned by the Get-ChildItem command. This demonstrates not 
+    only the object-oriented nature of PowerShell, but shows how methods 
+    can be called on any accessible object.
+
+    You can achieve the same results as the last example by using a 
+    variable to store the Get-ChildItem command output, as shown in the 
+    following example:
+
+        $a = (Get-ChildItem c:\final.txt).name
+        $a.ToUpper()
+
+    The command again uses the ToUpper() method of the string object 
+    associated with the variable, which contains the filename returned by 
+    the Get-ChildItem command.
+
+    In some cases, a method requires an argument to direct the action of 
+    that method. For example, the FileInfo object includes the MoveTo() 
+    method, which provides a way to move a file from one location to 
+    another. The method requires an argument that specifies the target 
+    location for the file. The following command demonstrates how to 
+    include that argument:
+
+        (Get-ChildItem c:\final.txt).MoveTo("c:\techdocs\final.txt")
+
+    The Get-ChildItem command returns a FileInfo object for the final.txt 
+    file and then uses the MoveTo method of that object to initiate the 
+    action and to specify the file's new location.
+
+    To determine the arguments associated with a method, review the 
+    corresponding method definition. A method definition contains one or 
+    more method signatures (also known as overloads in the .NET Framework). 
+    A method signature contains the name of a method and zero or more 
+    parameters that you must supply when you call the method. Each method 
+    signature is separated from the prior signature with a comma in the 
+    Get-Member Cmdlet display. For example, the CopyTo method of the 
+    FileInfo class contains the following two method signatures:
+
+        1. CopyTo(String destFileName)
+        2. CopyTo(String destFileName, Boolean overwrite)
+
+    The first method signature takes the destination filename (including 
+    the path) in which to copy the source file. In the following example, 
+    the first CopyTo method is used to copy final.txt to the c:\bin 
+    directory:
+
+        (Get-ChildItem c:\final.txt).CopyTo("c:\bin\final.txt")
+
+    If the file already exists in the destination location, the CopyTo 
+    method will fail and PowerShell will report the following error:
+
+        Exception calling "CopyTo" with "1" argument(s): "The file
+        'c:\bin\final.txt' already exists.".
+
+    In the second method signature, you pass the destination filename just 
+    as you did in the first case, but you also pass a boolean value to 
+    specify whether you want an existing file of the same name in the 
+    destination location to be overwritten, as the following example shows:
+
+        (Get-ChildItem c:\final.txt).CopyTo("c:\bin\final.txt", $true)
+
+    When you pass the boolean value, you must use the $true variable, which 
+    is created automatically by PowerShell. The $true variable contains the 
+    "true" boolean value. (As you would expect, the $false variable contains 
+    the "false" boolean value.)
+
+SEE ALSO
+    For information about objects, enter the following command:
+
+        help about_object
+
+    For information about the Get-Member Cmdlet, enter the following 
+    command:
+
+        help Get-Member
+

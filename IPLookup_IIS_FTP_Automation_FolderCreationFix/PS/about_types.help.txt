@@ -1,0 +1,142 @@
+﻿TOPIC
+    .NET type extension
+
+SHORT DESCRIPTION
+    Extending the .NET type system in the Windows PowerShell 
+
+LONG DESCRIPTION
+    The types.ps1xml file in the PowerShell home directory provides a mechanism 
+    for extending the .NET type system. By default, PowerShell adds a number of 
+    elements to the file to extend the .NET types. In addition, you can add 
+    other elements for your own customizations.
+
+    One way that a type can be extended is by adding a property. To add a 
+    property (or to extend a type in any way), you must modify the <type> 
+    element for the specific type in the types.ps1xml file. For example, 
+    the array type, by default, does not include a Count property, so
+    PowerShell defines an alias property called Count. The property includes a 
+    reference member name for the Length property, as shown in the 
+    following XML:
+
+        <Type>
+            <Name>System.Array</Name>
+            <Members>
+                <AliasProperty>
+                    <Name>Count</Name>
+                    <ReferencedMemberName>
+                        Length
+                    </ReferencedMemberName>
+                </AliasProperty>
+            </Members>
+        </Type>
+
+    You can verify the custom AliasProperty by using a Get-Member command 
+    to retrieve the properties of an object array, as shown in the 
+    following command:
+
+        Get-Member -inputobject (1,2,3,4) -member *property*
+
+    The command returns the following results:
+
+            TypeName: System.Object[]
+        
+        Name           MemberType    Definition
+        ----           ----------    ----------
+        Count          AliasProperty Count = Length
+        IsFixedSize    Property      System.Boolean IsFixedSize {ge
+        IsReadOnly     Property      System.Boolean IsReadOnly {get
+        IsSynchronized Property      System.Boolean IsSynchronized
+        Length         Property      System.Int32 Length {get;}
+        LongLength     Property      System.Int64 LongLength {get;}
+        Rank           Property      System.Int32 Rank {get;}
+        SyncRoot       Property      System.Object SyncRoot {get;}
+
+    As you can see, the Count alias property is listed as one of the 
+    properties, with a definition of "Count = Length."
+
+    In the types.ps1xml file, you can also define a script property that runs
+    a script against an object's input value. For example, the types.ps1xml 
+    file includes a script block that adds the DateTime member to the .NET 
+    DateTime object:
+
+        <Type>
+            <Name>System.DateTime</Name>
+            <Members>
+                <ScriptProperty>
+                    <Name>DateTime</Name>
+                    <GetScriptBlock>
+                    if ($this.DisplayHint -ieq "Date")
+                    {
+                        "{0}" -f $this.ToLongDateString()
+                    }
+                    elseif ($this.DisplayHint -ieq "Time")
+                    {
+                        "{0}" -f  $this.ToLongTimeString()
+                    }
+                    else
+                    {
+                        "{0} {1}" -f $this.ToLongDateString(),
+                        $this.ToLongTimeString()
+                    }
+                    </GetScriptBlock>
+                </ScriptProperty>
+            </Members>
+        </Type>
+
+    The script block formats dates so that different types of values can be 
+    used to produce the same results. For example, suppose that you declare 
+    the $a variable as shown in the following command:
+
+        [datetime]$a = "5 march 05"
+
+    PowerShell will convert this value to the following long datetime value:
+
+        Saturday, March 05, 2005 12:00:00 AM
+
+    You would have received the same results if you had declared that 
+    variable with the value "March 5, 2005."
+
+    The types.ps1xml can also be used to define property sets. A property 
+    set is a set of properties that you can refer to logically as though it 
+    were a property itself. For example, PowerShell defines a property set on 
+    the DirectoryEntry system type:
+
+        <Type>
+            <Name>System.DirectoryServices.DirectoryEntry</Name>
+            <Members>
+                <MemberSet>
+                    <Name>PsStandardMembers</Name>
+                    <Members>
+                        <PropertySet>
+                            <Name>
+                                DefaultDisplayPropertySet
+                            </Name>
+                            <ReferencedProperties>
+                                <Name>
+                                    distinguishedName
+                                </Name>
+                            </ReferencedProperties>
+                        </PropertySet>
+                    </Members>
+                </MemberSet>
+            </Members>
+        </Type>
+
+    In this <type> element, the property set DefaultDisplayPropertySet 
+    references the distinguishedName properties.
+
+    In addition to modifying the existing types.ps1xml file, you can create 
+    your own types.ps1xml file to add type and property definitions or 
+    override default type and property definitions. You can then place the 
+    new file in any directory in the PowerShell command path. If your file 
+    defines a type or property that is already defined, it will replace the 
+    same type or property defined in any instance of types.ps1xml that 
+    occurs in a directory earlier in the command path.
+
+SEE ALSO
+
+    For information about the Get-Member cmdlet, enter the following 
+    command:
+
+        help Get-Member
+

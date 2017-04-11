@@ -1,0 +1,20 @@
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<SOAP-ENV:Body>
+<a1:PortablePowerShellSettings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/ShellTools.PortablePS/common%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<PowerShellVersion>V1</PowerShellVersion>
+<alreadyprepared>false</alreadyprepared>
+<OSBits>Bits32</OSBits>
+<PortablePSversion href="#ref-3"/>
+<ExecutionPolicy id="ref-4">Unrestricted</ExecutionPolicy>
+<defaultcommandlineoptions id="ref-5"></defaultcommandlineoptions>
+<ShouldLoadDefaultPowerShellProfiles>false</ShouldLoadDefaultPowerShellProfiles>
+<ShouldLoadPortablePowerShellProfile>false</ShouldLoadPortablePowerShellProfile>
+</a1:PortablePowerShellSettings>
+<a2:Version id="ref-3" xmlns:a2="http://schemas.microsoft.com/clr/ns/System">
+<_Major>1</_Major>
+<_Minor>0</_Minor>
+<_Build>0</_Build>
+<_Revision>0</_Revision>
+</a2:Version>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

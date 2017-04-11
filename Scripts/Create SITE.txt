@@ -1,0 +1,74 @@
+1) 
+
+http://www.microsoft.com/technet/prodtechnol/WindowsServer2003/Library/IIS/a51f913e-2065-4141-992a-e14959bea02e.mspx?mfr=true
+You must be a member of the Administrators group on the local computer to run scripts and executables. As a security best practice, log on to your computer by using an account that is not in the Administrators group, and then use the runas command to run your script or executable as an administrator. At a command prompt, type runas/profile /User:MyComputer\Administratorcmd to open a command window with administrator rights and then type cscript.exe ScriptName (include the script's full path and any parameters).
+
+This topic includes the following information:
+•	
+
+Syntax: The order in which you type a command and any arguments and options that follow it.
+•	
+
+Parameters: The values that are given to variables in the command.
+•	
+
+Examples: Sample code and an explanation of the results.
+Syntax
+
+iisftp /create Path SiteName iisftp /create Path SiteName[/b Port] [/i IPAddress] [/dontstart] [/isolation {AD|Local} [/ADdomain DomainName /ADadmin [Domain\]User /ADpass Password]] [/s Computer [/u [Domain\]User /p Password]]
+Top of pageTop of page
+Parameters
+
+Path
+
+Specifies the location of content files for the FTP site. The path must be local, such as C:\Projects\HTML. If the specified path does not exist, then iisftp.vbs creates the path.
+
+The Path parameter must immediately precede the SiteName parameter in the command. Otherwise, iisftp.vbs does not interpret the site information correctly.
+
+SiteName
+
+Required. Specifies a name for the FTP site.
+
+/b Port
+
+Specifies a TCP port number for the FTP site. Port 21 is the default.
+
+/i IPAddress
+
+Specifies an IP address for the FTP site. The default is All Unassigned, which assigns to the site all of the IP addresses on the computer that are not assigned to other sites. Only one site on each IIS server can be set to All Unassigned.
+
+/dontstart
+
+Indicates that the FTP site should not be started automatically as soon as it is created, which is contrary to the IIS default.
+
+/isolation{AD|Local}
+
+Provides for one of two user isolation modes, AD (Active Directory) and Local. If the /isolation switch is not present, the site will not use user isolation.
+
+/ADdomainDomainName
+
+Only valid when the /isolation switch is set to AD. This value is the name of the Active Directory domain.
+
+/ADadmin[Domain\]User
+
+Only valid when the /isolation switch is set to AD. This value is the name of the administrator in the user, domain\user, or user@domain format.
+
+/ADpassPassword
+
+Only valid when the /isolation switch is set to AD. This value is the administrator's password.
+
+/sComputer
+
+Runs the script on the specified remote computer. Type the computer name or IP address without backslashes. The default is the local computer.
+
+/u[Domain\]User
+
+Runs the script with the permissions of the specified user account. This account must be a member of the Administrators group on the remote computer. By default, the script runs with the permissions of the current user of the local computer.
+
+/pPassword
+
+Specifies the password of the user account that is specified in the /u parameter.
+
+  Note
+
+Iisftp.vbs does not verify the port number or IP address of an FTP site, and it does not verify that these bindings are unique within the server. If you create a site with invalid or conflicting bindings, the site will not start.

@@ -1,0 +1,60 @@
+TOPIC
+    Common Parameters
+
+SHORT DESCRIPTION
+    Parameters that every cmdlet supports.
+
+LONG DESCRIPTION
+    Windows PowerShell includes several common parameters that all
+    cmdlets support. This feature provides a consistent interface to
+    Windows PowerShell.
+
+    When a cmdlet supports a common parameter, the use of the parameter
+    does not cause an error. However, the parameter might not have any 
+    effect in some cmdlets.
+
+    The common parameters are:
+
+    Parameter      Description
+    ---------      --------------------------------------------------
+     
+    Verbose        Boolean. Generates detailed information about the 
+                   operation, much like tracing or a transaction log.
+                   This parameter is effective only in cmdlets that
+		   generate verbose data.
+
+    Debug          Boolean. Generates programmer-level detail about the
+                   operation. This parameter is effective only in cmdlets
+                   that generate debug data.
+
+    ErrorAction    Enum. Determines how the cmdlet responds when an error
+                   occurs. Values are: Continue [default], Stop, 
+                   SilentlyContinue, Inquire.
+
+    ErrorVariable  String. Specifies a variable that stores errors from 
+                   the command during processing. This variable is 
+                   populated in addition to $error.
+
+    OutVariable    String. Specifies a variable that stores output from
+                   the command during processing.
+
+    OutBuffer      Int32. Determines the number of objects to buffer
+                   before calling the next cmdlet in the pipeline. 
+
+
+    In addition to the common parameters, there are two parameters that
+    cmdlets support if they change the system state.
+
+    Parameter     Description
+    ---------     -------------------------------------------------------
+
+    WhatIf        Boolean. Explains what will happen if the command is 
+                  executed, without actually executing the command.
+
+    Confirm       Boolean. Prompts the user for permission before 
+                  performing any action that modifies the system.
+
+SEE ALSO
+    For information about parameters, type:
+
+        help about_Parameter

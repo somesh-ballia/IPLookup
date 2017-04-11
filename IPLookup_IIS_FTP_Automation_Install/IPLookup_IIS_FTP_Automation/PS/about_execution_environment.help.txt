@@ -1,0 +1,25 @@
+﻿
+about_Execution_environment
+
+SHORT DESCRIPTION
+    Factors that affect how commands run
+
+LONG DESCRIPTION
+
+    The Windows PowerShell maintains a set of information, also known as 
+    the system state or execution environment, that affects how commands 
+    and other programs run in the shell.
+    
+    The execution environment includes the following elements (for more 
+    information, type Get-Help followed by the term in parentheses):
+    
+    *    Current namespace (Namespace)
+    *    Current working location (Location)
+    *    Shell functions (Function)
+    *    Exception and event handlers set by the trap special utility 
+         (Error_handling)
+    *    Shell parameters (Shell_parameter)
+    *    Shell aliases (Alias)
+    *    Environment variables (Environment_variable)
+    *    Shell Variables (Shell_variable)
+    

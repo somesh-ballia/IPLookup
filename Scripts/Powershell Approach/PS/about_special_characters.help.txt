@@ -1,0 +1,148 @@
+﻿TOPIC
+    Special characters
+
+SHORT DESCRIPTION
+    The special characters for controlling how the Windows PowerShell 
+    interprets the next character in a command or parameter
+
+LONG DESCRIPTION
+    The grave-accent (`) character is the PowerShell escape character. On a 
+    Qwerty keyboard this character is typically located at the top left corner 
+    of the keyboard on the key also containing the tilde (~) symbol. The 
+    purpose of ` character varies based upon the context of its use. The 
+    following list explains it's meaning in various parts of the PowerShell 
+    environment:
+
+    * When preceding a variable, it indicates that the next character 
+    should be passed to the calling command without substitution. The 
+    following example demonstrates the affect of not using the ` character 
+    prior to a variable name that is contained inside of double quotation 
+    marks:
+
+        $a = "Ken Myer"
+        Write-Host "Hello, $a"
+
+    The output from this command is:
+
+        Hello, Ken Myer
+
+    In contrast, the following demonstrates the affect of using the ` 
+    character prior to a variable name that is contained inside of double 
+    quotation marks:
+
+        $a = "Ken Myer"
+        Write-Host "Hello, `$a"
+
+    The output from this command is:
+
+        Hello, $a
+
+    * When used in a script at the end of a line (that is, with no other 
+    characters following it), the ` symbol acts as a continuation 
+    character. It instructs PowerShell to continue reading the command line 
+    from the next line. This allows you to write compact lines of code for 
+    easier reading. The following script file demonstrates how to use the ` 
+    character as a line continuation character:
+
+        $a = Get-ChildItem
+        foreach ($file in $a){
+        Write-Host $file.name $file.CreationTime`
+          $file.LastAccessTime $file.LastWriteTime
+        }
+
+    The ` character in this example continues the Write-Host command so 
+    that all four properties of the $file variable will be displayed at the 
+    console. Note that if you want to type this script at the command line 
+    rather than put the contents in a script file, you must make sure that 
+    the opening brace of the command block appears on the same line as the 
+    foreach statement, as shown.
+
+    * When used inside quotation marks, the ` character indicates that the 
+    following character should be interpreted as a special character. For 
+    example, `n is a "new line" character that causes the PowerShell to 
+    start a new line at the character, and `t is a tab character that 
+    aligns the next character to the left of the next column, which, by 
+    default, is eight characters wide.
+
+    The following are the special characters recognized by PowerShell:
+
+    `0    Null
+    `a    Alert
+    `b    Backspace
+    `n    New line
+    `r    Carriage return
+    `t    Horizontal tab
+    `'    Single quote
+    `"    Double quote
+
+    The alert (`a) character sends a bell or beep signal to the 
+    computer's speaker. This can be useful if you need to inform a user of 
+    some action that will be occurring as a result of running a particular 
+    command or script. The following command sends two beep signals to the 
+    local computer's speaker:
+
+        for($i = 0; $i -le 1; $i++){Write-Host `a}
+
+    Including the backspace (`b) character in a command moves the cursor
+    back one character. It differs from the backspace key by not erasing
+    the previous character.  The following example sends two backspace 
+    signals immediately after the Write-Host command writes the word, 
+    "backup". 
+
+        Write-Host "backup`b`bout"
+
+    The output from this command is as follows:
+
+        backout
+          
+    The new (`n) line character adds a line break immediately after `n. 
+    The following example shows how to use the `n character in a Write-Host 
+    command:
+
+        Write-Host "There are two line breaks`n`nhere."        
+
+    The output from this command is as follows:
+
+        There are two line breaks
+
+        here.
+
+    Including the carriage return (`r) character in a command is 
+    equivalent to pressing the carriage return key. This is similar to the 
+    backspace character (`b) except that it removes the entire line prior 
+    to the `r character. The following example demonstrates this 
+    behavior:
+
+        Write-Host "Let's not move`rDelete everything before this point."
+
+    The output from this command is:
+
+        Delete everything before this point.
+
+    The horizontal tab (`t) character adds tab stops to the output. The 
+    default tab stop is 8 spaces. The following example adds two tab stops 
+    between the columns:
+
+    Write-Host "Column1`t`tColumn2`t`tColumn3"
+
+    The output from this command is:
+
+        Column1         Column2         Column3
+
+    The following special characters are not for screen output but do 
+    perform the following operations for printer output:
+
+    `f    Form feed
+    `v    Vertical tab
+
+    How the single and double quote characters function is covered in the 
+    about_quoting_rules topic file.
+
+
+SEE ALSO
+
+    For information about single and double quote rules, enter the 
+    following command: 
+
+        help about_quoting_rules
+

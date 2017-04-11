@@ -1,0 +1,198 @@
+﻿TOPIC
+    Function and variable scoping
+
+SHORT DESCRIPTION
+    The visibility a function or variable has in the Windows PowerShell 
+    environment
+
+LONG DESCRIPTION
+    PowerShell controls access to variables and functions by limiting where 
+    they are available. This limitation is called scope, and by enforcing 
+    a few simple scoping rules, the Windows PowerShell helps ensure 
+    that you do not inadvertently change a variable or function that 
+    has been created elsewhere.
+
+    The basic rule of scope is this: Unless you explicitly request 
+    otherwise, a variable can be read or changed only within the 
+    scope where it was created, and a variable can be read in another 
+    scope only if the other scope was created in the scope where the 
+    variable or function was created.    When the Windows PowerShell 
+    first starts, its scope is the global scope. Whenever you run a 
+    script, call a function, or start a new instance of Windows PowerShell,
+    a new scope is created. A child scope (that is, a scope 
+    created within another scope) can read variables created within a 
+    parent scope, but it cannot change the variable in the parent scope 
+    unless it explicitly names the scope.
+
+    For example, the $home variable is initially set to 
+    $env:HOMEDRIVE + $env:HOMEPATH
+    Because this is its initial value (as set in the profile.ps1 
+    file) when the Windows PowerShell starts, that is its value in the 
+    global scope. You then create and run the following script:
+
+    "The initial value of `$home is $home"
+    $home="c:\"
+    "The new value of `$home is $home"
+
+    When you run the script the following is displayed:
+
+    The initial value of $home is C:\Documents and Settings\JoeUser
+    The new value of $home is c:\
+
+    However, after the script exits, if you type $home at the command 
+    line, the following is displayed:
+
+    C:\Documents and Settings\JoeUser
+
+    That is because when a new value is assigned to the variable $home 
+    in the script, a new variable is created within the scope of the 
+    script, and it is that variable that is changed by the variable 
+    assignment, not the global variable. Any further references to that 
+    variable within the script are references to the variable in the 
+    local, not the parent scope. When the script exits, $home no longer 
+    refers to the variable created by the script, but rather to the 
+    global variable.    As noted previously, you can change the value 
+    of a variable in a parent scope by explicitly naming the scope when 
+    you refer to the variable. the Windows PowerShell provides three labels 
+    for identifying the scope of a variable: local, global, and script.
+
+    The local scope is always the current scope. A new local scope is 
+    created whenever you run a function or script or start a new instance 
+    of the Windows PowerShell. Variables defined within the local scope can 
+    be read or changed within that scope and can be read, but not changed, 
+    by child scopes. Parent scopes can neither read nor change variables 
+    defined in their child scopes.    
+    
+    The global scope is the scope that is created when the Windows PowerShell 
+    starts. Variables in the global scope can be changed in child 
+    scopes only if the variable name is explicitly labeled as global, but 
+    global variables can be read by any child scope, even if the global 
+    label is not used, unless the variable name is reused in the child 
+    scope (as in the example earlier in this topic).
+
+    The script scope is the scope created when a script executes and 
+    ceases to exist when the script exits. You can use the script label 
+    inside functions in a script, for example, to access variables created 
+    in the script but outside the function.
+
+    To refer to a variable in another scope (or to ensure that a variable 
+    reference is to the proper scope), place the scope label before the 
+    variable name, separating them by a colon (:).
+    The following script shows how variables can be read by child scopes, 
+    redefined within those scopes, and changed in child scopes only by 
+    using a scope label:
+
+    $var = "init"
+    function changevar {
+     '$var is initially set to "'+$var+'" in the function'
+     $var = "function"
+     '$var is now set to "'+$var+'" in the function'
+     $script:var = "script"
+     '$var is still set to "'+$var+'" in the function'
+     'but now $var is set to "'+$script:var+'" in the script scope'
+    }
+    changevar
+    '$var in the script is now set to "'+$var+'"'
+
+    Running this script produces the following results:
+
+    $var is initially set to "init" in the function
+    $var is now set to "function" in the function
+    $var is still set to "function" in the function
+    but now $var is set to "script" in the script scope
+    $var in the script is now set to "script"
+
+    When the script first calls the function named changevar, $var is 
+    set to the value that was set in the script before the function 
+    definition. When the function assigns a new value to $var, a new 
+    variable is created in the function's scope. The function can change 
+    the value of $var without affecting the variable $var that was 
+    created in the script's scope only by explicitly naming the script 
+    scope when referring to $var.    If you use a script to assign a 
+    value to a global variable or to make a function globally available, 
+    you just use the global label, as in the following examples:
+
+    $global:home = "c:\user\home"
+    function global:prompt {(Get-Location).path + '>'}
+    The private label indicates that the variable is not available outside
+    of the current local scope.  This is useful when you want to avoid
+    influencing scopes that are created in child scopes as the following
+    script shows:
+
+        $variable = 3
+        function a
+        {
+            $variable
+            $private:variable = "one"
+            $variable
+            b
+        }
+        function b
+        {
+            $variable
+        }
+        $variable
+        a
+        $variable
+
+    When run, the output of this script is:
+        3
+        3
+        one
+        3
+        3
+
+    The use in function 'a' of the private designation means that 
+    $variable is set to "one" only in function 'a'.   Without the 
+    private label, the output would be:
+        3
+        3
+        one
+        one
+        3
+
+    Function 'b' now has a new value for $variable, set by function 'a'.
+
+    Like variables, function and filter definitions are also contained 
+    within scope boundaries. This ensures that a script that defines a 
+    function or filter will not replace a function with the same name in 
+    a parent scope unless the global keyword is explicitly used. You can 
+    also use the local, script, and private labels to control the scope 
+    of functions and filters. For more information about creating 
+    functions, type Get-Help about_Function.
+
+    Instead of using the global label in a script to assign variable 
+    values or define functions or filters in the global scope, you can 
+    run a script as a so-called "dot source" script. That is, if you 
+    place a period and a space before the script name when you run it, 
+    the Windows PowerShell treats the lines of the script as though you 
+    had typed them at the command prompt. Consequently, the changes you 
+    make in the script take effect in the global, not the script, scope.
+
+SEE ALSO
+    For information about variables, enter the following command
+    at the PowerShell command prompt:
+
+
+        help about_shell_variable
+
+
+    For information about environment variables, enter the following 
+    command at the PowerShell command prompt:
+
+
+        help about_environment_variable
+
+
+    For information about function declarations, enter the following
+    command at the PowerShell command prompt:
+
+
+        help about_function
+
+
+    For information about script blocks, enter the following command at
+    the PowerShell command prompt:
+
+
+        help about_Script_block

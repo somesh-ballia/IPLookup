@@ -1,0 +1,67 @@
+﻿TOPIC
+    Logical operators
+
+SHORT DESCRIPTION
+    Operators that can be used in the Windows PowerShell to 
+    support statements that test for multiple conditions
+
+LONG DESCRIPTION
+    In some cases, you will want to test for multiple conditions 
+    within your statement. For example, you might want to check which 
+    two variables are equal and whether one of those variables is 
+    greater than 20. In order to test more than one condition within 
+    a statement, you can use logical operators to link conditions 
+    together. When you use a logical operator, PowerShell evaluates each 
+    condition individually and then evaluates the statement as a 
+    whole, based on the logical operator.
+
+    PowerShell supports the following logical operators:
+
+    Operator Description  Example                        Results
+    -------- ------------ ------------------------------ -------
+    -and     logical and  (1 -eq 1) -and (1 -eq 2)       false
+    -or      logical or   (1 -eq 1) -or (1 -eq 2)        true
+    -not     logical not  (1 -eq 1) -and -not (2 -gt 2)  true
+    !        logical not  (1 -eq 1) -and !(2 -gt 2)      true
+
+    To use a logical operator, simply insert it into the statement 
+    between the conditions. For instance, the following statement 
+    evaluates two conditions and links them with the -and logical 
+    operator:
+
+        if (($varA -eq $varB) -and ($varB -gt 20))
+        {
+            Write-Host "Both conditions are true."
+        }
+        else
+        {
+            Write-Host "One or both conditions are false."
+        }
+
+    When PowerShell processes this statement, it evaluates the first 
+    condition (varA -eq $varB). If the values in the two variables 
+    are equal, the condition evaluates to true. Next the second 
+    condition ($varB -gt 20) is evaluated. If the variable is greater 
+    than 20, that condition evaluates to true.
+
+    Because the -and operator is used to connect the conditions, both 
+    conditions must evaluate to true. If they do, the statement as a 
+    whole evaluates to true and the first code block runs, otherwise 
+    the second code block runs.
+
+    You can also use the -or operator in place of the -and operator. 
+    In that case, either one of the two conditions or both of the 
+    conditions must evaluate to true.
+
+
+SEE ALSO
+    For information about if statements, enter the following command 
+    at the PowerShell command prompt:
+
+        help about_if
+
+    For information about comparison operators, enter the following 
+    command at the PowerShell command prompt:
+
+        help about_comparison_operators
+

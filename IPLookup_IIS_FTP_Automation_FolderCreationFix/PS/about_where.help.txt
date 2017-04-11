@@ -1,0 +1,95 @@
+﻿
+about_where
+
+SHORT DESCRIPTION
+    Filter objects based on object properties
+
+LONG DESCRIPTION
+
+    You use the where statement in a command pipeline to 
+    return a subset of the objects returned by the previous command. The 
+    where statement accepts an argument that specifies a filter based on 
+    the objects' properties that is applied to determine whether a given 
+    object should be passed down the pipeline.
+    
+    The where statement uses the following syntax:
+    
+        <command> | where {<test1 [<conjunction> 
+        <test2>]...}
+    
+    <test1> is an expression that resolves to a Boolean (TRUE/FALSE) 
+    value.
+    
+    <conjunction> is an operator that, when applied to <test1> 
+    and <test2>, resolves to a Boolean value. <conjunction> can 
+    by any of the following:
+    
+         -and    Logical and
+         -or    Logical or
+         -bor   Bitwise or
+         -band    Bitwise and
+         -xor   XOR operator
+    
+    <test2> is an expression that resolves to a Boolean value.
+    
+    Test expressions can be enclosed in parentheses to control operator 
+    precedence. 
+    
+    Use the special variable $_ to refer to the object received from the 
+    pipeline. For example, $_.Name will retrieve the Name property of the 
+    object returned by the previous command in the pipeline.
+    
+    The where statement supports the following operators:
+    
+    Operator     Meaning
+    --------------------------------------------------------------------
+    -eq          equals (case insensitive)
+    -lt          less than (case insensitive)
+    -gt          greater than (case insensitive)
+    -le          less than or equal to (case insensitive)
+    -ge          greater than or equal to (case insensitive)
+    -ne          not equal (case insensitive)
+    -not         logical not (with ! as an alias)
+    -match       compare strings using regular expression rules.  
+    -notmatch    compare strings using regular expression rules
+    -like        compare strings using wildcard rules
+    -notlike     compare strings using wildcard rules
+    -replace     replace strings; if replacements are made, return true
+    -and         logical and
+    -or          logical or
+    -bor         bitwise OR
+    -band        bitwise AND
+    -xor         XOR operator
+    -comp        complement operator (~)
+    -sr          right shift
+    -sl          left shift
+    -ceq         equals (case sensitive)
+    -clt         less than (case sensitive)
+    -cgt         greater than (case sensitive)
+    -cle         less than or equal to (case sensitive)
+    -cge         greater than or equal to (case sensitive)
+    -cne         not equal (case sensitive)
+    -ieq         equals (case insensitive)
+    -ilt         less than (case insensitive)
+    -igt         greater than (case insensitive)
+    -ile         less than or equal to (case insensitive)
+    -ige         greater than or equal to (case insensitive)
+    -ine         not equal (case insensitive)
+    -inot        logical not (case insensitive)
+    -imatch      compare strings using regular expression rules  
+                 (case insensitive)
+    -inotmatch   compare strings using regular expression rules 
+                 (case insensitive)
+    -ilike       compare strings using wildcard rules (case insensitive)
+    -inotlike    compare strings using wildcard rules (case insensitive)
+    
+    For information about performing Boolean tests, type Get-Help 
+    about_Comparison_operators. 
+    
+    EXAMPLE
+    
+    This example displays those items in the current location whose length 
+    is greater than 1000.
+    
+        Get-ChildItem | where {$_.Length -gt 1000}
+    

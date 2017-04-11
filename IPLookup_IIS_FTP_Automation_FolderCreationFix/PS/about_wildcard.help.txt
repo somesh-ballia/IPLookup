@@ -1,0 +1,74 @@
+﻿TOPIC
+    Wildcards
+
+SHORT DESCRIPTION
+    Using wildcards in Cmdlet parameters in the Windows PowerShell 
+
+LONG DESCRIPTION
+    In many cases, you will want to run a Cmdlet against a group of 
+    items, rather than an individual item. For example, you might 
+    want to locate all files in the c:\techdocs directory that use a 
+    .ppt extension. If you were to run the following command, you 
+    would return all items in the directory:
+
+        Get-ChildItem c:\techdocs
+
+    The problem with this command is that you would have to visually 
+    inspect all documents listed in the directory to determine which 
+    files use the .ppt extension. However, you can limit the items 
+    returned by using wildcards in a Cmdlet's parameters. A wildcard 
+    is a type of placeholder that allows you to search unknown values 
+    in order to return specific results. The process of using 
+    wildcards is sometimes referred to as "globbing." For example, 
+    you can recast the previous example so that only .ppt files are 
+    returned:
+
+        Get-ChildItem c:\techdocs\*.ppt
+
+    In this case, the * wildcard is used to specify that any 
+    characters can exist before the .ppt extension. Because the file 
+    extension is included, all files returned by the command must 
+    have that extension, but the files can have any name. As a 
+    result, only files that you're looking for are returned.
+
+    PowerShell supports several wildcards in addition to the * wildcard:
+
+    Wildcard Description        Example  Match             No match
+    -------- ------------------ -------- ----------------- --------
+    *        Matches zero or    a*       A, ag, Apple      banana
+             more characters
+    ?        Matches exactly    ?n       an, in, on        ran
+             one character in 
+             the specified 
+             position
+    [ ]      Matches a range    [a-l]ook book, cook, look  took
+             of characters 
+    [ ]      Matches specified  [bc]ook  book, cook        hook
+             characters
+
+    Most Cmdlets accept wildcards in some of their parameters. The 
+    Help topic for each Cmdlet describes which parameters, if any, 
+    permit wildcards. For parameters in which wildcards are accepted, 
+    their use is case insensitive. For example, ?n will return An, 
+    an, In, in, On, on.
+
+    You can also mix wildcards within a single parameter. For 
+    example, suppose that you want to display all .txt files in the 
+    c:\techdocs directory that begin with the letters a through l. 
+    You can use the following command:
+
+        Get-ChildItem c:\techdocs\[a-l]*.txt
+
+    The command uses a range wildcard ([a-l]) to specify that the 
+    filename should begin with the letters a through l. The command 
+    then uses the * wildcard to provide a placeholder for any 
+    characters between the first letter and the file extension.
+
+SEE ALSO
+    For information about individual Cmdlets, enter the help alias 
+    (for the Get-Help Cmdlet) plus the Cmdlet name at the PowerShell command 
+    prompt. For example, to view information about the Get-ChildItem 
+    Cmdlet, enter the following command:
+
+        help Get-ChildItem
+

@@ -1,0 +1,7 @@
+[Components]
+iis_common = ON
+iis_www = ON
+iis_www_vdir_scripts = ON
+iis_inetmgr = ON
+fp_extensions = ON
+iis_ftp = ON 

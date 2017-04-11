@@ -1,0 +1,133 @@
+﻿TOPIC
+    PsSnapins
+
+SHORT DESCRIPTION
+    A Windows PowerShell snap-in is a .NET assembly that contains Windows
+    PowerShell providers and/or cmdlets. Windows PowerShell comes with a set
+    of basic snap-ins, but you can extend the power and value of the shell
+    by adding snap-ins that contain providers and cmdlets that you create or
+    obtain from others. 
+
+LONG DESCRIPTION
+    Windows PowerShell is installed with a set of snap-ins that contain the
+    core providers and cmdlets in the shell. You can customize your shell by
+    adding and removing snap-ins to get the precise set of providers and
+    snap-ins that you need to do your job. You can even save multiple console
+    configurations, each with a different set of providers and snap-ins.
+
+BUILT-IN SNAP-INS
+    Windows PowerShell comes with a set of Windows PowerShell snap-ins
+    that contain the built-in providers and cmdlets.
+
+    Microsoft.PowerShell.Core
+        Contains providers cmdlets used to manage the basic features of Windows
+        PowerShell. Includes the FileSystem, Registry, Alias, Environment, 
+        Function, and Variable providers and basic cmdlets like Get-Help, 
+        Get-Command, and Get-History.
+
+    Microsoft.PowerShell.Host
+       Contains cmdlets used by the Windows PowerShell host, such as 
+       Start-Transcript and Stop-Transcript.
+
+    Microsoft.PowerShell.Management
+        Contains cmdlets used to manage Windows components, including 
+        Get-Service, and Get-Childitem.
+
+    Microsoft.PowerShell.Security
+        Contains cmdlets to manage Windows PowerShell security, such as Get-Acl,
+        Get-AuthenticodeSignature, and ConvertTo-SecureString
+
+    Microsoft.PowerShell.Utility
+        Contains the cmdlets used to manipulate objects and data, such as 
+        Get-Member, Write-Host, and Format-List.
+
+
+FINDING SNAP-INS
+    To list the Windows PowerShell snap-ins on your system, type:
+
+	get-pssnapin
+
+    To find the snap-in for each Windows PowerShell provider, type: 
+
+        get-psprovider | format-list name, pssnapin
+
+    To list the cmdlets in a Windows PowerShell snap-in, type:
+
+        get-command -pssnapin <snapin-name>
+
+
+INSTALLING A SNAP-IN
+    The built-in snap-ins are registered in the system and added to the
+    default console when you start Windows PowerShell. However, to use
+    snap-ins that you create or obtain from others, you need to register
+    them and add the to your console.
+
+REGISTERING A SNAP-IN
+    A Windows PowerShell snap-in is a program written in a .NET language
+    and compiled into a DLL file. To use the providers and cmdlets in a
+    snap-in, you must first register the snap-in (add it to the registry). 
+
+    Most snap-ins come with an installation program (an EXE or MSI file)
+    that registers the DLL for you. However, if you receive a snap-in as
+    a DLL file, you can register it on your system. For instructions, see
+    the "Register the Snap-in" topic in the Windows PowerShell SDK.
+
+    To find all registered snap-ins on your system, or to verify that a
+    snap-in is registered, type:
+
+	get-pssnapin -registered
+
+
+ADD THE SNAP-IN TO THE CONSOLE
+    To add a registered snap-in to the current console, use the Add-PsSnapin
+    cmdlet. For example, to add the SQL snap-in to the console, type:
+
+	add-pssnapin sql
+
+    As soon as the command completes, the providers and cmdlets in the snap-in
+    are available in the current console. However, the current console is not
+    saved automatically.
+
+
+SAVING THE CONSOLE CONFIGURATION
+    To use the snap-in in future Windows PowerShell sessions, you must save the
+    configuration of the current console, which includes the snap-in. 
+
+    To save the current console configuration to a console file (.psc1), use
+    Export-Console. For example, to save the current console to the 
+    NewConsole.psc1 file in the current directory, type:
+
+	export-console NewConsole
+
+
+OPENING A CONSOLE WITH THE SNAP-IN
+    To open a console with the console configuration that includes the snapin,
+    when starting Windows PowerShell, use the PsConsoleFile parameter to specify
+    the console file that you exported. For example, the following command 
+    starts Windows PowerShell with the NewConsole.psc1 console file.
+
+	powershell.exe -psconsolefile NewConsole.psc1
+
+    The providers and cmdlets in the snapin are now available for use.
+
+
+REMOVING A SNAP-IN
+    To remove a Windows PowerShell snap-in from the current console, use the
+    Remove-PsSnapin cmdlet. For example, to remove the Windows PowerShell SQL
+    snap-in from the current console, type:
+
+	remove-pssnapin sql
+
+    This cmdlet removes the snap-in from the console. The snap-in is still
+    loaded, but the providers and cmdlets that it supports are no longer
+    available. 
+
+
+
+SEE ALSO
+        Add-PsSnapin
+        Get-PsSnapin   
+        Remove-PsSnapin
+        Export-Console
+        About_PsProvider
+

@@ -1,0 +1,109 @@
+﻿TOPIC
+    Filtering data
+
+SHORT DESCRIPTION
+    Using the Where-Object Cmdlet to filter data in the 
+    Windows PowerShell 
+
+LONG DESCRIPTION
+    PowerShell allows you to filter data that is returned by Cmdlets so that 
+    you can display only the data that you want to see. Like all 
+    actions in PowerShell, filtering data is based on data being passed 
+    through the pipeline from one object to the next.
+
+    As data passes through the pipeline, the Where-Object Cmdlet 
+    receives the data from the previous object and then filters the 
+    data before passing it on to the next object. The filtering is 
+    based on a script block that is defined in the Where-Object 
+    command. The script block filters data based on the object's 
+    properties and values.
+
+    The script block contains one or more conditions that each 
+    evaluate to true or false. Each condition is an expression that 
+    uses a comparison operator to evaluate that condition. If more 
+    than one condition exists, those conditions are connected by 
+    logical operators, as shown in the following syntax:
+
+        where {<condition> [<logical operator> <condition>]}
+
+    The where keyword is an alias (predefined in PowerShell) for the Where-
+    Object Cmdlet. You can add as many logical operator/condition 
+    pairs as necessary to filter the data. Data that meets the 
+    conditions specified in the script block are included in the 
+    filter.
+
+    For example, suppose that you want to display a list of system 
+    processes that begin with the letters a through m. You can use 
+    the Where-Object Cmdlet to specify the search criteria on which 
+    to base the returned values, as shown in the following command:
+
+        Get-Process | where {$_.processname -like "[a-m]*"}
+
+    The first part of this command is the Get-Process Cmdlet which 
+    retrieves all process-related data. That data is sent down the 
+    pipeline to the next object, which is the Where-Object Cmdlet 
+    (after the pipe symbol). The Where-Object command includes only 
+    one condition within the braces, so no logical operator is 
+    needed. The following table describe each element of the Where-
+    Object command:
+
+    Element     Description
+    ----------- -----------------------------------------------------
+    where       Alias for the Where-Object Cmdlet
+    { }         The braces enclosing the script block that defines
+                the filter
+    $_          A variable automatically initiated and bound to 
+                the current pipeline object
+    processname A property of the current pipeline object that stores
+                the name of the process. When used with the $_
+                variable, a period precedes the property name.
+    -like       A comparison operator that supports wildcard matching
+    "[a-m]*"    A range wildcard ([a-m]) and a * wildcard. The
+                wildcards specify that all processes beginning with
+                the letters a through m are returned, regardless of
+                the rest of the characters in the process name.
+
+    You can also create a predefined filter by creating a special 
+    type of function. When defining the function, you must specify 
+    that it is a filter. For the function script block, enter the 
+    script block as you saw in the preceding example. For instance, 
+    the following command creates a filter named process-a-m:
+
+        filter process-a-m
+        {
+            $_.processname -like "[a-m]*"
+        }
+
+    You can then use the filter name in your Where-Object command to 
+    retrieve the filtered data, as shown in the following example:
+
+        Get-Process | where {process-a-m}
+
+    The values returned by the command are the same as they would 
+    have been had you specified the conditions in the script block, 
+    without the use of a filter.
+
+SEE ALSO
+    For information about the Where-Object Cmdlet, enter the 
+    following command at the PowerShell command prompt:
+
+        help Where-Object
+
+    For information about comparison operators, enter the following 
+    command:
+
+        help about_comparison_operators
+
+    For information about logical operators, enter the following 
+    command:
+
+        help about_logical_operator
+
+    For information about wildcards, enter the following command:
+
+        help about_wildcard
+
+    For information about functions, enter the following command:
+
+        help about_function
+

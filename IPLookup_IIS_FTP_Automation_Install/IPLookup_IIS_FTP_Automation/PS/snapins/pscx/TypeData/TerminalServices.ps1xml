@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Types>
+  <Type>
+    <Name>Pscx.TerminalServices.TerminalSession</Name>
+    <Members>
+      <ScriptProperty>
+        <Name>UserName</Name>
+        <GetScriptBlock>
+          $this.Client.UserName
+        </GetScriptBlock>
+      </ScriptProperty>
+
+		<ScriptProperty>
+			<Name>ClientAddress</Name>
+			<GetScriptBlock>
+				$h = $this.Client.Host
+				
+				if ($h.HostName)
+				{
+					return $h.HostName
+				}
+
+				return $h.AddressList[0]
+			</GetScriptBlock>
+		</ScriptProperty>
+	</Members>
+  </Type>
+</Types>

@@ -1,0 +1,44 @@
+﻿TOPIC
+    Shell variables
+
+SHORT DESCRIPTION
+    Variables that are created and declared by Windows PowerShell 
+
+LONG DESCRIPTION
+    Shell variables are a set of variables that are created and declared 
+    by Windows PowerShell and appear by default in every Windows PowerShell
+    session. The variables are maintained throughout the session and are
+    available to all commands, scripts, and applications that run in that
+    session.
+
+    Windows PowerShell supports two types of shell variables: 
+
+    -- Automatic variables: Store the state of Windows PowerShell. These
+       variables are maintained by the system and changed dynamically. Users
+       cannot (and should not) change the value of these variables. For
+       example, the $PID variable stores the process ID of the current
+       PowerShell.exe process.
+
+    -- Preference variables: Store user preferences for Windows PowerShell.
+       These variables are created by Windows PowerShell and populated with
+       default values. Users can change the values of these variables. For
+       example, MaximumHistoryCount determines the maximum number of entries
+       in the session history.
+
+    You can use shell variables as you would any other type of variable. 
+    For example, you can use the $pshome shell variable, which stores the
+    path to the Windows PowerShell installation directory, as the value
+    of the Path variable in a Get-Childitem command. For example:
+
+        get-childitem -path $pshome
+
+SEE ALSO
+    For information about PowerShell system state, type
+
+        help about_system_state
+
+    For information about automatic variables, type:
+
+        help about_automatic_variables
+
+

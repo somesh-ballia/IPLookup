@@ -1,0 +1,60 @@
+﻿
+about_Escape_character
+
+SHORT DESCRIPTION
+    Change how the Windows PowerShell interprets a character
+
+LONG DESCRIPTION
+
+    The grave-accent(`) character has special meaning in Windows PowerShell:
+    
+    *   It indicates that the following character should be passed to the 
+        command without substitution. 
+    *   When used in a script at the end of a line (that is, with no 
+        other characters following it), it instructs the PowerShell to 
+        continue reading the command line from the next line.
+    *   When used inside quotation marks, it indicates that the following 
+        character should be interpreted as a special character. For 
+        example, `n is a "new line" character that causes the PowerShell 
+        to start a new line at the character, and `t is a tab 
+        character that aligns the next character to the left of the next 
+        column, which, by default, is eight characters wide.
+        
+    The following are the special characters recognized by the Windows 
+    PowerShell:
+    
+    `'    Single quote
+    `"    Double quote
+    `0    Null
+    `a    Alert
+    `b    Backspace
+    `f    Form feed
+    `n    New line
+    `r    Carriage return
+    `t    Horizontal tab
+    `v    Vertical tab
+    
+    EXAMPLES
+    
+        C:\> Write-Host "backup`b`bout"
+        backout
+        
+        C:\>Write-Host "Break the line `nhere"
+        Break the line
+        Here
+        
+        C:\> Write-Host "Hi, `"Jim`""
+        Hi, "Jim"
+        
+        C:\> Write-Host "12345678123456781`nCol1`tColumn2`tCol3"
+        12345678123456781
+        Col1    Column2 Col3
+    
+    In a script named test.ps1:
+    
+        Write-Host `
+        "This shows the line continuation character."
+        
+        c:\>test.ps1
+        This shows the line continuation character.
+    

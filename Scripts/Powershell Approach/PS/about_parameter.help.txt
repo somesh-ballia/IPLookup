@@ -1,0 +1,210 @@
+﻿TOPIC
+    Cmdlet parameters
+
+SHORT DESCRIPTION
+    Working with Cmdlet parameters in the Windows PowerShell 
+
+LONG DESCRIPTION
+    Most PowerShell Cmdlets rely on parameters. Parameters are Cmdlet elements 
+    that provide information to the Cmdlet. The information either 
+    identifies the items to be acted upon by the command or controls how 
+    the Cmdlet carries out its job.
+
+    When creating a command that include Cmdlet parameters, the parameters 
+    follow the Cmdlet name and usually take the following form:
+
+        -<parameter_name> <parameter_value>
+
+    The name of the parameter is preceded by a hyphen (-), which signals to 
+    PowerShell that the word following the hyphen is a parameter and not a 
+    value being passed to the Cmdlet. Not all parameters require a value, and 
+    not all parameter names must be specified. In some cases, the parameter 
+    name is implied and does not need to be explicitly included.
+
+    The type of parameters and the requirements for those parameters vary 
+    from Cmdlet to Cmdlet. To find information on a Cmdlet's parameters, 
+    use the Get-Help Cmdlet to retrieve information about the specific 
+    Cmdlet. For example, to find information about the parameters supported 
+    by the Get-ChildItem Cmdlet, enter the following command at the PowerShell 
+    command prompt:
+
+        help Get-ChildItem
+
+    The command returns various details about the Cmdlet, including a 
+    description of the Cmdlet, the command syntax, and information about 
+    the parameters. From this information, you'll find the sections on the 
+    syntax and the parameters the most helpful in determining how to use 
+    the parameters for that Cmdlet. For example, the Help information on 
+    the Get-ChildItem Cmdlet includes the following syntax:
+
+        Get-ChildItem [-Path] path [-Include includeFilter] 
+        [-Exclude excludeFilter] 
+        [-Filter providerSpecificFilter] [-Force []]
+
+    The syntax shows the Cmdlet name (Get-ChildItem), followed by a list of 
+    parameters. Elements that are optional are shown in brackets. If a 
+    value is required for a parameter, a placeholder follows the parameter 
+    name. For example, the first elements after the Cmdlet name are "[-
+    Path] path." [-Path] is the name of the parameter. Because it is 
+    bracketed, you do not have to specify -Path when providing a directory 
+    path. However, notice that the second "path" is not bracketed. This is 
+    a placeholder for the actual value, and it is required. All other 
+    elements in the syntax are optional.
+
+    In addition to the command syntax, the Get-Help command returns 
+    parameter information. This information includes the details you need 
+    about all the individual parameters. For example, the Help information 
+    for the Get-ChildItem Cmdlet includes the following details about the -
+    Path parameter:
+
+        -Path pathname
+            The path to the file that will become the output file.
+        Wildcards are allowed but they must resolve to a single name.
+
+            Parameter required?      true
+            Parameter position?      1
+            Parameter type        String
+            Default value         
+            Accept multiple values?    false
+            Accepts pipeline input?    true
+            Accepts wildcard characters? true
+
+    Notice that the information includes details about seven settings. 
+    These settings are common to most parameters. The following sections 
+    describe each of these settings:
+
+    PARAMETER REQUIRED?
+    This setting indicates whether the command will run if you do not 
+    supply this parameter. When set to "true, you must provide the 
+    parameter when running this Cmdlet. If you do not supply the parameter, 
+    the command prompts you for a value.
+
+    PARAMETER POSITION?
+    This setting indicates whether you can supply a parameter's value 
+    without preceding it with the parameter name. If set to "0" or "named," 
+    a parameter is required. This type of parameter is referred to as a 
+    "named" parameter. A named parameter can be listed in any position 
+    after the Cmdlet name.
+
+    If the Parameter position? setting is set to an integer other than 0, 
+    the parameter name is not required. This type of parameter is referred 
+    to as a "positional" parameter, and the number indicates the position 
+    that the parameter must appear in relation to other positional 
+    parameters. If you include the parameter name for a positional 
+    parameter, the parameter can be listed in any position after the Cmdlet 
+    name.
+
+    For example, the Get-ChildItem includes the -Path parameter and the -
+    Exclude parameter. The Parameter position? setting for -Path is 1, 
+    which means that it's a positional parameter. The Parameter position? 
+    setting for -Exclude is 0, which means that it's a named parameter. 
+    This means that -Path does not require the parameter name; however, the 
+    parameter value must be the first of the positional parameter values 
+    listed, if those other parameter values are listed without a name. On 
+    the other hand, because the -Exclude parameter is a named parameter, 
+    you can place it in any position.
+
+    As a result of the Parameter position? settings for these two 
+    parameters, you can use any of the following commands:
+
+        Get-ChildItem -path c:\techdocs -exclude *.ppt
+        Get-ChildItem c:\techdocs -exclude *.ppt
+        Get-ChildItem -exclude *.ppt -path c:\techdocs
+        Get-ChildItem -exclude *.ppt c:\techdocs
+
+    If you were to include another positional parameter without including 
+    the parameter name, that parameter would have to be placed in the order 
+    specified by the Parameter position? setting, relative to the -Path 
+    positional parameter.
+
+    PARAMETER TYPE
+    This setting specifies the form that the parameter's value should take. 
+    This refers to the .NET type that determines the kind of value that is 
+    permitted as a parameter argument. For example, if the type is set to 
+    int32, the parameter argument must be an integer, such as 0, 5, or 100. 
+    If the type is set to string, the argument must be in the form of a 
+    character string. If the string contains spaces, the value must be 
+    enclosed in quotation marks or the spaces must be preceded by the 
+    escape character (`).
+
+    DEFAULT VALUE
+    This setting provides a default value that the parameter will assume if 
+    no other value is provided. Required parameters never have a default 
+    value, nor do many optional parameters. For example, many commands that 
+    accept a -Path parameter use the current working location as the value 
+    if you do not supply the parameter.
+
+    ACCEPTS MULTIPLE VALUES?
+    This setting indicates whether a parameter will accept multiple values 
+    in a single argument. If a command accepts multiple values, you can 
+    supply more than one value on the command line, or you can construct an 
+    array and supply the array as the parameter value. If you supply more 
+    than one value on the command line, you must separate each value with a 
+    comma (,).
+
+    For instance, the Get-Service Cmdlet includes the -ServiceName 
+    parameter, which accepts multiple values. You can include those values 
+    as one argument, as shown in the following command:
+
+        Get-Service -servicename b*, c*
+
+    Note that, if a string value contains a comma, the value must be 
+    enclosed in quotation marks so the string will not be treated as two 
+    separate values.
+
+    ACCEPTS PIPELINE INPUT?
+    This setting indicates whether the parameter can receive its value as 
+    input from a pipeline object. In order to use a command in a pipeline, 
+    the applicable parameter must have this option set to True to receive 
+    the pipeline input.
+
+    ACCEPTS WILDCARD CHARACTERS?
+    This setting indicates whether the parameter's value can contain 
+    wildcard characters so that the parameter value can be matched to more 
+    than one existing item in the target container.
+
+    UBIQUITOUS PARAMETERS
+    Cmdlets are created by subclassing the base Cmdlet object. The base 
+    object includes a number of parameters to ensure that each Cmdlet 
+    shares a level of consistency. The following table provides a list of 
+    the ubiquitous parameters:
+
+    Parameter     Type    Description
+    ------------- ------- -------------------------------------------------
+    Confirm       boolean Prompts user before taking any action that 
+                          modifies the system
+    Debug         boolean Provides programming-level information about the 
+                          operation
+    ErrorAction   enum    Controls command behavior when error occurs
+    ErrorVariable string  Name of variable (in addition to $error) in which 
+                          to place objects to which an error has occurred
+    OutputBuffer  int32   Controls the number of objects to be buffered 
+                          between this command and the next (useful for
+                          tweaking performance)
+    OutVariable   string  Name of variable in which to place output objects
+                          (equivalent to piping the command 
+                          Set-Variable <name> -passthru true)
+    Verbose       boolean Provides detailed information about the operation
+    WhatIf        boolean Provides information about the changes that would 
+                          occur, but does not make those changes
+
+SEE ALSO
+    For information about any of a Cmdlet's parameters, use the help alias 
+    (for the Get-Help Cmdlet) plus the Cmdlet name. For example, to view 
+    parameter information about the Set-Alias Cmdlet, enter the following 
+    command:
+
+        help Set-Alias
+
+    For information about command syntax, enter the following command:
+
+        help about_command_syntax
+
+    For information about pipelines, enter the following command:
+
+        help about_pipeline
+
+    For information about wildcards, enter the following command:
+
+        help about_wildcard
+

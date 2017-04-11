@@ -1,0 +1,69 @@
+﻿TOPIC
+    Script blocks
+
+SHORT DESCRIPTION
+    Grouping statements and commands into a single block of code in the 
+    Windows PowerShell 
+
+LONG DESCRIPTION
+    The following are a few script block samples:
+    
+    This example loops through each file with the *.txt extension then writes 
+    its full name and length to the host.
+
+        foreach ($file in Get-ChildItem c:\techdocs\*.txt)
+        {
+            Write-Host $file.fullname $file.length
+        }
+
+    This example nests an if statement inside a foreach loop.
+
+        foreach ($file in Get-ChildItem c:\techdocs\*.txt)
+        {
+            if ($file.length -ge 100)
+            {
+                Write-Host $file.name - $file.length bytes
+            }
+            else
+            {
+                Write-Host $file.name - "The file is smaller than 100 bytes."
+            }
+        }
+
+
+ASSIGNING SCRIPT BLOCKS TO VARIABLES
+    You can also assign script blocks to variables as follows:
+
+        $a = {Write-Host $file.fullname $file.length}
+
+    Use the & to execute the script block variables as follows:
+
+
+        foreach ($file in Get-ChildItem c:\techdocs\*.txt) {&$a}
+
+        Write-Host $file.fullname $file.length
+
+
+FUNCTIONS AND FILTERS
+
+        function text_files
+        {
+            Get-ChildItem c:\techdocs\*.txt
+        }
+
+
+SEE ALSO
+    For information about flow control statements, enter the following 
+    command at the PowerShell command prompt:
+
+        help about_flow_control
+
+    For information about functions and filters, enter the following 
+    command:
+
+        help about_function
+
+    For information about scope, enter the following command:
+
+        help about_scope
+

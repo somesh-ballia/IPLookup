@@ -1,0 +1,76 @@
+﻿TOPIC
+    Core Cmdlets
+
+SHORT DESCRIPTION
+    Windows PowerShell core Cmdlets related to data stores
+
+LONG DESCRIPTION
+    PowerShell core Cmdlets are a set of predefined Cmdlets that provide a 
+    consistent user experience when accessing different data stores through 
+    PowerShell Providers. For example, you can use the 
+    Get-ChildItem Cmdlet whether you're accessing the Windows file system or 
+    the Windows Registry. The PowerShell Providers facilitate your 
+    connection to the data stores and allow you to use the Get-ChildItem and 
+    other core Cmdlets in a consistent manner for each data store.
+
+    PowerShell provides the following core Cmdlets, which are listed by 
+    the Cmdlet nouns:
+
+    ChildItem CMDLETS
+    Get-ChildItem
+
+    CONTENT CMDLETS
+    Add-Content
+    Clear-Content
+    Get-Content
+    Set-Content
+
+    DRIVE CMDLETS
+    Get-PSDrive
+    New-PSDrive
+    Remove-PSDrive
+
+    ITEM CMDLETS
+    Clear-Item
+    Copy-Item
+    Get-Item
+    Invoke-Item
+    Move-Item
+    New-Item
+    Remove-Item
+    Rename-Item
+    Set-Item
+
+    LOCATION CMDLETS
+    Get-Location
+    Pop-Location
+    Push-Location
+    Set-Location
+
+    PATH CMDLETS
+    Join-Path
+    Convert-Path
+    Split-Path
+    Resolve-Path
+    Test-Path
+
+    PROPERTY CMDLETS
+    Clear-ItemProperty
+    Copy-ItemProperty
+    Get-ItemProperty
+    Move-ItemProperty
+    New-ItemProperty
+    Remove-ItemProperty
+    Rename-ItemProperty
+    Set-ItemProperty
+
+    PROVIDER CMDLETS
+    Get-PSProvider
+
+SEE ALSO
+    For information about any of the Cmdlets, use the help alias (for the 
+    Get-Help Cmdlet) plus the Cmdlet name. For example, to view information 
+    about the Add-Content Cmdlet, enter the following command:
+
+        help Add-Content
+

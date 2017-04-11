@@ -1,0 +1,45 @@
+﻿TOPIC
+    Redirection
+
+SHORT DESCRIPTION
+    Redirecting output from the Windows PowerShell to text files
+
+LONG DESCRIPTION
+    By default, PowerShell directs command output to the screen in the 
+    PowerShell. However, you can override this behavior by directing the 
+    output to a text file, which allows you to capture the results for 
+    later use.
+
+    To write the results of a command to a text file, you must add the 
+    greater than (>) symbol and the file name to the end of your command. 
+    For example, the following command writes the results from a Get-
+    ChildItem command to a text file:
+
+        Get-ChildItem c:\windows\system > c:\techdocs\results.txt
+
+    When you run this command, the output is sent to the results.txt file 
+    in the c:\techdocs directory, and no output is displayed on the screen. 
+    If the specified file does not exist, the file is created and the 
+    output is written to that file. If the file already exists, the output 
+    replaces any existing content in the file with new content.
+
+    If you do not want to replace the content of an existing output file, 
+    you can append the output to the existing content by using two greater 
+    than (>>) symbols, as shown in the following example:
+
+        Get-ChildItem c:\windows\system >> c:\techdocs\results.txt
+
+    The command appends the new output after any existing content, and none 
+    of the existing content is deleted.
+
+SEE ALSO
+    For information about command syntax, enter the following command at 
+    the PowerShell command prompt:
+
+        help about_command_syntax
+
+    For information about path syntax, enter the following command at the 
+    PowerShell command prompt:
+
+        help about_path_syntax
+

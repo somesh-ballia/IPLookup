@@ -1,0 +1,320 @@
+﻿TOPIC
+    Signing and Execution Policies
+
+SHORT DESCRIPTION
+    Describes the Windows PowerShell execution policies, and how to use and 
+    change them.
+
+LONG DESCRIPTION
+
+    PowerShell execution policies provide security for the scripting
+    environment by determining the conditions under which PowerShell loads
+    configuration files and runs scripts.
+
+    "Restricted," the most secure policy, is the default. It permits  
+    individual commands, but does not permit scripts to run.
+
+    When an execution policy prevents PowerShell from loading a file or running
+    a script, a warning appears explaining the restriction.
+ 
+        "Error loading the extended type data file:"
+	"There were errors in loading the format data file:"
+
+    To load the file or permit scripts to run, change the execution policy.
+
+
+CHANGE YOUR EXECUTION POLICY
+------------------------------
+You can change the PowerShell execution policy on your computer. The change is
+effective immediately and is retained until you change it again. Only
+Administrators are permitted to change the policy.
+
+    To change your execution policy, type:
+ 
+        Set-ExecutionPolicy <policy-name>
+
+    For example, 
+
+        Set-ExecutionPolicy RemoteSigned
+
+If the command is successful, PowerShell displays the command prompt. There is
+no success message. If the command fails, PowerShell displays an error message,
+and reverts to the previous execution policy.
+
+
+    To see the PowerShell execution policy, type:
+	
+        Get-ExecutionPolicy
+
+If the command is not successful, you might have misspelled the policy name.
+Check the name and try again. If you do not have permission to run this command,
+see your system administrator.
+
+
+POWERSHELL EXECUTION POLICIES
+------------------------------
+
+The PowerShell execution policies are:
+
+    Restricted
+        - Default execution policy.
+        - Permits individual commands, but scripts cannot run.
+    
+    AllSigned
+        - Scripts can run.
+        - Requires a digital signature from a trusted publisher on all scripts
+          and configuration files, including scripts that you write on the
+          local computer.
+	- Prompts you before running scripts from trusted publishers.
+        - Risks running signed, but malicious, scripts.
+      
+    RemoteSigned
+        - Scripts can run.
+        - Requires a digital signature from a trusted publisher on scripts and
+          configuration files that are downloaded from the Internet (including
+          e-mail and instant messaging programs).
+	- Does not require digital signatures on scripts run from the
+          local computer.
+	- Does not prompt you before running scripts from trusted publishers.
+        - Risks running signed, but malicious, scripts.
+
+    Unrestricted
+        - Unsigned scripts can run. 
+        - Scripts and configuration files that are downloaded from the Internet
+          (including Microsoft Outlook, Outlook Express and Windows Messenger)
+          run after warning you that the file originated from the Internet.  
+        - Risks running malicious scripts.
+
+
+
+RUNNING UNSIGNED SCRIPTS (REMOTESIGNED EXECUTION POLICY)
+--------------------------------------------------------
+
+If your PowerShell execution policy is RemoteSigned, PowerShell will not run
+unsigned scripts that are downloaded from the Internet  (including e-mail and
+instant messaging programs).
+
+If you try to run a downloaded script, PowerShell displays the
+following error message:
+
+    The file C:\remote.ps1 cannot be loaded. The file C:\remote.ps1 is not
+    digitally signed. The script will not execute on the system. Please 
+    see "Get-Help about_signing" for more details.
+
+Before running the script, review the code to be sure that you trust it. Scripts
+have the same effect as any executable program.
+
+    To run an unsigned script:
+
+    1. Save the script file on your computer. 
+    2. Click Start, click My Computer, and navigate to the saved script file. 
+    3. Right-click the script file, and then click "Properties." 
+    4. Click "Unblock."
+
+
+If a script that was downloaded from the Internet is digitally signed, but you
+have not yet chosen to trust its publisher, PowerShell displays the following
+message:
+
+    Do you want to run software from this untrusted publisher? 
+    The file C:\remote_file.ps1 is published by CN=<publisher-name>. This 
+    publisher is not trusted on your system. Only run scripts from trusted
+    publishers.
+
+    [V] Never run  [D] Do not run  [R] Run once  [A] Always run  
+    [?] Help (default is "D"):
+    
+    If you trust the publisher, select "Run once" or "Always run." 
+    If you do not trust the publisher, select either "Never run" or 
+    "Do not run." If you select "Never run" or "Always run," PowerShell will not
+    prompt you again for this publisher.
+    
+
+METHODS OF SIGNING SCRIPTS
+------------------------------------------
+
+You can sign the scripts that you write and sign scripts from other sources.
+Before signing any script, examine each command and verify that it is safe
+to run.
+
+    For further details about how to sign a script file, at the PowerShell
+    command line, type:
+
+    Get-Help Set-AuthenticodeSignature
+
+
+To add a digital signature to a script, you must sign it with a code signing
+certificate. Two types of certificates are suitable for signing a script file: 
+
+    -- Certificates created by a certificate authority:
+
+       For a fee, a public certificate authority verifies your identity and
+       gives you a code signing certificate.  When you purchase your 
+       certificate from reputable certificate authority, you will be able to
+       share your script with users on other computers running Windows,
+       because those other computers trust the certificate authority.
+
+    -- Certificates that you create:
+
+       You can create a "self-signed certificate" for which your computer is 
+       the authority that creates the certificate. This certificate is free of
+       charge and enables you to write, sign, and run scripts on your computer,
+       but other computers do not trust your computer and might not run the
+        script.
+
+       If you create a self-signed certificate, be sure to enable strong
+       private key protection on your certificate. This prevents malicious
+       programs from signing scripts on your behalf. The instructions are
+       included at the end of this topic.
+
+
+CREATE A SELF-SIGNED CERTIFICATE
+-------------------------------------------------------------
+To create a self-signed certificate, use MakeCert.exe, a tool included in the
+Microsoft .NET Framework SDK (Versions 1.1 and later) and the Microsoft Platform
+SDK. 
+
+To use MakeCert to create a certificate:
+
+    In an SDK Command Prompt window, run the following commands. 
+ 
+    The first command creates a local certificate authority for your computer.
+    The second command generates a personal certificate from the certificate
+    authority:
+
+        makecert -n "CN=PowerShell Local Certificate Root" -a sha1 `
+            -eku 1.3.6.1.5.5.7.3.3 -r -sv root.pvk root.cer `
+            -ss Root -sr localMachine
+
+        makecert -pe -n "CN=PowerShell User" -ss MY -a sha1 `
+            -eku 1.3.6.1.5.5.7.3.3 -iv root.pvk -ic root.cer
+
+    MakeCert will prompt you for a private key password.
+
+
+To verify that the certificate was generated correctly:
+
+    At the PowerShell prompt, type:
+
+        get-childitem cert:\CurrentUser\My -codesigning
+
+    This command uses the PowerShell certificate provider to view information 
+    about the certificate.
+
+    If the certificate was created, the output shows the thumbprint of the 
+    certificate, which contains authentication data for the PowerShell user, 
+    in a display like the following one:
+
+
+        Directory: Microsoft.PowerShell.Security\Certificate::CurrentUser\My
+
+        Thumbprint                                Subject
+        ----------                                -------
+        4D4917CB140714BA5B81B96E0B18AAF2C4564FDF  CN=PowerShell User ]
+
+
+SIGN A SCRIPT
+-------------
+
+After you have a self-signed certificate, you can sign scripts. If you use
+the AllSigned execution policy, signing a script permits you to run the
+script on your computer. 
+
+The following sample script, sign-file.ps1, signs a script. However, if you are
+using the AllSigned execution policy, you must sign sign-file.ps1 before you 
+run it.
+
+To use this script, copy the following text into a text file and name it 
+sign-file.ps1. 
+
+(Be sure that the script file does not have a .txt file name extension. If 
+your text editor is appending .txt, enclose the file name in quotation 
+marks, e.g. "sign-file.ps1".)
+
+
+    ## sign-file.ps1
+    ## Sign a file
+    param([string] $file=$(throw "Please specify a filename."))
+    $cert = @(Get-ChildItem cert:\CurrentUser\My -codesigning)[0]
+    Set-AuthenticodeSignature $file $cert
+
+
+To sign sign-file.ps1, type the following commands at the PowerShell prompt: 
+
+    $cert = @(Get-ChildItem cert:\CurrentUser\My -codesigning)[0]
+    
+    Set-AuthenticodeSignature sign-file.ps1 $cert
+
+
+After the script is signed, you can run it on the local computer. However,
+the script will not run on computers on which the PowerShell execution policy
+requires a digital signature from a trusted authority. If you try, PowerShell
+reports the following error:
+
+    The file C:\remote_file.ps1 cannot be loaded. The signature of the 
+    certificate can not be verified.
+        At line:1 char:15
+        + .\ remote_file.ps1 <<<<
+
+If PowerShell displays this message when you run a script that you did not
+write, treat the file as though you would treat any unsigned script. Review
+the code and if you trust it, you can sign it and run it.
+
+
+ENABLE STRONG PRIVATE KEY PROTECTION FOR YOUR CERTIFICATE
+---------------------------------------------------------
+
+If you have a private certificate on your computer, malicious programs might be
+able to sign scripts on your behalf, which authorizes PowerShell to run them. 
+
+To prevent automated signing on your behalf, use the Certificate Manager Tool
+(Certmgr.exe) to export your signing certificate to a .pfx file. Certificate
+Manager is included in the The Microsoft .NET Framework SDK, the Microsoft
+Platform SDK, and Internet Explorer 5.0 and later.
+
+To export the certificate:
+
+    1. Start Certificate Manager (it is a GUI tool).
+
+    2. Select the certificate issued by the "PowerShell Local Certificate Root."
+
+    3. Click "Export" to start the Certificate Export Wizard.
+
+    4. Select "Yes, export the private key" and then click "Next."
+
+    5. Select "Enable strong protection."
+
+    6. Type a password and then type it again to confirm.
+
+    7. Type a filename with a .pfx file name extension.
+
+    8. Click "Finish."
+
+
+To re-import the certificate:
+
+    1. Start Certificate Manager (it is a GUI tool).
+
+    2. Click "Import" to start the Certificate Import Wizard.
+
+    3. Browse to the location of the .pfx file that you created during the
+       export process.
+
+    4. On the "Password" page, select "Enable strong private key protection"
+       and then enter the password that you assigned during the export process.
+
+    5. Select the "Personal" certificate store.
+
+    6. Click "Finish."
+
+
+SEE ALSO
+
+    For information about code signing, search the Microsoft Developer 
+    Network (MSDN) reference at http://msdn.microsoft.com/ for
+    "Introduction to Code Signing."
+
+    For information about the Set-AuthenticodeSignature command, enter the 
+    following at the PowerShell command prompt:
+
+        help Set-AuthenticodeSignature

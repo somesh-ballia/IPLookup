@@ -1,0 +1,108 @@
+﻿TOPIC
+    Command history
+
+SHORT DESCRIPTION
+    Retrieving commands entered at the Windows PowerShell command 
+    prompt
+
+LONG DESCRIPTION
+    When you enter a command at the command prompt, PowerShell maintains a 
+    record of that command so that you can reuse it. That record is added to 
+    the command history, which is maintained until you exit the PowerShell.
+
+    By default, PowerShell stores only 64 commands in the command history. If 
+    you exceed this number of commands in a single session, PowerShell 
+    maintains the most recent 64 commands. You can override the default number 
+    of commands by setting the $MaximumHistoryCount variable to a specified 
+    number. For example, the following command changes the command history 
+    retention to 100 commands:
+
+        $MaximumHistoryCount = 100
+
+    When you set the $MaximumHistoryCount variable at the PowerShell command 
+    prompt, the change is in effect until you exit PowerShell. If you want the 
+    new variable value to be set as the default value for all of your 
+    PowerShell sessions, you should add the above command to the profile.ps1 
+    file. The profile.ps1 file for the currently logged-on user is located at 
+    the following file system location: $home\"my documents"\PSConfiguration. 
+    After you add the command, be sure to save the profile.ps1 file and 
+    restart PowerShell.
+
+    Once commands have been saved to the command history, you can take any 
+    of the following steps to access one of those commands:
+
+    * Press the Up Arrow key to move backwards through the command history. 
+    The first time you press the Up Arrow key, PowerShell displays the last 
+    command that you ran in the current session. If you press the Up Arrow 
+    key again, the next-to-last command is displayed, and so on. Once 
+    you've located the command you're looking for, edit it as necessary and 
+    then press Enter.
+
+    * Press the Down Arrow key to move forward through the command history. 
+    The first time you press the Down Arrow key, PowerShell display the first 
+    command that you ran in the current session. If you press the Down 
+    Arrow key again, the second command is displayed, and so on. Once 
+    you've located the command you're looking for, edit it as necessary and 
+    then press Enter.
+
+    * Type one or more characters and then press F8 to display the last 
+    entered command that begins with those characters. If you press F8 
+    again, PowerShell displays the second-to-last matching command, and so on. 
+    Once you've located the command you're looking for, edit it as 
+    necessary and then press Enter.
+
+    * Press F7 to display the command history. Use the Up Arrow and Down 
+    Arrow keys to scroll to the desired command. Once you've located the 
+    command you're looking for, press Enter to run the command.
+
+    * Press F7 to display the command history. To run one of the commands, 
+    press F9, type the number assigned to the command, as it appears in the 
+    list, and then press Enter to display the command at the command 
+    prompt. Edit the command as necessary, and then press Enter again to 
+    run the command.
+
+    In addition to taking one of these steps to run a command from the 
+    command history, you can also view a list of previous commands by using 
+    of the Get-History Cmdlets, as shown in the following example:
+
+        Get-History
+
+    The command returns a list of the last 32 commands that you entered. 
+    You can also use the Get-History Cmdlet to retrieve a specific command 
+    by the number assigned to the command. (A number is assigned to each 
+    command in the order in which the command is entered.) For example, to 
+    retrieve the 12th command that you ran, enter the following command at 
+    the PowerShell command prompt:
+
+        Get-History -id 12
+
+    Note that, by default, PowerShell assigns the alias "history" to the Get-
+    History Cmdlet.
+
+    PowerShell also provides the Invoke-History Cmdlet to run a command in the 
+    command history. To use this Cmdlet, you must know the number of the 
+    command, which usually means first using the Get-History Cmdlet and 
+    then using the Invoke-History Cmdlet. For example, to run the 12th 
+    command in the command history, enter the following command:
+
+        Invoke-History -id 12
+
+    This will run the original command as though you had entered it 
+    directly at the command prompt.
+
+SEE ALSO
+    For information about history-related Cmdlets, use the help alias (for 
+    the Get-Help Cmdlet) plus the Cmdlet name. For example, to view 
+    information about the Get-History Cmdlet, enter the following command 
+    at the PowerShell command prompt:
+
+        help Get-History
+
+    For information about command line editing, enter the following 
+    command:
+
+        help about_line_editing
+
+    For information about automatic variables, enter the following command:
+
+        help about_automatic_variables

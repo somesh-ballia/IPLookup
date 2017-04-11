@@ -1,0 +1,64 @@
+﻿TOPIC
+    Command line editing
+
+SHORT DESCRIPTION
+    Editing commands at the Windows PowerShell command prompt
+
+LONG DESCRIPTION
+    When you type a command at the PowerShell command prompt or use the 
+    command history to retrieve a command, you can modify the elements of that 
+    command at the command prompt before you run the command. PowerShell allows 
+    you to move backward and forward within the command as well as edit 
+    individual characters.
+
+    To move forward or backward within a command or to edit any of the 
+    command elements, you can take any of the following steps:
+
+    * Press the Left Arrow key to move the cursor to the left, and press 
+    the Right Arrow key to move the cursor to the right.
+
+    * Press the Home key to move the cursor to the beginning of the 
+    command, and press the End key to move the cursor to the end of the 
+    command.
+
+    * Press Ctrl+Left Arrow to move the cursor one word to the left, and 
+    press Ctrl+Right Arrow to move the cursor one word to the right.
+
+    * Press the Insert key to put the command line into overstrike mode, 
+    and press the Insert key again to put the command line back into insert 
+    mode. When the command line is in overstrike mode, the character you 
+    type replaces the character highlighted by the cursor. When the command 
+    line is in insert mode (the default mode), the character you type is 
+    inserted before the cursor.
+
+    * Press the Backspace key to delete the character in front of the 
+    cursor (overstrike mode or insert mode). In overstrike mode, press the 
+    Delete key to delete the highlighted character. In insert mode, press 
+    the Delete key to delete the next character.
+
+    * Press the Tab key to automatically complete a path that you have 
+    begun to type. If the first path displayed in not the path you want, 
+    press Tab again until the correct path is displayed. Note that the Tab 
+    key will complete the path only to one child level. For example, if you 
+    type c:\ and then press the Tab key, one of your path options will be 
+    c:\windows, but not c:\windows\system32. To move to the next level in 
+    the hierarchy, type a backslash after the selected parent and then 
+    press the Tab key. For example, if you press Tab until c:\windows is 
+    displayed, you can then type the backslash key at the end of the line, 
+    and then press the Tab key to tab through to next level in the 
+    hierarchy.
+
+SEE ALSO
+    For information about the command history, enter the following command 
+    at the PowerShell command prompt:
+
+        help about_history
+
+    For information about command syntax, enter the following command:
+
+        help about_command_syntax
+
+    For information about path syntax, enter the following command:
+
+        help about_path_syntax
+
